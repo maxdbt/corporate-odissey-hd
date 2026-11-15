@@ -8,6 +8,7 @@ export const BRIEFS = {
       'Il collega logorroico ti blocca: liberati e scappa.',
       'Salta sulle icone di Teams per eliminarle: se ti toccano, stress!',
       'Trova un laptop per sparare e-mail ai nemici.',
+      "Il PC verde sulla prima scrivania apre il bonus POV L'ULTIMA MAIL: SU o tocca il computer.",
       'C\'è la SALA FESTE: passa davanti alla porta e il buttafuori ti fa entrare a sfidare i colleghi a ballo!'
     ]
   },

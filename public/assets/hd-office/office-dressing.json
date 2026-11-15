@@ -1,0 +1,134 @@
+{
+  "frames": {
+    "workstation": {
+      "frame": {
+        "x": 33,
+        "y": 47,
+        "w": 535,
+        "h": 386
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 535,
+        "h": 386
+      },
+      "sourceSize": {
+        "w": 535,
+        "h": 386
+      }
+    },
+    "paperClutter": {
+      "frame": {
+        "x": 619,
+        "y": 186,
+        "w": 546,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 546,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 546,
+        "h": 229
+      }
+    },
+    "noticeboard": {
+      "frame": {
+        "x": 1254,
+        "y": 86,
+        "w": 464,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 464,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 464,
+        "h": 314
+      }
+    },
+    "foregroundDesk": {
+      "frame": {
+        "x": 24,
+        "y": 559,
+        "w": 561,
+        "h": 294
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 561,
+        "h": 294
+      },
+      "sourceSize": {
+        "w": 561,
+        "h": 294
+      }
+    },
+    "foregroundPlant": {
+      "frame": {
+        "x": 666,
+        "y": 498,
+        "w": 431,
+        "h": 364
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 431,
+        "h": 364
+      },
+      "sourceSize": {
+        "w": 431,
+        "h": 364
+      }
+    },
+    "wallDesk": {
+      "frame": {
+        "x": 1183,
+        "y": 515,
+        "w": 562,
+        "h": 309
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 562,
+        "h": 309
+      },
+      "sourceSize": {
+        "w": 562,
+        "h": 309
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "office-dressing.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1774,
+      "h": 887
+    },
+    "scale": "1"
+  }
+}

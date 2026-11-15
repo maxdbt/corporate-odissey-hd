@@ -10,6 +10,7 @@ import { generateTrip } from '../gfx/trip.js';
 import { generateClients } from '../gfx/clients.js';
 import { generateAnims } from '../gfx/anims.js';
 import { setupStaticCamera } from '../utils/view.js';
+import { preloadHdAssets } from '../presentation/AssetRegistry.js';
 
 // Generates every 8-bit texture and animation in code, then opens the menu.
 export default class BootScene extends Phaser.Scene {
@@ -17,7 +18,18 @@ export default class BootScene extends Phaser.Scene {
     super('BootScene');
   }
 
+  preload() {
+    setupStaticCamera(this);
+    this.loadingText = this.add.text(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'CARICAMENTO ASSET HD…', {
+      fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '20px', color: '#e8d4ae'
+    }).setOrigin(0.5);
+    this.load.on('progress', (value) => this.loadingText?.setText('CARICAMENTO HD  ' + Math.round(value * 100) + '%'));
+    preloadHdAssets(this);
+  }
+
   create() {
+    this.loadingText?.destroy();
+    this.loadingText = null;
     setupStaticCamera(this);
     this.add.text(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'CARICAMENTO...', {
       fontFamily: FONT, fontSize: '20px', fontStyle: 'bold', color: '#ffd800', stroke: '#000000', strokeThickness: 4
@@ -34,7 +46,8 @@ export default class BootScene extends Phaser.Scene {
       generateTrip(this);
       generateClients(this);
       generateAnims(this);
-      this.scene.start('MenuScene');
+      const bonus = new URLSearchParams(window.location.search).get('bonus') === 'last-mail';
+      this.scene.start(bonus ? 'LastMailScene' : 'MenuScene', bonus ? { preview: true } : {});
     });
   }
 }

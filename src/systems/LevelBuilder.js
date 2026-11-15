@@ -60,7 +60,9 @@ export default class LevelBuilder {
     (L.counters || []).forEach(([x, y]) => this.counter(x, y));
     (L.benches || []).forEach(([x, y]) => this.bench(x, y));
     (L.ladders || []).forEach(([x, top, bottom]) => this.ladder(x, top, bottom));
-    (L.decor || []).forEach(([tex, x, y]) => this.scene.add.image(x, y, tex).setOrigin(0.5, 1).setDepth(DEPTH.DECOR));
+    (L.decor || []).forEach(([tex, x, y]) => {
+      if (!this.scene.presentation?.drawDecor(tex, x, y)) this.scene.add.image(x, y, tex).setOrigin(0.5, 1).setDepth(DEPTH.DECOR);
+    });
     (L.items || []).forEach(([kind, x, y]) => new Collectible(this.scene, x, y, kind));
     (L.terminals || []).forEach(([x, y, quizId]) => this.terminal(x, y, quizId));
     if (L.goal) this.goal(L.goal);
@@ -70,7 +72,7 @@ export default class LevelBuilder {
   // Solid rectangle: tiled visual + one static body.
   solid(x, y, w, h, tex) {
     const s = this.scene;
-    if (tex) {
+    if (tex && !s.presentation?.drawSolid(x, y, w, h, tex)) {
       s.add.tileSprite(x, y, w, h, tex).setOrigin(0).setDepth(DEPTH.PLATFORMS);
     }
     const z = s.add.zone(x + w / 2, y + h / 2, w, h);
@@ -87,12 +89,12 @@ export default class LevelBuilder {
 
   desk(x, y, glass) {
     const tex = glass ? TEX.DESK_GLASS : TEX.DESK;
-    this.scene.add.image(x, y, tex).setOrigin(0, 0).setDepth(DEPTH.PLATFORMS);
+    if (!this.scene.presentation?.drawDesk(x, y, glass)) this.scene.add.image(x, y, tex).setOrigin(0, 0).setDepth(DEPTH.PLATFORMS);
     this.oneWayBody(x, y, 64);
   }
 
   platform(x, y, w, tex) {
-    this.scene.add.tileSprite(x, y, w, 16, tex).setOrigin(0).setDepth(DEPTH.PLATFORMS);
+    if (!this.scene.presentation?.drawPlatform(x, y, w, tex)) this.scene.add.tileSprite(x, y, w, 16, tex).setOrigin(0).setDepth(DEPTH.PLATFORMS);
     this.oneWayBody(x, y, w);
     if (ICE_TEX.includes(tex)) this.zoneDefs.push({ type: 'ice', x, y: y - 6, w, h: 14 });
   }
@@ -125,7 +127,7 @@ export default class LevelBuilder {
 
   ladder(x, top, bottom) {
     const h = bottom - top;
-    this.scene.add.tileSprite(x, top, 20, h, TEX.LADDER).setOrigin(0.5, 0).setDepth(DEPTH.DECOR + 1);
+    if (!this.scene.presentation?.drawLadder(x, top, bottom)) this.scene.add.tileSprite(x, top, 20, h, TEX.LADDER).setOrigin(0.5, 0).setDepth(DEPTH.DECOR + 1);
     this.zoneDefs.push({ type: 'ladder', x: x - 10, y: top - 4, w: 20, h: h + 4 });
   }
 

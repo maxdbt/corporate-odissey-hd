@@ -114,6 +114,7 @@ export default class Zones {
         break;
       }
       case 'puddle': {
+        if (s.presentation?.drawPuddle(x, y + h, w)) break;
         for (let px = x; px < x + w; px += 32) s.add.image(px, y + h, TEX.PUDDLE).setOrigin(0, 1).setDepth(DEPTH.DECOR + 1);
         s.add.particles(0, 0, TEX.FX_PX, {
           x: { min: x, max: x + w }, y: y + h - 4, speedY: { min: -40, max: -15 },

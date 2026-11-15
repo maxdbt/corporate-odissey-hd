@@ -25,6 +25,7 @@ export default class PartyDoor {
     ensurePartyTextures(scene);
     scene.add.image(x, y, 'party_door').setOrigin(0.5, 1).setDepth(DEPTH.DECOR);
     this.sign = scene.add.text(x, y - 116, 'SALA FESTE', label(12, '#ff5ab4')).setOrigin(0.5).setDepth(DEPTH.DECOR);
+    if (scene.presentation) this.sign.setStyle({ fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '7px', color: '#45311d', strokeThickness: 0 }).setY(y - 83);
     this.blink = scene.tweens.add({ targets: this.sign, alpha: 0.35, duration: 380, yoyo: true, repeat: -1 });
     this.elf = scene.add.image(x + 50, y, 'elf_bouncer').setOrigin(0.5, 1).setScale(1.2).setDepth(DEPTH.DECOR + 1);
     this.notes = scene.add.particles(0, 0, 'music_note', {
@@ -49,7 +50,7 @@ export default class PartyDoor {
     this.blink.stop();
     this.sign.setText('FESTA FINITA').setColor('#9a9a9a').setAlpha(1);
     this.notes.stop();
-    this.scene.add.image(this.x, this.sign.y + 70, 'party_closed').setAngle(-8).setDepth(DEPTH.DECOR + 1);
+    if (!this.scene.presentation) this.scene.add.image(this.x, this.sign.y + 70, 'party_closed').setAngle(-8).setDepth(DEPTH.DECOR + 1);
   }
 
   update() {

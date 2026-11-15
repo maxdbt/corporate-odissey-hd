@@ -1,0 +1,254 @@
+{
+  "frames": {
+    "man_run1": {
+      "frame": {
+        "x": 63,
+        "y": 17,
+        "w": 281,
+        "h": 332
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 17,
+        "w": 281,
+        "h": 332
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run2": {
+      "frame": {
+        "x": 444,
+        "y": 33,
+        "w": 211,
+        "h": 312
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 33,
+        "w": 211,
+        "h": 312
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run3": {
+      "frame": {
+        "x": 835,
+        "y": 23,
+        "w": 165,
+        "h": 323
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 23,
+        "w": 165,
+        "h": 323
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run4": {
+      "frame": {
+        "x": 1148,
+        "y": 12,
+        "w": 236,
+        "h": 338
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 62,
+        "y": 12,
+        "w": 236,
+        "h": 338
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run5": {
+      "frame": {
+        "x": 52,
+        "y": 374,
+        "w": 303,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 12,
+        "w": 303,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run6": {
+      "frame": {
+        "x": 471,
+        "y": 387,
+        "w": 203,
+        "h": 316
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 25,
+        "w": 203,
+        "h": 316
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run7": {
+      "frame": {
+        "x": 816,
+        "y": 378,
+        "w": 189,
+        "h": 331
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 92,
+        "y": 16,
+        "w": 189,
+        "h": 331
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_run8": {
+      "frame": {
+        "x": 1170,
+        "y": 364,
+        "w": 219,
+        "h": 345
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 2,
+        "w": 219,
+        "h": 345
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_idle1": {
+      "frame": {
+        "x": 130,
+        "y": 730,
+        "w": 125,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 6,
+        "w": 125,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_idle2": {
+      "frame": {
+        "x": 486,
+        "y": 727,
+        "w": 129,
+        "h": 358
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 124,
+        "y": 3,
+        "w": 129,
+        "h": 358
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_attack": {
+      "frame": {
+        "x": 763,
+        "y": 744,
+        "w": 293,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 39,
+        "y": 20,
+        "w": 293,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "man_land": {
+      "frame": {
+        "x": 1123,
+        "y": 785,
+        "w": 274,
+        "h": 269
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 37,
+        "y": 61,
+        "w": 274,
+        "h": 269
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "jack-motion.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1448,
+      "h": 1086
+    },
+    "scale": "1"
+  }
+}

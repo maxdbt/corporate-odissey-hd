@@ -5,6 +5,22 @@ import { FLOOR, DESK_TOP, row, arc } from './helpers.js';
 export default {
   id: '1-1',
   theme: 'xmas',
+  visualTheme: 'office-hd',
+  // Visual composition only: collisions, pickups and story triggers keep their coordinates.
+  art: {
+    entryTreeX: 28,
+    dressing: [
+      ['workstation', 159, 380, 58], ['noticeboard', 355, 322, 24],
+      ['paperClutter', 374, 386, 17], ['workstation', 690, 380, 56],
+      ['noticeboard', 980, 314, 24], ['workstation', 1380, 380, 55],
+      ['noticeboard', 1630, 307, 23], ['workstation', 1870, 380, 54],
+      ['paperClutter', 2130, 386, 18], ['workstation', 2350, 380, 56],
+      ['noticeboard', 2690, 308, 25], ['workstation', 3060, 380, 55],
+      ['noticeboard', 3460, 310, 25], ['workstation', 3860, 380, 57],
+      ['paperClutter', 4200, 386, 18], ['workstation', 4490, 380, 55],
+      ['noticeboard', 4770, 312, 23], ['workstation', 5230, 380, 57]
+    ]
+  },
   groundTex: TEX.T_XMAS,
   width: 5600,
   timeLimit: 300,
@@ -22,6 +38,7 @@ export default {
   platforms: [[1900, 232, 200]],
   ladders: [[2080, 232, FLOOR]],
   partyDoor: [1985, FLOOR],
+  lastMailTerminal: [332, DESK_TOP],
   zones: [
     { type: 'puddle', x: 560, y: FLOOR - 10, w: 96, h: 10 },
     { type: 'puddle', x: 2400, y: FLOOR - 10, w: 128, h: 10 },

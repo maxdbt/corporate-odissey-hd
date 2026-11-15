@@ -1,6 +1,7 @@
 # Indagine: la scelta finale (CEO / Caraibi)
 
-Alla fine del gioco ogni scelta viene inviata, in forma anonima, a un Google Sheet tramite un Google Apps Script.
+Alla fine del gioco ogni scelta viene registrata nel browser. L'invio a un Google Sheet tramite Google Apps Script
+è facoltativo: nella versione analizzata `SURVEY_URL` è vuoto, quindi non avviene alcun invio remoto.
 Il codice del gioco è in `src/systems/Survey.js`. Le ultime 50 scelte restano anche nel browser, nella chiave
 localStorage `co_final_choices`.
 
@@ -17,7 +18,9 @@ localStorage `co_final_choices`.
 | minutes | minuti dall'inizio della partita alla scelta |
 | player | id casuale anonimo per browser, per riconoscere le partite ripetute |
 
-Non ci sono dati personali. La schermata della scelta mostra un avviso.
+Il payload non richiede nome, email o altri dati anagrafici. L'id persistente `player` consente però di collegare
+più partite dello stesso browser: trattarlo come un identificatore pseudonimo, non come anonimato assoluto.
+La schermata della scelta mostra un avviso.
 
 ## Configurazione (una volta sola)
 
@@ -50,6 +53,7 @@ Se cambi lo script, crea un nuovo deployment oppure aggiorna quello esistente da
 ## Note
 
 - L'invio usa `fetch` con `no-cors` e il tipo `text/plain`: il gioco non legge la risposta, e se il giocatore è
-  offline la scelta si perde senza bloccare il finale.
+  offline l'invio remoto può fallire senza bloccare il finale. Non esiste una coda di reinvio: il registro
+  locale conserva comunque fino a 50 scelte, se localStorage è disponibile.
 - L'URL è pubblico nel codice, quindi chiunque potrebbe inviare righe false. Lo script accetta solo `ceo` /
   `caraibi` e tronca i campi. Per l'analisi conviene filtrare per `version` e per `player`.

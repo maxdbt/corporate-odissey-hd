@@ -1,5 +1,12 @@
 # Corporate Odyssey — Architecture contract
 
+Baseline tecnica: versione 0.9.9, commit `abceb61`. Questo contratto descrive il motore originale.
+L'[indice della documentazione](README.md) distingue lo stato del gioco dal
+[porting grafico del primo livello](PROMPT_PORTING_LIVELLO_1.md) e dal riferimento artistico scelto.
+Le icone PWA in `public` sono file raster; la generazione procedurale descritta sotto riguarda la grafica di gioco originale.
+Il porting locale aggiunge `src/presentation` e gli asset di `public/assets/hd-office`: vedere [PORTING_HD.md](PORTING_HD.md).
+I contratti delle entità fisiche restano quelli descritti qui; il tema HD sostituisce la loro presentazione.
+
 Phaser 3.90 + Vite, ES modules, `import Phaser from 'phaser'`. Logical height 450; width `GAME_WIDTH` adapts to
 the screen shape at load (800..1000, landscape shape on touch devices), so scenes must lay out from `GAME_WIDTH`
 and work at >= 800. The canvas renders `RENDER_SCALE` (integer 2..3) times larger; `pixelArt: true`,
@@ -197,15 +204,17 @@ level flow. Creates BEFORE spawning anything:
 - `this.player` (Player), `this.platforms` (static group, solid), `this.oneWay` (static group, collide only
   from above — desks, post-its use own dynamic handling), `this.enemies` (physics group), `this.enemyBullets`
   (physics group `{ allowGravity: false }`), `this.obstacles` (physics group `{ allowGravity: false, immovable: true }`),
-  `this.bossActive` (bool).
+  `this.bossActive` (bool). In the current implementation the player is created after the geometry is built;
+  enemy spawning follows player creation, collider setup and level-system initialization.
 - Colliders: enemies↔platforms/oneWay/obstacles; enemyBullets↔platforms (process: call `onHitWall?.()`);
   player↔platforms/oneWay/obstacles; player↔enemies overlap: if player has `promotion` or `shield` and enemy
   is not a boss → `enemy.hit(99, 'ram')`; else if stomp (player falling and feet near enemy top) and
   `enemy.stompable` → `enemy.hit(1,'stomp')` + `player.bounce()`; else `enemy.onPlayerContact(player)`.
   Player↔enemyBullets → `bullet.onHitPlayer(player)`. Player projectiles ↔ enemies/obstacles → `hit(dmg, weaponType)`.
 - `spawnEnemy(type, x, y, props)` wraps the factory. `applyEffects(effects)` (quiz). Hazards list updated each frame.
-- Update order: hazards.update → zones set `player.env` → `player.update(time, delta, input)` →
-  `player.resetEnv()` → HUD `ui.updateHud(...)` → checks (hp <= 0 / timer 0 → Burnout, fall in pit, goal).
+- Update order: input and locks → hazards / trip / party / revenue systems → zones set `player.env` →
+  ladder drop and autoscroll → `player.update(time, delta, input)` → `player.resetEnv()` → weapons / bullet cleanup /
+  boss checks → timer decrement → HUD `ui.updateHud(...)` → checks (hp <= 0 / timer 0 → Burnout, fall in pit, goal).
 - Burnout: `this.scene.start('GameOverScene', { levelIndex })`. Level complete → `goNext(this, i)` (Trip.js: next level
   or trip stage) after `GameState.beginLevel`; after the last → `VictoryScene`.
 - `init(data)`: `{ levelIndex, fromCheckpoint }`. If `fromCheckpoint` and `GameState.hasCheckpoint()` spawn at

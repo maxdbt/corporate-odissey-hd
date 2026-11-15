@@ -56,4 +56,9 @@ export default class InputController {
     // Keys belong to the scene's keyboard plugin, which cleans them up on shutdown.
     this.keys = null;
   }
+
+  reset() {
+    this.prev = { jump: false, attack: false, switchWeapon: false, slide: false };
+    this.scene.input.keyboard?.resetKeys();
+  }
 }

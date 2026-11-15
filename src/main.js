@@ -22,6 +22,7 @@ import VictoryScene from './scenes/VictoryScene.js';
 import PartyScene from './scenes/PartyScene.js';
 import ElevatorScene from './scenes/ElevatorScene.js';
 import RevenueScene from './scenes/RevenueScene.js';
+import LastMailScene from './scenes/LastMailScene.js';
 import './systems/Screen.js';
 import { startPwa } from './systems/Pwa.js';
 
@@ -48,7 +49,7 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   input: { activePointers: 4 },
-  scene: [BootScene, MenuScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, BeachScene, ToiletScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, RevenueScene, ElevatorScene, GameOverScene, VictoryScene]
+  scene: [BootScene, MenuScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, BeachScene, ToiletScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, RevenueScene, LastMailScene, ElevatorScene, GameOverScene, VictoryScene]
 };
 
 window.__game = new Phaser.Game(config);

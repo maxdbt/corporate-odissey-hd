@@ -4,6 +4,10 @@ import TouchControls from '../ui/TouchControls.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
 import { GAME_WIDTH } from '../config/constants.js';
+import HdHUD from '../presentation/HdHUD.js';
+import HdTouchControls from '../presentation/TouchControls.js';
+import { inputMode } from '../systems/InputMode.js';
+import { isFullscreen, toggleFullscreen } from '../systems/Screen.js';
 
 // Overlay scene: HUD + touch controls, rendered above the game camera.
 // Public methods are safe to call before create() has run.
@@ -28,20 +32,43 @@ export default class UIScene extends Phaser.Scene {
 
   create() {
     setupStaticCamera(this);
-    this.hud = new HUD(this, () => this.touch && this.touch.latchSwitchWeapon());
-    if (this.sys.game.device.input.touch) {
-      this.touch = new TouchControls(this);
-    }
-    // Brief (I) and pause (P): keyboard plus small HUD buttons for mouse/touch.
     const overlay = (key) => {
       const gs = this.scene.get('GameScene');
       if (this.scene.isActive('GameScene')) gs.openOverlay?.(key);
     };
+    const gs = this.scene.get('GameScene');
+    this.hd = gs.presentation;
+    if (this.hd) {
+      const viewport = this.hd.viewport;
+      viewport.setupUiCamera(this);
+      this.touch = new HdTouchControls(this, viewport.metrics);
+      this.touch.setVisible(inputMode.touch);
+      this.hud = new HdHUD(this, viewport.metrics, {
+        weapon: () => this.touch.latchSwitchWeapon(),
+        brief: () => overlay('BriefScene'), pause: () => overlay('PauseScene'), fullscreen: toggleFullscreen
+      });
+      this.onPresentationResize = () => {
+        viewport.setupUiCamera(this);
+        this.hud?.layout(); this.touch?.relayout();
+      };
+      gs.events.on('presentation-resize', this.onPresentationResize);
+      this.input.keyboard?.on('keydown-F', (event) => { if (!event.repeat) toggleFullscreen(); });
+      this.onBlur = () => { this.touch?.reset(); gs.inputCtl?.reset?.(); };
+      this.game.events.on(Phaser.Core.Events.BLUR, this.onBlur);
+    } else {
+      this.hud = new HUD(this, () => this.touch && this.touch.latchSwitchWeapon());
+      if (this.sys.game.device.input.touch) this.touch = new TouchControls(this);
+    }
+    // Brief (I) and pause (P): keyboard plus small HUD buttons for mouse/touch.
     this.input.keyboard?.on('keydown-I', () => overlay('BriefScene'));
     this.input.keyboard?.on('keydown-P', () => overlay('PauseScene'));
-    this.input.keyboard?.on('keydown-ESC', () => overlay('QuitScene'));
+    this.input.keyboard?.on('keydown-ESC', () => {
+      if (this.hd && isFullscreen()) { toggleFullscreen(); return; }
+      if (this.hd && inputMode.recentlyExitedFullscreen) return;
+      overlay('QuitScene');
+    });
     const s = HUD_SCALE;
-    [['i', GAME_WIDTH - 39 * s, 'BriefScene'], ['II', GAME_WIDTH - 15 * s, 'PauseScene']].forEach(([label, x, key]) => {
+    if (!this.hd) [['i', GAME_WIDTH - 39 * s, 'BriefScene'], ['II', GAME_WIDTH - 15 * s, 'PauseScene']].forEach(([label, x, key]) => {
       this.add.rectangle(x, 22 * s, 20, 30, 0x1a1a40, 0.85).setStrokeStyle(2, 0xffd800).setDepth(11).setScale(s)
         .setInteractive({ useHandCursor: true }).on('pointerdown', () => overlay(key));
       this.add.text(x, 22 * s, label, {
@@ -61,6 +88,12 @@ export default class UIScene extends Phaser.Scene {
     this._pending = null;
 
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      if (this.hd) {
+        gs.events.off('presentation-resize', this.onPresentationResize);
+        this.game.events.off(Phaser.Core.Events.BLUR, this.onBlur);
+        this.hud?.destroy(); this.touch?.destroy();
+      }
+      this.hd = null;
       this.hud = null;
       this.touch = null;
       this._pending = UIScene.emptyPending();
@@ -68,6 +101,7 @@ export default class UIScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    if (this.hd && this.touch) this.touch.setVisible(inputMode.touch && this.scene.isActive('GameScene'));
     if (this.touch) this.touch.update();
     this._lastDelta = delta;
   }

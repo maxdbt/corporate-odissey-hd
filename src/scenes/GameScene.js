@@ -18,7 +18,9 @@ import { beginStage, goNext, underwearPenalty, isGroundLeg } from '../systems/Tr
 import { TRANSPORT } from '../data/trip.js';
 import PartyDoor from '../systems/PartyDoor.js';
 import RevenueDoor from '../systems/RevenueDoor.js';
+import LastMailTerminal from '../systems/LastMailTerminal.js';
 import { ensureExecTextures } from '../gfx/exec.js';
+import { createPresentation } from '../presentation/OfficePresentation.js';
 
 const PIT_DAMAGE = 20;
 const BURNOUT_DELAY = 1400;
@@ -55,15 +57,19 @@ export default class GameScene extends Phaser.Scene {
     this.dropThroughUntil = 0;
     this.hazards = [];
     this.levelBounds = { width: level.width, height: GAME_HEIGHT };
+    this.presentation = createPresentation(this, level);
     // Base zoom of the platform camera (the drunk sway and the boss arenas go back to it / to RENDER_SCALE).
-    this.camZoom = RENDER_SCALE * TOUCH_ZOOM;
+    this.camZoom = this.presentation
+      ? this.presentation.viewport.metrics.scale * this.presentation.viewport.zoom
+      : RENDER_SCALE * TOUCH_ZOOM;
     this.cameras.main.setRotation(0).setZoom(this.camZoom);
 
     // World: no floor/ceiling collision so pits work.
     this.physics.world.setBounds(0, -200, level.width, GAME_HEIGHT + 400);
     this.physics.world.setBoundsCollision(true, true, false, false);
 
-    drawBackground(this, level.theme, level.width);
+    if (this.presentation) this.presentation.drawBackground();
+    else drawBackground(this, level.theme, level.width);
 
     // Groups shared with other modules (see ARCHITECTURE.md).
     this.platforms = this.physics.add.staticGroup();
@@ -112,13 +118,14 @@ export default class GameScene extends Phaser.Scene {
     if (level.mysteryDish) this.createMysteryDish(...level.mysteryDish);
     this.partyDoor = level.partyDoor ? new PartyDoor(this, ...level.partyDoor) : null;
     this.revenueDoor = level.revenueDoor ? new RevenueDoor(this, ...level.revenueDoor) : null;
+    this.lastMailTerminal = level.lastMailTerminal ? new LastMailTerminal(this, ...level.lastMailTerminal) : null;
     this.forcedRunUntil = 0;
     this.inputLockUntil = 0;
 
     // Camera
     const cam = this.cameras.main;
     cam.setBounds(0, 0, level.width, GAME_HEIGHT);
-    cam.setRoundPixels(true);
+    cam.setRoundPixels(!this.presentation);
     if (level.autoscroll) {
       this.autoscroll = { speed: level.autoscroll, startAt: this.time.now + 1800 };
       setViewLeft(cam, Math.max(0, sx - 120));
@@ -126,7 +133,7 @@ export default class GameScene extends Phaser.Scene {
       if (TOUCH_ZOOM > 1) cam.startFollow(this.player, true, 0, 0.12);
     } else {
       this.autoscroll = null;
-      cam.startFollow(this.player, true, 0.12, 0.12);
+      cam.startFollow(this.player, !this.presentation, 0.12, 0.12);
       cam.setDeadzone(120, 90);
     }
 
@@ -160,6 +167,7 @@ export default class GameScene extends Phaser.Scene {
     });
     this.cameras.main.fadeIn(400, 0, 0, 0);
     if (!this.fromCheckpoint) this.time.delayedCall(450, () => this.openOverlay('BriefScene'));
+    this.presentation?.start();
   }
 
   // Flying plane ticket (1-2): catch it on the fly to start the beach trial (BeachScene).
@@ -677,6 +685,9 @@ export default class GameScene extends Phaser.Scene {
     if (time < this.inputLockUntil) input = { ...input, left: false, right: false, up: false, down: false, jump: false, run: false, jumpPressed: false, attackPressed: false, slidePressed: false };
     if (input.jumpPressed || input.attackPressed) audio.unlock?.();
 
+    this.lastMailTerminal?.update(input);
+    if (!this.scene.isActive()) return;
+
     this.hazards.forEach((h) => h.update?.(time, delta));
     this.tripLevel?.update(time, delta);
     this.partyDoor?.update();
@@ -688,9 +699,10 @@ export default class GameScene extends Phaser.Scene {
     p.update(time, delta, input);
     p.resetEnv();
     // Zoomed touch camera: little room ahead, so it leans towards where the player is facing.
-    if (TOUCH_ZOOM > 1 && !this.autoscroll && !this.bossActive) {
+    if ((this.presentation || TOUCH_ZOOM > 1) && !this.autoscroll && !this.bossActive) {
       const off = this.cameras.main.followOffset;
-      off.x += (-p.facing * 90 - off.x) * Math.min(1, delta / 600);
+      const ahead = this.presentation ? Math.min(75, viewWidth(this.cameras.main) * 0.16) : 90;
+      off.x += (-p.facing * ahead - off.x) * Math.min(1, delta / 600);
     }
 
     this.weapons.update();
@@ -753,5 +765,8 @@ export default class GameScene extends Phaser.Scene {
     this.scene.stop('FoodScene');
     this.scene.stop('BeachScene');
     this.scene.stop('RevenueScene');
+    this.scene.stop('LastMailScene');
+    this.presentation?.destroy();
+    this.presentation = null;
   }
 }

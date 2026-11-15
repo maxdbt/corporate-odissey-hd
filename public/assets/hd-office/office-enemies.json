@@ -1,0 +1,254 @@
+{
+  "frames": {
+    "talker1": {
+      "frame": {
+        "x": 72,
+        "y": 39,
+        "w": 210,
+        "h": 323
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 210,
+        "h": 323
+      },
+      "sourceSize": {
+        "w": 210,
+        "h": 323
+      }
+    },
+    "talker2": {
+      "frame": {
+        "x": 443,
+        "y": 38,
+        "w": 202,
+        "h": 324
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 202,
+        "h": 324
+      },
+      "sourceSize": {
+        "w": 202,
+        "h": 324
+      }
+    },
+    "party1": {
+      "frame": {
+        "x": 739,
+        "y": 19,
+        "w": 334,
+        "h": 343
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 334,
+        "h": 343
+      },
+      "sourceSize": {
+        "w": 334,
+        "h": 343
+      }
+    },
+    "party2": {
+      "frame": {
+        "x": 1110,
+        "y": 15,
+        "w": 302,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 302,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 302,
+        "h": 347
+      }
+    },
+    "clienthell": {
+      "frame": {
+        "x": 46,
+        "y": 362,
+        "w": 262,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 262,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 262,
+        "h": 355
+      }
+    },
+    "bug": {
+      "frame": {
+        "x": 412,
+        "y": 362,
+        "w": 267,
+        "h": 322
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 267,
+        "h": 322
+      },
+      "sourceSize": {
+        "w": 267,
+        "h": 322
+      }
+    },
+    "confcall": {
+      "frame": {
+        "x": 787,
+        "y": 362,
+        "w": 243,
+        "h": 319
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 243,
+        "h": 319
+      },
+      "sourceSize": {
+        "w": 243,
+        "h": 319
+      }
+    },
+    "minute": {
+      "frame": {
+        "x": 1161,
+        "y": 362,
+        "w": 234,
+        "h": 342
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 234,
+        "h": 342
+      },
+      "sourceSize": {
+        "w": 234,
+        "h": 342
+      }
+    },
+    "teamsicon": {
+      "frame": {
+        "x": 57,
+        "y": 818,
+        "w": 267,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 267,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 267,
+        "h": 217
+      }
+    },
+    "paper": {
+      "frame": {
+        "x": 425,
+        "y": 835,
+        "w": 212,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 212,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 212,
+        "h": 156
+      }
+    },
+    "panettone": {
+      "frame": {
+        "x": 794,
+        "y": 817,
+        "w": 228,
+        "h": 187
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 187
+      },
+      "sourceSize": {
+        "w": 228,
+        "h": 187
+      }
+    },
+    "flame": {
+      "frame": {
+        "x": 1116,
+        "y": 838,
+        "w": 291,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 291,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 291,
+        "h": 156
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "office-enemies-cutout.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1448,
+      "h": 1086
+    },
+    "scale": "1"
+  }
+}

@@ -105,6 +105,7 @@ export class Copier extends Enemy {
     super(scene, x, y, TEX.COPIER, {
       kind: 'copier', hp: 3, stompable: false, damage: { hp: 5, stress: 5 }, immovable: true
     });
+    this.body.setAllowGravity(false);
     this.dir = props.dir || -1;
     this.nextShot = this.now + 1000;
     this.setBodyBottom(30, 26);
@@ -131,6 +132,7 @@ export class Cabinet extends Enemy {
     super(scene, x, y, TEX.CABINET, {
       kind: 'cabinet', hp: 99, stompable: false, invulnerable: true, damage: { hp: 0, stress: 0 }, immovable: true
     });
+    this.body.setAllowGravity(false);
     this.nextDrop = 0;
   }
 

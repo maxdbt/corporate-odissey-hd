@@ -4,6 +4,15 @@ import { GAME_WIDTH, GAME_HEIGHT, RENDER_SCALE } from '../config/constants.js';
 
 // Non-scrolling scenes (menus, HUD, overlays): logical (0,0) maps to the canvas top-left.
 export function setupStaticCamera(scene) {
+  const gs = scene.scene?.get('GameScene');
+  const metrics = gs?.presentation?.viewport.metrics;
+  if (metrics && scene.sys.settings.key !== 'GameScene') {
+    const zoom = metrics.scale * Math.min(1, metrics.width / GAME_WIDTH);
+    scene.cameras.main.setSize(Math.round(metrics.width * metrics.scale), Math.round(GAME_HEIGHT * metrics.scale))
+      .setOrigin(0, 0).setZoom(zoom).setRotation(0)
+      .setScroll((GAME_WIDTH - metrics.width * metrics.scale / zoom) / 2, (GAME_HEIGHT - GAME_HEIGHT * metrics.scale / zoom) / 2);
+    return;
+  }
   scene.cameras.main.setOrigin(0, 0).setZoom(RENDER_SCALE).setScroll(0, 0).setRotation(0);
 }
 

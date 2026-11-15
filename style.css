@@ -18,11 +18,18 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  height: 100dvh;
 }
 
 #game-container canvas {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+/* HD textures opt into linear sampling; classic stages retain their pixel-art presentation. */
+#game-container canvas.hd-rendering {
+  image-rendering: auto !important;
 }
 
 #rotate-hint {

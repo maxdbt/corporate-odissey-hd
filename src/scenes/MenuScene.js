@@ -88,8 +88,13 @@ export default class MenuScene extends Phaser.Scene {
       .on('pointerdown', () => { audio.unlock(); this._start(); });
     this.tweens.add({ targets: this.startBtn, scale: 1.08, duration: 500, yoyo: true, repeat: -1 });
 
+    // Free preview of the POV bonus; campaign rewards are earned at its desk terminal.
+    this.add.text(GAME_WIDTH - 14, 48, "BONUS POV\nL'ULTIMA MAIL", style(10, '#9dffce', { align: 'right' }))
+      .setOrigin(1, 0).setPadding(5).setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => { audio.unlock(); this.scene.start('LastMailScene', { preview: true }); });
+
     // Controls help
-    const touch = this.sys.game.device.input.touch;
+    const touch = window.matchMedia('(pointer: coarse) and (hover: none)').matches;
     const pc = 'PC: FRECCE/WASD muovi, GIU accovacciati, SU/GIU scale\n' +
       'SPAZIO/Z salta (x2 doppio salto)  X corsa  GIU+X scivolata\nC/Q attacca  V/E cambia arma  M audio  P pausa  I brief  ESC esci';
     const mobile = 'MOBILE: pollice a sinistra = levetta (SU/GIU scale), SALTA / SCIVOLA (tieni = corsa) / ATTACCA a destra\n' +
