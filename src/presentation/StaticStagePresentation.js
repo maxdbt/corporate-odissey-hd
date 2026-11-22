@@ -11,6 +11,7 @@ import { setupStaticCamera } from '../utils/view.js';
 import { BONUS_BY_STAGE } from '../bonus/StageBonusCatalog.js';
 import { openStageBonus } from '../bonus/StageBonusAccess.js';
 import { toggleFullscreen } from '../systems/Screen.js';
+import { advanceLocomotion, npcMotionSpec, entityMotionSpec, HERO_FRAME_COUNT } from './MotionCatalog.js';
 
 const enabled=()=>new URLSearchParams(window.location.search).get('graphics')!=='classic';
 const font='Segoe UI, Arial, sans-serif';
@@ -99,19 +100,20 @@ class StaticStagePresentation {
  resolve(source){
   const key=source.texture?.key;
   if(key?.startsWith('pax_')&&this.scene.textures.exists('hd-world-passengers')){
-   return ()=>({texture:'hd-world-passengers',frame:source.texture.key.slice(4).replace(/[12]$/,''),height:118});
+   return (skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,118)||({texture:'hd-world-passengers',frame:source.texture.key.slice(4).replace(/[12]$/,''),height:118});
   }
   if(key?.startsWith('man_')||key?.startsWith('woman_')){
    const char=key.includes('woman')?'woman':'man';
-   return ()=>{
+   return (skin,delta)=>{
     const moving=source.anims?.isPlaying;
+    if(moving&&skin)return {texture:'hd-'+(char==='woman'?'wendy':'jack')+'-locomotion',frame:char+'_move'+(advanceLocomotion(skin,source,delta,100,HERO_FRAME_COUNT)+1),height:source===this.scene.player?92:65};
     return {texture:'hd-'+(char==='woman'?'wendy':'jack')+'-motion',frame:char+'_'+(moving?'run'+(Math.floor(this.scene.time.now/90)%8+1):'idle1'),height:source===this.scene.player?92:65};
    };
   }
   if(key==='rev_r'||key==='rev_c'||key==='rev_cx')return()=>({texture:'hd-world-objects',frame:source.texture.key==='rev_r'?'revenue':'cost',height:36,width:36});
   const p=this.theme.props[key],e=this.theme.enemies[key];
-  if(p&&this.scene.textures.exists(p[2]||'hd-props'))return()=>({texture:p[2]||'hd-props',frame:p[0],height:p[1],...p[3]});
-  if(e)return()=>({texture:e[2]?.texture||'hd-enemies',frame:e[0],height:e[1],...e[2]});
+  if(p&&this.scene.textures.exists(p[2]||'hd-props'))return(skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,p[1])||({texture:p[2]||'hd-props',frame:p[0],height:p[1],...p[3]});
+  if(e)return(skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,e[1])||npcMotionSpec(this.scene,source,skin,delta,e[1])||({texture:e[2]?.texture||'hd-enemies',frame:e[0],height:e[1],...e[2]});
   return null;
  }
  update(delta){
@@ -130,7 +132,7 @@ class StaticStagePresentation {
     obj.hdOriginalSize ||= {w:obj.displayWidth,h:obj.displayHeight};
     const {w,h}=obj.hdOriginalSize;
     obj.setTexture(spec.texture,spec.frame).setDisplaySize(w,h);
-   }else this.skins.set(obj,new ActorSkin(s,obj,()=>(this.resolve(obj)||resolver)()));
+   }else this.skins.set(obj,new ActorSkin(s,obj,(skin,delta)=>(this.resolve(obj)||resolver)(skin,delta)));
   };
   [...s.children.list].forEach(visit);
   for(const [source,skin]of this.skins){if(!source.scene||!skin.source){skin.destroy();this.skins.delete(source);}else skin.sync(delta);}

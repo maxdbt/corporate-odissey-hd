@@ -59,11 +59,11 @@ export default class TripLevel {
     if (level.chill && GameState.hasItem('jacket')) {
       scene.time.delayedCall(1200, () => scene.ui?.message?.('IL PIUMINO TI TIENE AL CALDO!', '#7CFC00', 1500));
     }
-    // Sea: without the swimsuit you swim in jacket and tie, slower.
+    // Spare swimming gear keeps the original speed penalty when the swimsuit was not packed.
     if (level.swim) {
       const heavy = !GameState.hasItem('swimsuit');
       scene.player.heavySuit = heavy;
-      const msg = heavy ? 'SENZA COSTUME: NUOTI IN GIACCA E CRAVATTA!\nPIU\' LENTO' : 'COL COSTUME NUOTI MEGLIO!';
+      const msg = heavy ? 'COSTUME DIMENTICATO: ATTREZZATURA DI SCORTA!\nNUOTO PIU\' LENTO' : 'COL TUO COSTUME NUOTI MEGLIO!';
       scene.time.delayedCall(1200, () => scene.ui?.message?.(msg, heavy ? '#ff8080' : '#7CFC00', 1600));
     }
   }

@@ -12,6 +12,8 @@ import OfficeDressing from './OfficeDressing.js';
 import { worldThemes } from './themes/worlds.js';
 import WorldAtmosphere from './WorldAtmosphere.js';
 import WorldDressing from './WorldDressing.js';
+import { advanceLocomotion, npcMotionSpec, entityMotionSpec, HERO_FRAME_COUNT, SWIM_FRAME_COUNT } from './MotionCatalog.js';
+import { mountedPose, hasMountedSkin, isMountedAttachment } from './MountSkins.js';
 
 export function createPresentation(scene, level) {
   const classic = new URLSearchParams(window.location.search).get('graphics') === 'classic';
@@ -192,12 +194,21 @@ export default class OfficePresentation {
   playerFrame(skin, delta) {
     const p = skin.source;
     const c = p.character;
+    const riding=mountedPose(this.scene,p,skin,delta);
+    if(riding)return riding;
     const motion = c === 'woman' ? 'hd-wendy-motion' : 'hd-jack-motion';
     let frame = c + '_idle1', texture = motion;
     const grounded = p.onGround;
     if (grounded && skin.wasGrounded === false) skin.landedAt = p.clock;
     skin.wasGrounded = grounded;
     const pose = p.currentPose;
+    if(this.level.id==='4-9'&&this.scene.textures.exists('hd-jack-diver')) {
+      const who=c==='woman'?'wendy':'jack';
+      let divingPose=pose==='hurt'?'hurt':pose==='crouch'||pose==='slide'?'crouch':GameState.device&&p.nextFireAt-p.clock>120?'attack':'idle';
+      const swimming=divingPose==='idle'&&(p.mount?.type==='fins'||!grounded||Math.abs(p.body.velocity.x)>15);
+      return {texture:'hd-'+who+(swimming?'-dive-swim':'-diver'),frame:swimming?'swim'+(Math.floor(p.clock/80)%SWIM_FRAME_COUNT+1):divingPose,
+        height:swimming?58:58,offsetY:swimming?9:0};
+    }
     if(pose?.startsWith('swim')&&this.scene.textures.exists('hd-world-swim'))return {
       texture:'hd-world-swim',frame:c+'_swim'+(Math.floor(p.clock/130)%4+1),height:64,offsetY:14
     };
@@ -207,9 +218,8 @@ export default class OfficePresentation {
     } else if (GameState.device && p.nextFireAt - p.clock > 120) {
       frame = c + '_attack';
     } else if (grounded && Math.abs(p.body.velocity.x) > 15) {
-      const rate = Math.abs(p.body.velocity.x) > 220 ? 16 : 10;
-      skin.phase += Math.min(delta, 80) * rate / 1000;
-      frame = c + '_run' + (Math.floor(skin.phase) % 8 + 1);
+      texture=c==='woman'?'hd-wendy-locomotion':'hd-jack-locomotion';
+      frame = c + '_move' + (advanceLocomotion(skin,p,delta,100,HERO_FRAME_COUNT)+1);
     } else if (p.clock - (skin.landedAt || -1000) < 95) frame = c + '_land';
     else if (p.clock % 4500 > 4380) frame = c + '_idle2';
     return { texture, frame, height: 46 };
@@ -227,14 +237,18 @@ export default class OfficePresentation {
     if (key === 'p_www') return () => ({ texture: 'hd-code', frame: '__BASE', height: 14 });
     const props = this.theme.props[key];
     if (props) {
-      return () => {
+      return (skin,delta) => {
         const now = this.theme.props[source.texture?.key] || props;
+        const animated=entityMotionSpec(this.scene,source,skin,delta,now[1]);
+        if(animated)return animated;
         return { texture: now[2] || 'hd-props', frame: now[0], height: now[1], ...now[3], coinSpin: source.kind === 'euro' };
       };
     }
     const enemy = this.theme.enemies[key];
-    if (enemy) return () => {
+    if (enemy) return (skin,delta) => {
       const current = this.theme.enemies[source.texture?.key] || enemy;
+      const moving=entityMotionSpec(this.scene,source,skin,delta,current[1])||npcMotionSpec(this.scene,source,skin,delta,current[1]);
+      if(moving)return moving;
       if(source.texture?.key==='ceo_standing')return {texture:'hd-world-ceo-motion',frame:source.charge||source.leap?'attack':source.state==='move'?'run':'stand',height:80};
       return { texture: 'hd-enemies', frame: current[0], height: current[1], ...current[2] };
     };
@@ -276,7 +290,10 @@ export default class OfficePresentation {
     }
     for (const [source, skin] of this.skins) {
       if (!source.scene || !skin.source) { skin.destroy(); this.skins.delete(source); }
-      else skin.sync(delta);
+      else {
+        skin.sync(delta);
+        if(hasMountedSkin(s,s.player)&&isMountedAttachment(s.player,source))skin.image?.setVisible(false);
+      }
     }
     const player = s.player;
     if (player) {
@@ -294,7 +311,7 @@ export default class OfficePresentation {
       this.playerShadow.setPosition(player.x, ground + 0.7).setScale(Math.max(0.4, 1 - distance / 220))
         .setAlpha(Math.max(0, 0.28 - distance / 500)).setVisible(player.visible && player.y <= ground + 4);
     }
-    if (player && GameState.device) {
+    if (player && GameState.device && !hasMountedSkin(s,player)) {
       if (!this.deviceVisual) this.deviceVisual = this.prop('laptop', player.x, player.y, 12, DEPTH.PLAYER + 2);
       this.deviceVisual.setPosition(player.x + player.facing * 13, player.y - (player.isSliding ? 3 : 16))
         .setFlipX(player.facing < 0).setAlpha(player.alpha).setVisible(player.visible && !player.isClimbing);
@@ -306,7 +323,8 @@ export default class OfficePresentation {
         level: this.level.id, hp: GameState.hp, stress: GameState.stress, ended: s.ended, theme: this.theme.id,
         remaining: s.timeLeft, boss: s.bossActive, bonusUsed: GameState.stageBonusAttempts || {},
         player: p ? { x: p.x, y: p.y, pose: p.currentPose, grounded: p.onGround } : null,
-        frame: this.skins.get(p)?.image?.frame?.name, skins: this.skins.size,
+        frame: this.skins.get(p)?.image?.frame?.name, skins: this.skins.size, mount:p?.mount?.type||null,
+        motion:[...this.skins].filter(([source])=>source.visible&&source.active).map(([source,skin])=>({key:source.texture.key,texture:skin.image?.texture.key,frame:skin.image?.frame.name,x:source.x,y:source.y})),
         anchors: s.enemies.getChildren().filter((e) => e.kind === 'copier' || e.kind === 'cabinet')
           .map((e) => ({ kind: e.kind, x: e.x, y: e.y })),
         viewport: this.viewport.metrics, fps: Math.round(s.game.loop.actualFps)

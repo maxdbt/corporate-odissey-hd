@@ -45,7 +45,8 @@ Il menu consente la selezione del personaggio e degli scenari. Il fullscreen è 
 - `?controls=touch` e `?controls=keyboard` forzano l'interfaccia del tema HD durante le prove. Senza parametro, la scelta è automatica; la simulazione non sostituisce un telefono fisico.
 
 - `?mobile=1` forza il pannello di benvenuto mobile nel menu; non emula l'intero dispositivo, il DPR o il tipo di puntatore.
-- `?level=N` viene letto da `GameScene.init()` una sola volta per caricamento di pagina. N è l'indice da zero di `LEVELS`; la query agisce quando GameScene viene avviata, non salta automaticamente il menu. Usare soltanto indici di livelli gestiti da GameScene, non di scene statiche.
+- In sviluppo `?level=N` apre direttamente lo stage con indice 0–18, comprese le scene statiche. `?character=woman` seleziona Wendy; `?inspectX=...` sposta l'ingresso di prova nei livelli platform. Questi accessi sono esclusi dalla build di produzione.
+- `?bonus=toilet` apre l'anteprima del bagno senza applicare premi o penalità alla campagna. In sviluppo `&inspectMonster` colloca il mostro nella porta centrale per verificarne la sequenza.
 - `TRIP_STAGES_IN_MENU` in `constants.js` abilita la selezione delle tappe della trasferta; nella baseline è `false`.
 - `window.__game` espone l'istanza Phaser per il debug locale.
 - La fisica Arcade ha `debug: false` in `main.js`.
@@ -69,6 +70,8 @@ La grafica di base viene generata da `BootScene` e `src/gfx`; gli sfondi da `Bac
 `src/data/quizzes.js` contiene i quiz e la selezione per ambientazione. `QuizScene` invia gli effetti a `GameScene.applyEffects()`. Le modifiche alla salute o alle risorse devono passare attraverso gli helper di `GameState` quando previsti.
 
 ## Build e pubblicazione
+
+La consegna corrente usa GitHub sul remoto `max-hd` e il sito ChatGPT Sites esistente. Seguire [PUBBLICAZIONE_SITES.md](PUBBLICAZIONE_SITES.md); la pipeline GitHub Pages descritta qui sotto è un percorso separato.
 
 Il workflow `.github/workflows/deploy.yml` parte quando viene pubblicata una **GitHub Release** oppure manualmente con **Run workflow**. Un normale push su main non avvia il deploy.
 
@@ -103,7 +106,7 @@ Una simulazione del viewport verifica il layout; una misura delle prestazioni mo
 ## Controlli automatici e asset HD
 
 ```powershell
-node --test tests/hd-assets.test.js tests/last-mail.test.js
+node --test tests/*.test.js
 ```
 
 Gli atlanti JSON sono già nel repository e non richiedono Python durante l'avvio o la build. Dopo un aggiornamento delle immagini, `scripts/build-hd-atlases.py` rigenera i metadati usando Pillow, senza modificare i pixel delle immagini. `scripts/create-concept-pdf.py` rigenera le cinque tavole per il cliente con ReportLab, Pillow, pypdf e i font Segoe UI di Windows.

@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "bug1": {
+      "frame": {
+        "x": 30,
+        "y": 51,
+        "w": 206,
+        "h": 158
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 51,
+        "w": 206,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug2": {
+      "frame": {
+        "x": 287,
+        "y": 48,
+        "w": 196,
+        "h": 157
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 48,
+        "w": 196,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug3": {
+      "frame": {
+        "x": 544,
+        "y": 43,
+        "w": 195,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 43,
+        "w": 195,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug4": {
+      "frame": {
+        "x": 802,
+        "y": 39,
+        "w": 191,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 39,
+        "w": 191,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug5": {
+      "frame": {
+        "x": 1062,
+        "y": 41,
+        "w": 188,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 38,
+        "y": 41,
+        "w": 188,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug6": {
+      "frame": {
+        "x": 1301,
+        "y": 45,
+        "w": 216,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 45,
+        "w": 216,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug7": {
+      "frame": {
+        "x": 32,
+        "y": 300,
+        "w": 198,
+        "h": 159
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 44,
+        "w": 198,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug8": {
+      "frame": {
+        "x": 302,
+        "y": 303,
+        "w": 189,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 47,
+        "w": 189,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug9": {
+      "frame": {
+        "x": 557,
+        "y": 302,
+        "w": 190,
+        "h": 139
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 46,
+        "w": 190,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug10": {
+      "frame": {
+        "x": 801,
+        "y": 301,
+        "w": 203,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 45,
+        "w": 203,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug11": {
+      "frame": {
+        "x": 1057,
+        "y": 300,
+        "w": 199,
+        "h": 158
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 44,
+        "w": 199,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "bug12": {
+      "frame": {
+        "x": 1312,
+        "y": 308,
+        "w": 202,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 52,
+        "w": 202,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall1": {
+      "frame": {
+        "x": 31,
+        "y": 553,
+        "w": 194,
+        "h": 183
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 41,
+        "w": 194,
+        "h": 183
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall2": {
+      "frame": {
+        "x": 289,
+        "y": 545,
+        "w": 191,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 33,
+        "w": 191,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall3": {
+      "frame": {
+        "x": 547,
+        "y": 539,
+        "w": 189,
+        "h": 166
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 27,
+        "w": 189,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall4": {
+      "frame": {
+        "x": 803,
+        "y": 527,
+        "w": 188,
+        "h": 166
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 15,
+        "w": 188,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall5": {
+      "frame": {
+        "x": 1060,
+        "y": 526,
+        "w": 188,
+        "h": 164
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 36,
+        "y": 14,
+        "w": 188,
+        "h": 164
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall6": {
+      "frame": {
+        "x": 1312,
+        "y": 537,
+        "w": 194,
+        "h": 177
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 25,
+        "w": 194,
+        "h": 177
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall7": {
+      "frame": {
+        "x": 33,
+        "y": 796,
+        "w": 193,
+        "h": 178
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 28,
+        "w": 193,
+        "h": 178
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall8": {
+      "frame": {
+        "x": 288,
+        "y": 800,
+        "w": 195,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 32,
+        "w": 195,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall9": {
+      "frame": {
+        "x": 543,
+        "y": 807,
+        "w": 195,
+        "h": 179
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 39,
+        "w": 195,
+        "h": 179
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall10": {
+      "frame": {
+        "x": 799,
+        "y": 812,
+        "w": 195,
+        "h": 179
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 44,
+        "w": 195,
+        "h": 179
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall11": {
+      "frame": {
+        "x": 1055,
+        "y": 812,
+        "w": 195,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 44,
+        "w": 195,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "confcall12": {
+      "frame": {
+        "x": 1312,
+        "y": 811,
+        "w": 193,
+        "h": 183
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 43,
+        "w": 193,
+        "h": 183
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "office-tech.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

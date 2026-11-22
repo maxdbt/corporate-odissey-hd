@@ -1,0 +1,134 @@
+{
+  "frames": {
+    "monster1": {
+      "frame": {
+        "x": 48,
+        "y": 91,
+        "w": 447,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 91,
+        "w": 447,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster2": {
+      "frame": {
+        "x": 541,
+        "y": 118,
+        "w": 438,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 118,
+        "w": 438,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster3": {
+      "frame": {
+        "x": 1045,
+        "y": 95,
+        "w": 448,
+        "h": 370
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 95,
+        "w": 448,
+        "h": 370
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster4": {
+      "frame": {
+        "x": 51,
+        "y": 598,
+        "w": 461,
+        "h": 361
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 51,
+        "y": 86,
+        "w": 461,
+        "h": 361
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster5": {
+      "frame": {
+        "x": 512,
+        "y": 587,
+        "w": 468,
+        "h": 371
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 75,
+        "w": 468,
+        "h": 371
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster6": {
+      "frame": {
+        "x": 1039,
+        "y": 591,
+        "w": 448,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 79,
+        "w": 448,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "bathroom-monster-between.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

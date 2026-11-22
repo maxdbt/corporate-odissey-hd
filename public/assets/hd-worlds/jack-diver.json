@@ -1,0 +1,254 @@
+{
+  "frames": {
+    "idle": {
+      "frame": {
+        "x": 109,
+        "y": 13,
+        "w": 144,
+        "h": 349
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 109,
+        "y": 13,
+        "w": 144,
+        "h": 349
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim1": {
+      "frame": {
+        "x": 366,
+        "y": 74,
+        "w": 344,
+        "h": 251
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 74,
+        "w": 344,
+        "h": 251
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim2": {
+      "frame": {
+        "x": 724,
+        "y": 70,
+        "w": 336,
+        "h": 266
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 70,
+        "w": 336,
+        "h": 266
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim3": {
+      "frame": {
+        "x": 1092,
+        "y": 71,
+        "w": 339,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 71,
+        "w": 339,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim4": {
+      "frame": {
+        "x": 14,
+        "y": 362,
+        "w": 323,
+        "h": 351
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 0,
+        "w": 323,
+        "h": 351
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim5": {
+      "frame": {
+        "x": 367,
+        "y": 431,
+        "w": 344,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 69,
+        "w": 344,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim6": {
+      "frame": {
+        "x": 730,
+        "y": 429,
+        "w": 344,
+        "h": 271
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 67,
+        "w": 344,
+        "h": 271
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim7": {
+      "frame": {
+        "x": 1091,
+        "y": 430,
+        "w": 339,
+        "h": 263
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 68,
+        "w": 339,
+        "h": 263
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim8": {
+      "frame": {
+        "x": 15,
+        "y": 793,
+        "w": 323,
+        "h": 267
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 69,
+        "w": 323,
+        "h": 267
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "hurt": {
+      "frame": {
+        "x": 432,
+        "y": 743,
+        "w": 229,
+        "h": 331
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 19,
+        "w": 229,
+        "h": 331
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "attack": {
+      "frame": {
+        "x": 727,
+        "y": 783,
+        "w": 359,
+        "h": 265
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 59,
+        "w": 359,
+        "h": 265
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "crouch": {
+      "frame": {
+        "x": 1086,
+        "y": 793,
+        "w": 332,
+        "h": 268
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 69,
+        "w": 332,
+        "h": 268
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "jack-diver.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1448,
+      "h": 1086
+    },
+    "scale": "1"
+  }
+}

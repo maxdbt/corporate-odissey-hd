@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "shark1": {
+      "frame": {
+        "x": 47,
+        "y": 78,
+        "w": 209,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 78,
+        "w": 209,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark2": {
+      "frame": {
+        "x": 311,
+        "y": 75,
+        "w": 197,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 75,
+        "w": 197,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark3": {
+      "frame": {
+        "x": 559,
+        "y": 54,
+        "w": 202,
+        "h": 126
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 54,
+        "w": 202,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark4": {
+      "frame": {
+        "x": 805,
+        "y": 38,
+        "w": 206,
+        "h": 139
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 37,
+        "y": 38,
+        "w": 206,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark5": {
+      "frame": {
+        "x": 1057,
+        "y": 30,
+        "w": 207,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 30,
+        "w": 207,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark6": {
+      "frame": {
+        "x": 1313,
+        "y": 42,
+        "w": 209,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 42,
+        "w": 209,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark7": {
+      "frame": {
+        "x": 43,
+        "y": 295,
+        "w": 210,
+        "h": 135
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 43,
+        "y": 39,
+        "w": 210,
+        "h": 135
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark8": {
+      "frame": {
+        "x": 320,
+        "y": 308,
+        "w": 184,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 52,
+        "w": 184,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark9": {
+      "frame": {
+        "x": 553,
+        "y": 308,
+        "w": 204,
+        "h": 138
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 52,
+        "w": 204,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark10": {
+      "frame": {
+        "x": 809,
+        "y": 316,
+        "w": 202,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 60,
+        "w": 202,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark11": {
+      "frame": {
+        "x": 1066,
+        "y": 317,
+        "w": 201,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 61,
+        "w": 201,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "shark12": {
+      "frame": {
+        "x": 1315,
+        "y": 312,
+        "w": 205,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 56,
+        "w": 205,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish1": {
+      "frame": {
+        "x": 57,
+        "y": 551,
+        "w": 179,
+        "h": 155
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 57,
+        "y": 39,
+        "w": 179,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish2": {
+      "frame": {
+        "x": 315,
+        "y": 543,
+        "w": 175,
+        "h": 183
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 31,
+        "w": 175,
+        "h": 183
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish3": {
+      "frame": {
+        "x": 561,
+        "y": 532,
+        "w": 185,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 49,
+        "y": 20,
+        "w": 185,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish4": {
+      "frame": {
+        "x": 803,
+        "y": 524,
+        "w": 202,
+        "h": 178
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 12,
+        "w": 202,
+        "h": 178
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish5": {
+      "frame": {
+        "x": 1041,
+        "y": 512,
+        "w": 220,
+        "h": 168
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 0,
+        "w": 220,
+        "h": 168
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish6": {
+      "frame": {
+        "x": 1315,
+        "y": 512,
+        "w": 201,
+        "h": 181
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 0,
+        "w": 201,
+        "h": 181
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish7": {
+      "frame": {
+        "x": 24,
+        "y": 782,
+        "w": 217,
+        "h": 163
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 14,
+        "w": 217,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish8": {
+      "frame": {
+        "x": 277,
+        "y": 794,
+        "w": 217,
+        "h": 191
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 26,
+        "w": 217,
+        "h": 191
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish9": {
+      "frame": {
+        "x": 545,
+        "y": 807,
+        "w": 200,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 39,
+        "w": 200,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish10": {
+      "frame": {
+        "x": 818,
+        "y": 815,
+        "w": 177,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 47,
+        "w": 177,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish11": {
+      "frame": {
+        "x": 1074,
+        "y": 818,
+        "w": 177,
+        "h": 159
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 50,
+        "w": 177,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "jellyfish12": {
+      "frame": {
+        "x": 1326,
+        "y": 811,
+        "w": 182,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 43,
+        "w": 182,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "fauna-sea.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

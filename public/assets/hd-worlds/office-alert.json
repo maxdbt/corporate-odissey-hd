@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "minute1": {
+      "frame": {
+        "x": 66,
+        "y": 25,
+        "w": 160,
+        "h": 208
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 25,
+        "w": 160,
+        "h": 208
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute2": {
+      "frame": {
+        "x": 320,
+        "y": 24,
+        "w": 155,
+        "h": 199
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 24,
+        "w": 155,
+        "h": 199
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute3": {
+      "frame": {
+        "x": 573,
+        "y": 23,
+        "w": 149,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 23,
+        "w": 149,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute4": {
+      "frame": {
+        "x": 820,
+        "y": 23,
+        "w": 152,
+        "h": 209
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 23,
+        "w": 152,
+        "h": 209
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute5": {
+      "frame": {
+        "x": 1069,
+        "y": 24,
+        "w": 155,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 24,
+        "w": 155,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute6": {
+      "frame": {
+        "x": 1326,
+        "y": 24,
+        "w": 149,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 24,
+        "w": 149,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute7": {
+      "frame": {
+        "x": 74,
+        "y": 286,
+        "w": 148,
+        "h": 206
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 30,
+        "w": 148,
+        "h": 206
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute8": {
+      "frame": {
+        "x": 322,
+        "y": 280,
+        "w": 150,
+        "h": 205
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 24,
+        "w": 150,
+        "h": 205
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute9": {
+      "frame": {
+        "x": 572,
+        "y": 279,
+        "w": 157,
+        "h": 205
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 23,
+        "w": 157,
+        "h": 205
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute10": {
+      "frame": {
+        "x": 819,
+        "y": 280,
+        "w": 157,
+        "h": 203
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 51,
+        "y": 24,
+        "w": 157,
+        "h": 203
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute11": {
+      "frame": {
+        "x": 1071,
+        "y": 287,
+        "w": 153,
+        "h": 206
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 31,
+        "w": 153,
+        "h": 206
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "minute12": {
+      "frame": {
+        "x": 1326,
+        "y": 280,
+        "w": 149,
+        "h": 212
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 24,
+        "w": 149,
+        "h": 212
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams1": {
+      "frame": {
+        "x": 61,
+        "y": 546,
+        "w": 184,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 34,
+        "w": 184,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams2": {
+      "frame": {
+        "x": 306,
+        "y": 548,
+        "w": 191,
+        "h": 172
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 36,
+        "w": 191,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams3": {
+      "frame": {
+        "x": 558,
+        "y": 546,
+        "w": 179,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 34,
+        "w": 179,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams4": {
+      "frame": {
+        "x": 810,
+        "y": 546,
+        "w": 183,
+        "h": 179
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 34,
+        "w": 183,
+        "h": 179
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams5": {
+      "frame": {
+        "x": 1056,
+        "y": 544,
+        "w": 190,
+        "h": 181
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 32,
+        "w": 190,
+        "h": 181
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams6": {
+      "frame": {
+        "x": 1309,
+        "y": 545,
+        "w": 187,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 33,
+        "w": 187,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams7": {
+      "frame": {
+        "x": 61,
+        "y": 803,
+        "w": 181,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 35,
+        "w": 181,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams8": {
+      "frame": {
+        "x": 303,
+        "y": 802,
+        "w": 194,
+        "h": 181
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 34,
+        "w": 194,
+        "h": 181
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams9": {
+      "frame": {
+        "x": 557,
+        "y": 804,
+        "w": 190,
+        "h": 174
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 36,
+        "w": 190,
+        "h": 174
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams10": {
+      "frame": {
+        "x": 809,
+        "y": 804,
+        "w": 184,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 36,
+        "w": 184,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams11": {
+      "frame": {
+        "x": 1058,
+        "y": 804,
+        "w": 187,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 36,
+        "w": 187,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "teams12": {
+      "frame": {
+        "x": 1309,
+        "y": 805,
+        "w": 186,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 37,
+        "w": 186,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "office-alert.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

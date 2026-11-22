@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "activist1": {
+      "frame": {
+        "x": 51,
+        "y": 11,
+        "w": 166,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 51,
+        "y": 11,
+        "w": 166,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "activist2": {
+      "frame": {
+        "x": 324,
+        "y": 12,
+        "w": 137,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 68,
+        "y": 12,
+        "w": 137,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "activist3": {
+      "frame": {
+        "x": 575,
+        "y": 13,
+        "w": 148,
+        "h": 234
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 13,
+        "w": 148,
+        "h": 234
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "activist4": {
+      "frame": {
+        "x": 816,
+        "y": 14,
+        "w": 167,
+        "h": 233
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 14,
+        "w": 167,
+        "h": 233
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "activist5": {
+      "frame": {
+        "x": 1099,
+        "y": 14,
+        "w": 120,
+        "h": 234
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 75,
+        "y": 14,
+        "w": 120,
+        "h": 234
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "activist6": {
+      "frame": {
+        "x": 1356,
+        "y": 15,
+        "w": 121,
+        "h": 233
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 15,
+        "w": 121,
+        "h": 233
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman1": {
+      "frame": {
+        "x": 47,
+        "y": 271,
+        "w": 165,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 15,
+        "w": 165,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman2": {
+      "frame": {
+        "x": 319,
+        "y": 271,
+        "w": 151,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 15,
+        "w": 151,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman3": {
+      "frame": {
+        "x": 584,
+        "y": 267,
+        "w": 145,
+        "h": 232
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 11,
+        "w": 145,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman4": {
+      "frame": {
+        "x": 813,
+        "y": 275,
+        "w": 172,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 19,
+        "w": 172,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman5": {
+      "frame": {
+        "x": 1087,
+        "y": 268,
+        "w": 155,
+        "h": 230
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 63,
+        "y": 12,
+        "w": 155,
+        "h": 230
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "yesman6": {
+      "frame": {
+        "x": 1353,
+        "y": 270,
+        "w": 144,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 14,
+        "w": 144,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist1": {
+      "frame": {
+        "x": 45,
+        "y": 519,
+        "w": 173,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 7,
+        "w": 173,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist2": {
+      "frame": {
+        "x": 327,
+        "y": 518,
+        "w": 131,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 6,
+        "w": 131,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist3": {
+      "frame": {
+        "x": 583,
+        "y": 515,
+        "w": 129,
+        "h": 221
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 71,
+        "y": 3,
+        "w": 129,
+        "h": 221
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist4": {
+      "frame": {
+        "x": 811,
+        "y": 526,
+        "w": 177,
+        "h": 232
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 43,
+        "y": 14,
+        "w": 177,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist5": {
+      "frame": {
+        "x": 1097,
+        "y": 521,
+        "w": 130,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 9,
+        "w": 130,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "strategist6": {
+      "frame": {
+        "x": 1345,
+        "y": 521,
+        "w": 136,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 65,
+        "y": 9,
+        "w": 136,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary1": {
+      "frame": {
+        "x": 47,
+        "y": 782,
+        "w": 159,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 14,
+        "w": 159,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary2": {
+      "frame": {
+        "x": 341,
+        "y": 782,
+        "w": 112,
+        "h": 235
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 14,
+        "w": 112,
+        "h": 235
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary3": {
+      "frame": {
+        "x": 590,
+        "y": 779,
+        "w": 116,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 11,
+        "w": 116,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary4": {
+      "frame": {
+        "x": 818,
+        "y": 783,
+        "w": 165,
+        "h": 234
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 15,
+        "w": 165,
+        "h": 234
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary5": {
+      "frame": {
+        "x": 1103,
+        "y": 779,
+        "w": 119,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 11,
+        "w": 119,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "secretary6": {
+      "frame": {
+        "x": 1357,
+        "y": 781,
+        "w": 121,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 77,
+        "y": 13,
+        "w": 121,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "exec-npc-motion.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

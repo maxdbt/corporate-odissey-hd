@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "snowman1": {
+      "frame": {
+        "x": 50,
+        "y": 18,
+        "w": 186,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 18,
+        "w": 186,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman2": {
+      "frame": {
+        "x": 298,
+        "y": 25,
+        "w": 198,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 25,
+        "w": 198,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman3": {
+      "frame": {
+        "x": 554,
+        "y": 21,
+        "w": 193,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 21,
+        "w": 193,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman4": {
+      "frame": {
+        "x": 806,
+        "y": 24,
+        "w": 189,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 38,
+        "y": 24,
+        "w": 189,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman5": {
+      "frame": {
+        "x": 1054,
+        "y": 23,
+        "w": 191,
+        "h": 218
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 23,
+        "w": 191,
+        "h": 218
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman6": {
+      "frame": {
+        "x": 1293,
+        "y": 24,
+        "w": 208,
+        "h": 218
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 24,
+        "w": 208,
+        "h": 218
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman7": {
+      "frame": {
+        "x": 19,
+        "y": 277,
+        "w": 219,
+        "h": 215
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 21,
+        "w": 219,
+        "h": 215
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman8": {
+      "frame": {
+        "x": 288,
+        "y": 274,
+        "w": 208,
+        "h": 218
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 18,
+        "w": 208,
+        "h": 218
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman9": {
+      "frame": {
+        "x": 544,
+        "y": 273,
+        "w": 201,
+        "h": 219
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 17,
+        "w": 201,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman10": {
+      "frame": {
+        "x": 804,
+        "y": 271,
+        "w": 194,
+        "h": 221
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 36,
+        "y": 15,
+        "w": 194,
+        "h": 221
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman11": {
+      "frame": {
+        "x": 1057,
+        "y": 271,
+        "w": 195,
+        "h": 221
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 15,
+        "w": 195,
+        "h": 221
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "snowman12": {
+      "frame": {
+        "x": 1318,
+        "y": 272,
+        "w": 185,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 38,
+        "y": 16,
+        "w": 185,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle1": {
+      "frame": {
+        "x": 33,
+        "y": 539,
+        "w": 186,
+        "h": 197
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 33,
+        "y": 27,
+        "w": 186,
+        "h": 197
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle2": {
+      "frame": {
+        "x": 281,
+        "y": 536,
+        "w": 189,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 24,
+        "w": 189,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle3": {
+      "frame": {
+        "x": 537,
+        "y": 538,
+        "w": 180,
+        "h": 198
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 26,
+        "w": 180,
+        "h": 198
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle4": {
+      "frame": {
+        "x": 785,
+        "y": 517,
+        "w": 221,
+        "h": 219
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 5,
+        "w": 221,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle5": {
+      "frame": {
+        "x": 1031,
+        "y": 523,
+        "w": 199,
+        "h": 213
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 11,
+        "w": 199,
+        "h": 213
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle6": {
+      "frame": {
+        "x": 1286,
+        "y": 568,
+        "w": 207,
+        "h": 168
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 56,
+        "w": 207,
+        "h": 168
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle7": {
+      "frame": {
+        "x": 36,
+        "y": 844,
+        "w": 206,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 36,
+        "y": 76,
+        "w": 206,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle8": {
+      "frame": {
+        "x": 287,
+        "y": 837,
+        "w": 212,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 69,
+        "w": 212,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle9": {
+      "frame": {
+        "x": 542,
+        "y": 836,
+        "w": 206,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 68,
+        "w": 206,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle10": {
+      "frame": {
+        "x": 799,
+        "y": 833,
+        "w": 192,
+        "h": 159
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 65,
+        "w": 192,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle11": {
+      "frame": {
+        "x": 1041,
+        "y": 810,
+        "w": 194,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 42,
+        "w": 194,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dogIdle12": {
+      "frame": {
+        "x": 1295,
+        "y": 794,
+        "w": 196,
+        "h": 198
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 26,
+        "w": 196,
+        "h": 198
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "fauna-misc.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

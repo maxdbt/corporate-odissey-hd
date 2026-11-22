@@ -1,0 +1,334 @@
+{
+  "frames": {
+    "man_move1": {
+      "frame": {
+        "x": 60,
+        "y": 8,
+        "w": 189,
+        "h": 303
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 8,
+        "w": 189,
+        "h": 303
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      }
+    },
+    "man_move2": {
+      "frame": {
+        "x": 380,
+        "y": 23,
+        "w": 203,
+        "h": 288
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 23,
+        "w": 203,
+        "h": 288
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      }
+    },
+    "man_move3": {
+      "frame": {
+        "x": 681,
+        "y": 14,
+        "w": 211,
+        "h": 297
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 14,
+        "w": 211,
+        "h": 297
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      }
+    },
+    "man_move4": {
+      "frame": {
+        "x": 990,
+        "y": 2,
+        "w": 213,
+        "h": 285
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 2,
+        "w": 213,
+        "h": 285
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      }
+    },
+    "man_move5": {
+      "frame": {
+        "x": 59,
+        "y": 325,
+        "w": 218,
+        "h": 301
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 11,
+        "w": 218,
+        "h": 301
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      }
+    },
+    "man_move6": {
+      "frame": {
+        "x": 367,
+        "y": 337,
+        "w": 211,
+        "h": 287
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 23,
+        "w": 211,
+        "h": 287
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      }
+    },
+    "man_move7": {
+      "frame": {
+        "x": 699,
+        "y": 323,
+        "w": 174,
+        "h": 304
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 9,
+        "w": 174,
+        "h": 304
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      }
+    },
+    "man_move8": {
+      "frame": {
+        "x": 1007,
+        "y": 319,
+        "w": 189,
+        "h": 301
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 67,
+        "y": 5,
+        "w": 189,
+        "h": 301
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      }
+    },
+    "man_move9": {
+      "frame": {
+        "x": 74,
+        "y": 632,
+        "w": 193,
+        "h": 302
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 5,
+        "w": 193,
+        "h": 302
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      }
+    },
+    "man_move10": {
+      "frame": {
+        "x": 378,
+        "y": 641,
+        "w": 175,
+        "h": 292
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 14,
+        "w": 175,
+        "h": 292
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      }
+    },
+    "man_move11": {
+      "frame": {
+        "x": 689,
+        "y": 645,
+        "w": 180,
+        "h": 288
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 62,
+        "y": 18,
+        "w": 180,
+        "h": 288
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      }
+    },
+    "man_move12": {
+      "frame": {
+        "x": 995,
+        "y": 637,
+        "w": 197,
+        "h": 295
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 10,
+        "w": 197,
+        "h": 295
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      }
+    },
+    "man_move13": {
+      "frame": {
+        "x": 52,
+        "y": 944,
+        "w": 207,
+        "h": 276
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 4,
+        "w": 207,
+        "h": 276
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      }
+    },
+    "man_move14": {
+      "frame": {
+        "x": 373,
+        "y": 952,
+        "w": 203,
+        "h": 294
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 12,
+        "w": 203,
+        "h": 294
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      }
+    },
+    "man_move15": {
+      "frame": {
+        "x": 705,
+        "y": 956,
+        "w": 154,
+        "h": 293
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 16,
+        "w": 154,
+        "h": 293
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      }
+    },
+    "man_move16": {
+      "frame": {
+        "x": 1000,
+        "y": 947,
+        "w": 196,
+        "h": 305
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 7,
+        "w": 196,
+        "h": 305
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "jack-locomotion.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1"
+  }
+}

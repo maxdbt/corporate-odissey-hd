@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "man1": {
+      "frame": {
+        "x": 11,
+        "y": 19,
+        "w": 174,
+        "h": 270
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 7,
+        "w": 174,
+        "h": 270
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man2": {
+      "frame": {
+        "x": 221,
+        "y": 34,
+        "w": 177,
+        "h": 255
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 22,
+        "w": 177,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man3": {
+      "frame": {
+        "x": 423,
+        "y": 58,
+        "w": 186,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 46,
+        "w": 186,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man4": {
+      "frame": {
+        "x": 640,
+        "y": 79,
+        "w": 178,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 67,
+        "w": 178,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man5": {
+      "frame": {
+        "x": 849,
+        "y": 104,
+        "w": 182,
+        "h": 185
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 92,
+        "w": 182,
+        "h": 185
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man6": {
+      "frame": {
+        "x": 1058,
+        "y": 73,
+        "w": 180,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 61,
+        "w": 180,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man7": {
+      "frame": {
+        "x": 37,
+        "y": 370,
+        "w": 157,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 44,
+        "w": 157,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man8": {
+      "frame": {
+        "x": 256,
+        "y": 355,
+        "w": 148,
+        "h": 244
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 29,
+        "w": 148,
+        "h": 244
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man9": {
+      "frame": {
+        "x": 452,
+        "y": 349,
+        "w": 159,
+        "h": 250
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 23,
+        "w": 159,
+        "h": 250
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man10": {
+      "frame": {
+        "x": 658,
+        "y": 338,
+        "w": 162,
+        "h": 261
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 12,
+        "w": 162,
+        "h": 261
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man11": {
+      "frame": {
+        "x": 866,
+        "y": 334,
+        "w": 164,
+        "h": 265
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 8,
+        "w": 164,
+        "h": 265
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "man12": {
+      "frame": {
+        "x": 1078,
+        "y": 326,
+        "w": 161,
+        "h": 273
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 28,
+        "y": 0,
+        "w": 161,
+        "h": 273
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 277
+      }
+    },
+    "woman1": {
+      "frame": {
+        "x": 13,
+        "y": 650,
+        "w": 177,
+        "h": 267
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 8,
+        "w": 177,
+        "h": 267
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman2": {
+      "frame": {
+        "x": 222,
+        "y": 665,
+        "w": 179,
+        "h": 251
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 23,
+        "w": 179,
+        "h": 251
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman3": {
+      "frame": {
+        "x": 418,
+        "y": 688,
+        "w": 197,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 46,
+        "w": 197,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman4": {
+      "frame": {
+        "x": 640,
+        "y": 708,
+        "w": 176,
+        "h": 208
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 66,
+        "w": 176,
+        "h": 208
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman5": {
+      "frame": {
+        "x": 849,
+        "y": 740,
+        "w": 183,
+        "h": 176
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 98,
+        "w": 183,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman6": {
+      "frame": {
+        "x": 1058,
+        "y": 707,
+        "w": 177,
+        "h": 209
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 65,
+        "w": 177,
+        "h": 209
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman7": {
+      "frame": {
+        "x": 55,
+        "y": 1004,
+        "w": 143,
+        "h": 222
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 49,
+        "w": 143,
+        "h": 222
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman8": {
+      "frame": {
+        "x": 244,
+        "y": 987,
+        "w": 159,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 32,
+        "w": 159,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman9": {
+      "frame": {
+        "x": 463,
+        "y": 979,
+        "w": 151,
+        "h": 247
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 24,
+        "w": 151,
+        "h": 247
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman10": {
+      "frame": {
+        "x": 672,
+        "y": 970,
+        "w": 152,
+        "h": 256
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 15,
+        "w": 152,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman11": {
+      "frame": {
+        "x": 877,
+        "y": 963,
+        "w": 154,
+        "h": 265
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 8,
+        "w": 154,
+        "h": 265
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    },
+    "woman12": {
+      "frame": {
+        "x": 1074,
+        "y": 955,
+        "w": 165,
+        "h": 271
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 0,
+        "w": 165,
+        "h": 271
+      },
+      "sourceSize": {
+        "w": 198,
+        "h": 275
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "ride-skis.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1"
+  }
+}

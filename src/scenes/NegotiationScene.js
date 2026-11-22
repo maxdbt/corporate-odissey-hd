@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { beginBossAction } from '../presentation/MotionCatalog.js';
 import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, TEX, playerTex, playerAnim } from '../config/constants.js';
 import { CLIENTS, CURSES } from '../data/clients.js';
@@ -402,6 +403,7 @@ export default class NegotiationScene extends Phaser.Scene {
   // Orbs fly at you and home in a little; fish, crabs and shells are lobbed (crabs then scuttle along the floor).
   attack(rage) {
     const b = this.boss;
+    beginBossAction(b, this.time.now, 900);
     const p = this.player;
     const cfg = this.theme.boss;
     const hx = b.x + (b.flipX ? -30 : 30);

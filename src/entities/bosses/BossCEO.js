@@ -9,6 +9,7 @@ import { TEX, EVENTS, DEPTH } from '../../config/constants.js';
 import { ensureExecTextures } from '../../gfx/exec.js';
 import { audio } from '../../systems/Audio8bit.js';
 import Enemy from '../enemies/Enemy.js';
+import { beginBossAction } from '../../presentation/MotionCatalog.js';
 import EnemyProjectile, { arcVelocity } from '../enemies/EnemyProjectile.js';
 import { bigText, floatText, popFx } from '../enemies/fx.js';
 
@@ -164,6 +165,7 @@ export default class BossCEO extends Enemy {
   }
 
   startPattern(now) {
+    beginBossAction(this, this.scene.time.now, 1600);
     const list = PATTERNS[this.phase];
     const pattern = list[this.patternIndex % list.length];
     this.patternIndex++;

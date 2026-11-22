@@ -91,7 +91,7 @@ export const BRIEFS = {
       'Sott\'acqua premi SALTA per nuotare verso l\'alto.',
       'Al NOLEGGIO scegli: SOTTOMARINO, PINNE E MASCHERA o CAVALLUCCIO MARINO, ognuno con un prezzo.',
       'Il sottomarino sale e scende con SU/GIU\' e consuma BATTERIA. Le pinne sono veloci. Il cavalluccio ogni tanto torna indietro!',
-      'Senza COSTUME in valigia nuoti in giacca e cravatta: piu\' lento.',
+      'Portare il COSTUME in valigia ti permette di nuotare piu\' velocemente.',
       'Le CORRENTI ti spingono indietro. Occhio a meduse, squali-consulente e mine-notifica!',
       'Al SUSHI BAR ti fermi per forza: solo un piatto su tre e\' buono...'
     ]

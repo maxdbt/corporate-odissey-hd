@@ -60,6 +60,8 @@ Esempi: [Mensa](http://127.0.0.1:8080/?level=2), [Ghiacciaio](http://127.0.0.1:8
 
 ## Collaudo e limiti
 
+Questo resoconto documenta il porting completo del 22 novembre. L'aggiornamento del 23 novembre, con nuovi cicli, boss e mezzi, è in [ANIMAZIONI_HD.md](ANIMAZIONI_HD.md); la pubblicazione corrente è descritta in [PUBBLICAZIONE_SITES.md](PUBBLICAZIONE_SITES.md).
+
 - **18 test automatici superati** (`node --test tests/*.test.js`); build di produzione riuscita (`npm run build`, 132 moduli, 40 risorse precache, 23.142,57 KiB). Copertura: temi e bonus dei 19 stage; esistenza dei frame; tutte le 16 nuove attività vincibili su 12 semi; pausa, limiti temporali, errori e premi una sola volta; regressioni delle animazioni e dei bonus precedenti.
 - Prove browser: avvio dei nuovi stage, passaggio sede → valigia → mezzo → aeroporto con Wendy, passeggeri di aereo/treno, incontro col cliente, boss nell’attico e sul tetto, tutte le anteprime dei nuovi bonus e i due finali fino alle statistiche. Verificati anche ingresso nella festa, prova del bagno e rientro dal chiosco e dal bagno con gli effetti previsti.
 - Rientro dal bonus della Mensa: stessa scena/posizione e tempo conservato; pausa prolungata verificata anche cambiando scheda.

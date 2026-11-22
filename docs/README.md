@@ -1,54 +1,42 @@
-# Corporate Odyssey
+# Corporate Odyssey — documentazione
 
-Corporate Odyssey è un platform 2D satirico ambientato nel mondo del lavoro. Il giocatore attraversa uffici, mensa, riunioni, trasferte e piani executive, gestendo salute mentale, stress, bonus e giorni di ferie. Il gioco gira nel browser con Phaser e include controlli touch e supporto PWA.
+Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e mobile, con **19 stage HD e un bonus per stage**. Lo stile di riferimento resta il concept illustrato approvato. Il repository di consegna è `maxdbt/corporate-odissey-hd` sul remoto `max-hd`; il sito ha un repository tecnico separato.
 
-La baseline analizzata è la versione **0.9.9**, commit `abceb61` (15 novembre 2026). Il porting locale del **22 novembre 2026** copre ora **tutti i 19 stage**, scene della trasferta e finale, con **un bonus per stage**. La consegna Git richiesta usa il remoto `max-hd` (`maxdbt/corporate-odissey-hd`); Sites resta separato. Dettagli e limiti delle verifiche in [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md).
+## Stato e gioco
 
-## Documentazione
+- [Campagna completa](PORTING_CAMPAGNA_HD.md): matrice dei 19 stage, scene e prove della campagna.
+- [Animazioni HD e mezzi](ANIMAZIONI_HD.md): cicli attuali, boss, costumi da sub, personaggi a bordo e manutenzione.
+- [Bonus per livello](BONUS_PER_LIVELLO.md): accessi, regole e ricompense dei 19 bonus.
+- [Stato sintetico](CAMPAGNA_HD_STATO.md).
+- [Pubblicazione Sites](PUBBLICAZIONE_SITES.md): sito pubblico, destinazioni Git e procedura di rilascio.
 
-| Documento | Contenuto |
-| --- | --- |
-| [Analisi del progetto](ANALYSIS.md) | Struttura, flusso, meccaniche, stato delle verifiche e punti da affrontare |
-| [Architettura](ARCHITECTURE.md) | Contratti tecnici di scene, entità, sistemi e dati, conservati dal progetto |
-| [Sviluppo](DEVELOPMENT.md) | Installazione, comandi, controlli, build, pubblicazione e manutenzione |
-| [Direzione artistica](ART_DIRECTION.md) | Riferimento grafico scelto e cinque proposte esplorate |
-| [Porting HD implementato](PORTING_HD.md) | Componenti riutilizzabili, asset, animazioni, risoluzione e verifiche |
-| [Campagna completa HD](PORTING_CAMPAGNA_HD.md) | Tutti i 19 stage, 16 nuovi bonus, architettura e prove locali |
-| [Estate e Ferie implementati](PORTING_ESTATE.md) | Porting 1-2, contrasto caldo/freddo, bonus spiaggia, asset e verifiche locali |
-| [Prompt per il porting del primo livello](PROMPT_PORTING_LIVELLO_1.md) | Istruzioni operative complete per realizzare lo stile concordato su PC e mobile |
-| [Prompt per il porting dei livelli successivi](PROMPT_PORTING_LIVELLI_SUCCESSIVI.md) | Estensione HD all'ufficio estivo, mensa, riunioni, trasferte ed executive, con asset riutilizzabili e verifiche PC/mobile |
-| [Indagine sul finale](SURVEY.md) | Registrazione locale delle scelte e configurazione dell'invio facoltativo |
-| [Prompt delle immagini](concepts/PROMPTS.md) | Specifiche usate con ImageGen per le cinque tavole |
-| [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md) | Documentazione del minigioco presente nelle altre modifiche locali |
-| [Bonus dedicati ai livelli](BONUS_PER_LIVELLO.md) | Regole effettive dei 19 bonus, accessi, premi e pause |
-| [Concept Estate d'Inferno e bonus](concepts/ESTATE-INFERNO.md) | Tavole approvate del livello estivo e di Ferie, ma non troppo |
+## Sviluppo
 
-## Avvio rapido
-
-Dalla cartella del repository:
+- [Sviluppo e comandi](DEVELOPMENT.md).
+- [Architettura](ARCHITECTURE.md).
+- [Analisi iniziale della versione 0.9.9](ANALYSIS.md): documento di baseline, precedente al porting completo.
+- [Indagine finale](SURVEY.md): raccolta locale delle scelte e invio facoltativo.
 
 ```powershell
 npm ci
 npm run dev
+node --test tests/*.test.js
+npm run build
 ```
 
-Vite usa la porta **8080**, apre il browser e abilita l'ascolto in rete tramite lo script `--host`. Se la porta è occupata può sceglierne un'altra: leggere l'indirizzo stampato nel terminale. Non occorrono backend, database o variabili d'ambiente per il gioco di base.
+Il server Vite usa la porta 8080; leggere l'indirizzo effettivo nel terminale. Non sono richiesti backend o credenziali per giocare. Stack: JavaScript ES modules, Phaser 3.90.0, Vite 6.4.4, vite-plugin-pwa 2.0.0.
 
-## Stack della versione analizzata
+## Grafica e archivio delle consegne
 
-| Componente | Versione nel lockfile | Ruolo |
-| --- | --- | --- |
-| JavaScript | ES modules | Codice applicativo, senza compilazione TypeScript |
-| Phaser | 3.90.0 | Scene, rendering, input, animazioni e fisica Arcade |
-| Vite | 6.4.4 | Server di sviluppo e build statica |
-| vite-plugin-pwa | 2.0.0 | Manifest e service worker |
+- [Direzione artistica](ART_DIRECTION.md).
+- [Porting iniziale del primo stage](PORTING_HD.md) e [porting Estate d'Inferno](PORTING_ESTATE.md): documenti delle consegne precedenti; i conteggi di animazione correnti sono in ANIMAZIONI_HD.
+- [Prompt del primo livello](PROMPT_PORTING_LIVELLO_1.md) e [prompt dei livelli successivi](PROMPT_PORTING_LIVELLI_SUCCESSIVI.md).
+- [Prompt dei concept](concepts/PROMPTS.md), [campagna](concepts/PROMPTS-CAMPAGNA-HD.md), [animazioni e mezzi](concepts/PROMPTS-ANIMAZIONI-HD.md).
+- [Concept Estate e Ferie](concepts/ESTATE-INFERNO.md).
+- [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md).
 
-Il workflow di pubblicazione usa Node.js **22**. Nel controllo locale sono stati usati Node.js **24.15.0** e npm **11.12.1**.
+I documenti sono organizzati tramite questo indice, mantenendo i percorsi esistenti per conservare validi i collegamenti. Concept illustrativi, screenshot del gioco e resoconti di collaudo sono distinti.
 
-## Verifiche effettuate
+## Verifica
 
-Installazione con `npm ci`, build di produzione e generazione del service worker riuscite. Il menu, il briefing e l'avvio del livello 1-1 sono stati aperti nel browser; nei log raccolti durante questa prova non sono comparsi errori o avvisi. Questi controlli non costituiscono una prova completa di tutti i livelli o delle prestazioni su telefoni reali.
-
-Per il porting sono stati aggiunti controlli automatici sugli atlanti e svolte prove di animazione, movimento, salto, input mobile simulato, ridimensionamento, fullscreen, ritorno al menu e avvio dello stage 1-2. I dettagli e i limiti sono in [PORTING_HD.md](PORTING_HD.md).
-
-Per la campagna completa: **18/18 test superati**, build di produzione riuscita e prove dei 19 ingressi, bonus, transizioni e finali. Il [resoconto attuale](PORTING_CAMPAGNA_HD.md) distingue prove browser, mobile simulato e verifiche ancora necessarie su hardware reale.
+La copertura automatica include atlanti, cicli, boss, mezzi, bonus, pause e premi. Le prove browser e i loro limiti sono riportati nei documenti di campagna e animazioni. Il viewport mobile simulato verifica disposizione e input: prestazioni, memoria, temperatura e multitouch su telefono fisico richiedono un collaudo hardware.

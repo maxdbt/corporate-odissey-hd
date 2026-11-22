@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "pharaoh1": {
+      "frame": {
+        "x": 23,
+        "y": 10,
+        "w": 208,
+        "h": 236
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 10,
+        "w": 208,
+        "h": 236
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh2": {
+      "frame": {
+        "x": 282,
+        "y": 9,
+        "w": 208,
+        "h": 235
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 9,
+        "w": 208,
+        "h": 235
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh3": {
+      "frame": {
+        "x": 541,
+        "y": 12,
+        "w": 208,
+        "h": 232
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 12,
+        "w": 208,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh4": {
+      "frame": {
+        "x": 792,
+        "y": 10,
+        "w": 214,
+        "h": 235
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 10,
+        "w": 214,
+        "h": 235
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh5": {
+      "frame": {
+        "x": 1048,
+        "y": 10,
+        "w": 217,
+        "h": 234
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 10,
+        "w": 217,
+        "h": 234
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh6": {
+      "frame": {
+        "x": 1299,
+        "y": 13,
+        "w": 222,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 13,
+        "w": 222,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh7": {
+      "frame": {
+        "x": 16,
+        "y": 271,
+        "w": 220,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 16,
+        "y": 15,
+        "w": 220,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh8": {
+      "frame": {
+        "x": 285,
+        "y": 263,
+        "w": 207,
+        "h": 236
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 7,
+        "w": 207,
+        "h": 236
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh9": {
+      "frame": {
+        "x": 541,
+        "y": 266,
+        "w": 206,
+        "h": 232
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 10,
+        "w": 206,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh10": {
+      "frame": {
+        "x": 798,
+        "y": 263,
+        "w": 209,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 7,
+        "w": 209,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh11": {
+      "frame": {
+        "x": 1055,
+        "y": 268,
+        "w": 210,
+        "h": 233
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 12,
+        "w": 210,
+        "h": 233
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "pharaoh12": {
+      "frame": {
+        "x": 1314,
+        "y": 265,
+        "w": 206,
+        "h": 235
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 9,
+        "w": 206,
+        "h": 235
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO1": {
+      "frame": {
+        "x": 61,
+        "y": 524,
+        "w": 166,
+        "h": 215
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 12,
+        "w": 166,
+        "h": 215
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO2": {
+      "frame": {
+        "x": 304,
+        "y": 525,
+        "w": 195,
+        "h": 215
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 13,
+        "w": 195,
+        "h": 215
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO3": {
+      "frame": {
+        "x": 558,
+        "y": 526,
+        "w": 194,
+        "h": 213
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 14,
+        "w": 194,
+        "h": 213
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO4": {
+      "frame": {
+        "x": 783,
+        "y": 524,
+        "w": 230,
+        "h": 215
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 12,
+        "w": 230,
+        "h": 215
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO5": {
+      "frame": {
+        "x": 1046,
+        "y": 526,
+        "w": 224,
+        "h": 213
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 14,
+        "w": 224,
+        "h": 213
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO6": {
+      "frame": {
+        "x": 1323,
+        "y": 524,
+        "w": 207,
+        "h": 218
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 43,
+        "y": 12,
+        "w": 207,
+        "h": 218
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO7": {
+      "frame": {
+        "x": 34,
+        "y": 780,
+        "w": 214,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 34,
+        "y": 12,
+        "w": 214,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO8": {
+      "frame": {
+        "x": 271,
+        "y": 781,
+        "w": 228,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 13,
+        "w": 228,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO9": {
+      "frame": {
+        "x": 541,
+        "y": 781,
+        "w": 213,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 13,
+        "w": 213,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO10": {
+      "frame": {
+        "x": 813,
+        "y": 782,
+        "w": 195,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 14,
+        "w": 195,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO11": {
+      "frame": {
+        "x": 1085,
+        "y": 782,
+        "w": 185,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 61,
+        "y": 14,
+        "w": 185,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "penguinCEO12": {
+      "frame": {
+        "x": 1346,
+        "y": 783,
+        "w": 172,
+        "h": 213
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 66,
+        "y": 15,
+        "w": 172,
+        "h": 213
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "motion-court-action.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

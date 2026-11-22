@@ -7,6 +7,8 @@ Le icone PWA in `public` sono file raster; la generazione procedurale descritta 
 Il porting locale aggiunge `src/presentation` e gli asset di `public/assets/hd-office`: vedere [PORTING_HD.md](PORTING_HD.md).
 I contratti delle entità fisiche restano quelli descritti qui; il tema HD sostituisce la loro presentazione.
 
+Aggiornamento del 23 novembre 2026: il livello di presentazione copre tutti i 19 stage, usa anche `hd-summer` e `hd-worlds` e carica gli atlanti per ambientazione. `MotionCatalog` e `MountSkins` gestiscono cicli riutilizzabili, azioni dei boss e composizioni di pilota e mezzo. Le immagini accessorie originali vengono escluse dal rendering quando esiste una composizione montata, mantenendo attivo il body fisico. Vedere [campagna HD](PORTING_CAMPAGNA_HD.md) e [animazioni e mezzi](ANIMAZIONI_HD.md) per il comportamento attuale; i paragrafi sulla generazione esclusivamente procedurale sotto descrivono la baseline classica.
+
 Phaser 3.90 + Vite, ES modules, `import Phaser from 'phaser'`. Logical height 450; width `GAME_WIDTH` adapts to
 the screen shape at load (800..1000, landscape shape on touch devices), so scenes must lay out from `GAME_WIDTH`
 and work at >= 800. The canvas renders `RENDER_SCALE` (integer 2..3) times larger; `pixelArt: true`,

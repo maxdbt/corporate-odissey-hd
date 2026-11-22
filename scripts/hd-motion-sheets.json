@@ -1,0 +1,131 @@
+{
+  "ride-seahorse": [
+    "man",
+    "woman"
+  ],
+  "ride-submarine": [
+    "man",
+    "woman"
+  ],
+  "ride-camel": [
+    "man",
+    "woman"
+  ],
+  "ride-moto": [
+    "man",
+    "woman"
+  ],
+  "ride-taxi": [
+    "man",
+    "woman"
+  ],
+  "ride-snowmobile": [
+    "man",
+    "woman"
+  ],
+  "ride-husky": [
+    "man",
+    "woman"
+  ],
+  "ride-skis": [
+    "man",
+    "woman"
+  ],
+  "ride-camel-flying": [
+    "man",
+    "woman"
+  ],
+  "motion-diners": ["dinerA", "dinerB"],
+  "fauna-land": [
+    "dog",
+    "penguin"
+  ],
+  "fauna-sea": [
+    "shark",
+    "jellyfish"
+  ],
+  "fauna-misc": [
+    "snowman",
+    "dogIdle"
+  ],
+  "office-tech": [
+    "bug",
+    "confcall"
+  ],
+  "office-alert": [
+    "minute",
+    "teams"
+  ],
+  "office-support": [
+    "cook",
+    "hostess"
+  ],
+  "motion-ceo": [
+    "ceo",
+    "ceoSeated"
+  ],
+  "motion-angry": [
+    "clienthell",
+    "bossClient"
+  ],
+  "motion-beasts": [
+    "mummy",
+    "bear"
+  ],
+  "motion-ocean-client": [
+    "octopus",
+    "mermaid"
+  ],
+  "motion-client-court": [
+    "pharaoh",
+    "penguinCEO"
+  ],
+  "motion-consultants": [
+    "egyptian",
+    "winter"
+  ],
+  "motion-sea-small": [
+    "fish",
+    "crab"
+  ],
+  "motion-mounts": [
+    "camel",
+    "seahorse"
+  ],
+  "motion-diver-slide": [
+    "diver",
+    "penguinSlide"
+  ],
+  "motion-passengers-work": [
+    "man",
+    "woman"
+  ],
+  "motion-passengers-talk": [
+    "chatty",
+    "reader"
+  ],
+  "motion-passengers-rest": [
+    "music",
+    "sleeper"
+  ],
+  "motion-ceo-action": [
+    "ceo",
+    "ceoSeated"
+  ],
+  "motion-angry-action": [
+    "clienthell",
+    "bossClient"
+  ],
+  "motion-beasts-action": [
+    "mummy",
+    "bear"
+  ],
+  "motion-ocean-action": [
+    "octopus",
+    "mermaid"
+  ],
+  "motion-court-action": [
+    "pharaoh",
+    "penguinCEO"
+  ]
+}

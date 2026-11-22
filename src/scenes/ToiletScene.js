@@ -4,6 +4,7 @@ import { FONT, GAME_WIDTH, GAME_HEIGHT, TEX, playerTex, playerAnim } from '../co
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
+import { monsterFrame, MONSTER_FRAME_COUNT } from '../presentation/MotionCatalog.js';
 
 const style = (size, color = '#ffffff', extra = {}) => ({
   fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: 3, ...extra
@@ -65,13 +66,15 @@ export default class ToiletScene extends Phaser.Scene {
     installStagePresentation(this, { world: 'toilet', drawMethods: ['drawRoom'], keepGraphics: ['selGfx'], bonus: false });
   }
 
-  init() {
+  init(data = {}) {
+    this.preview = !!data.preview;
     this.phase = 'intro';
     this.sel = 1;
     this.leaving = false;
     this.urgency = URGENCY_S;
     // Shuffle what is behind the doors every time.
     this.behind = Phaser.Utils.Array.Shuffle(['toilet', 'monster', 'hole']);
+    if(import.meta.env.DEV&&this.preview&&new URLSearchParams(window.location.search).has('inspectMonster'))this.behind=['toilet','monster','hole'];
   }
 
   create() {
@@ -191,7 +194,7 @@ export default class ToiletScene extends Phaser.Scene {
     this.player.stop();
     this.player.setTexture(this.idleTex).setX(d.x);
     // Door swings open
-    this.tweens.add({ targets: d.door, scaleX: 0.08, duration: 350, ease: 'Sine.In' });
+    this.tweens.add({ targets: d.door, scaleX: 0.06, alpha:.55, duration: 380, ease: 'Cubic.InOut' });
     this.time.delayedCall(400, () => this[`reveal_${what}`](d.x));
   }
 
@@ -214,6 +217,7 @@ export default class ToiletScene extends Phaser.Scene {
   }
 
   reveal_monster(x) {
+    if(this.hdStage&&this.textures.exists('hd-bathroom-monster')){this.revealHdMonster(x);return;}
     const m = this.add.image(x, FLOOR_Y, 'wc_monster').setOrigin(0.5, 1).setScale(0.3).setDepth(11);
     audio.sfx('hurt');
     this.tweens.add({ targets: m, scale: 2, duration: 300, ease: 'Back.Out' });
@@ -225,6 +229,30 @@ export default class ToiletScene extends Phaser.Scene {
       this.tweens.add({ targets: m, scaleY: 1.7, duration: 120, yoyo: true, repeat: 3, delay: 300 });
     });
     this.time.delayedCall(1700, () => this.showResult('monster'));
+  }
+
+  revealHdMonster(x) {
+    const first=monsterFrame(0);
+    const monster=this.add.sprite(x,FLOOR_Y+12,first.texture,first.frame).setOrigin(.5,1).setDepth(11);
+    const targetScale=182/monster.frame.realHeight;
+    monster.setScale(targetScale*.65,targetScale*.75).setAlpha(0);
+    if(!this.anims.exists('hd-wc-bite'))this.anims.create({key:'hd-wc-bite',frames:Array.from({length:MONSTER_FRAME_COUNT},(_,i)=>{
+      const pose=monsterFrame(i);return {key:pose.texture,frame:pose.frame};
+    }),frameRate:8,repeat:0});
+    this.tweens.add({targets:monster,scaleX:targetScale,scaleY:targetScale,alpha:1,y:FLOOR_Y,duration:420,ease:'Back.Out'});
+    monster.play('hd-wc-bite');
+    audio.sfx('hurt');
+    this.floatText(x,FLOOR_Y-190,'GRAAAWR!','#ffb36c');
+    this.tweens.add({targets:this.player,x:x-28,angle:-8,duration:220,yoyo:true,ease:'Sine.Out'});
+    this.time.delayedCall(720,()=>{
+      this.cameras.main.shake(160,.005);
+      this.tweens.add({targets:this.player,x,y:FLOOR_Y-65,scale:.25,alpha:0,angle:16,duration:420,ease:'Cubic.In'});
+      this.floatText(x,FLOOR_Y-145,'GNAM!','#fff2bc');
+    });
+    monster.once('animationcomplete',()=>{
+      this.tweens.add({targets:monster,scaleX:targetScale*1.025,scaleY:targetScale*.975,duration:520,yoyo:true,repeat:-1,ease:'Sine.InOut'});
+    });
+    this.time.delayedCall(2050,()=>this.showResult('monster'));
   }
 
   reveal_hole(x) {
@@ -267,7 +295,7 @@ export default class ToiletScene extends Phaser.Scene {
     this.add.rectangle(cx, 200, 480, 160, 0x000000, 0.8).setStrokeStyle(3, 0xffd800).setDepth(40);
     this.add.text(cx, 145, o.title, style(15, o.color)).setOrigin(0.5).setDepth(41);
     this.add.text(cx, 198, lines.join('\n'), style(12, '#ffffff', { align: 'center', lineSpacing: 5 })).setOrigin(0.5).setDepth(41);
-    const hint = this.add.text(cx, 260, 'INVIO / TOCCA per tornare in mensa', style(10, '#9be7ff')).setOrigin(0.5).setDepth(41);
+    const hint = this.add.text(cx, 260, this.preview?'INVIO / TOCCA per tornare al menu':'INVIO / TOCCA per tornare in mensa', style(10, '#9be7ff')).setOrigin(0.5).setDepth(41);
     this.tweens.add({ targets: hint, alpha: 0.3, duration: 500, yoyo: true, repeat: -1 });
     this.readyAt = this.time.now + 700;
   }
@@ -275,6 +303,7 @@ export default class ToiletScene extends Phaser.Scene {
   finish() {
     if (this.phase !== 'result' || this.leaving || this.time.now < this.readyAt) return;
     this.leaving = true;
+    if(this.preview){this.scene.start('MenuScene');return;}
     const o = this.result;
     GameState.addHp(o.hp);
     GameState.addStress(o.stress);

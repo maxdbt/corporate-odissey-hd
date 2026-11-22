@@ -1,13 +1,36 @@
 # Pubblicazione su ChatGPT Sites
 
-Destinazione configurata: [Corporate Odyssey HD](https://corporate-odyssey-hd.gianlucarollback.chatgpt.site). L'effettiva pubblicazione va confermata dal risultato del deployment Sites.
+Sito pubblico: [Corporate Odyssey HD](https://corporate-odyssey-hd.gianlucarollback.chatgpt.site).
 
-- Progetto Sites: `appgprj_6afa07a7ef148191904ec2ac8fe87154`.
-- Cartella di pubblicazione separata: `E:/Repos/max/sites/corporate-odyssey-hd`.
-- Output statico: `dist`, copia della build del gioco, senza documentazione, cronologia o credenziali del repository originale.
-- Identità del sito: `.openai/hosting.json` nella cartella di pubblicazione.
-- Il repository originale `maxdbt/corporate-odyssey` resta locale: **nessun push su GitHub**.
+## Destinazioni
 
-Il 15 novembre 2026 l'utente ha autorizzato esclusivamente il push tecnico al repository separato di ChatGPT Sites e il commit locale del progetto. Questa eccezione non autorizza push verso GitHub.
+| Destinazione | Uso |
+| --- | --- |
+| `E:/Repos/max/corporate-odyssey` | Sorgenti, asset, test e documentazione del gioco |
+| Remoto `max-hd`: `maxdbt/corporate-odissey-hd` | Consegna GitHub autorizzata su main |
+| `E:/Repos/max/sites/corporate-odyssey-hd` | Repository tecnico separato di pubblicazione |
+| Progetto Sites `appgprj_6afa07a7ef148191904ec2ac8fe87154` | Sito esistente; preservare identità e accesso pubblico |
 
-Per aggiornare il sito: costruire e verificare il gioco nel repository originale, aggiornare la copia statica e usare il workflow Sites per salvare la versione e pubblicarla sullo stesso progetto. Non creare un nuovo sito e non modificare il remote GitHub. Le credenziali temporanee Sites devono passare solo in memoria e tramite stdin al relativo helper.
+Il vincolo iniziale del 15 novembre consentiva soltanto commit locali e push tecnico Sites. Le richieste successive «quando finisci fai push» e «pubblica anche il sito aggiornato» autorizzano ora la consegna sul remoto `max-hd` e il deployment Sites. Non usare il remoto `origin` del repository iniziale per questa consegna.
+
+## Procedura
+
+1. Completare e verificare il gioco: `node --test tests/*.test.js`, `npm run build`, collaudo browser.
+2. Commit dei sorgenti, asset e documentazione; push sul remoto di consegna.
+3. Copiare esattamente la build `dist` nel repository Sites, preservando `.openai/hosting.json` con `static.directory: "dist"`.
+4. Usare il workflow Sites per commit/push tecnico, archivio, salvataggio della versione e deployment sullo stesso progetto.
+5. Confermare lo stato terminale riuscito del deployment e riportare l'URL restituito.
+
+Le credenziali temporanee passano soltanto in memoria e tramite stdin al workflow, mai in file, log o argomenti della shell. Il sito riceve esclusivamente il contenuto statico del gioco e la configurazione di hosting.
+
+## Caricamenti grandi
+
+Il repository Sites applica un limite di 64 MiB per singolo push. Se i nuovi PNG lo superano, suddividere l'invio dei sorgenti in commit tecnici sequenziali sotto soglia. Non usare force push. Salvare e pubblicare soltanto il commit finale completo: i commit intermedi non devono diventare una versione giocabile incompleta.
+
+La campagna precedente ha già richiesto due invii tecnici. Il repository del sito conserva separatamente la provenienza della build nel suo README.
+
+## PWA e verifica
+
+Il banner «NUOVA VERSIONE - AGGIORNA» consente di passare alla build nuova senza interrompere automaticamente una partita in corso. Il caricamento dei mondi è progressivo. Dettagli e limiti delle verifiche sono in [ANIMAZIONI_HD.md](ANIMAZIONI_HD.md) e [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md).
+
+Il risultato del deployment Sites è la fonte per attestare quale versione è effettivamente online; un commit o un archivio locale, da soli, non attestano la pubblicazione.

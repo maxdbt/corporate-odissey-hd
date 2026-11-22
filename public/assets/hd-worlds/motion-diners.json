@@ -1,0 +1,494 @@
+{
+  "frames": {
+    "dinerA1": {
+      "frame": {
+        "x": 45,
+        "y": 14,
+        "w": 171,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 14,
+        "w": 171,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA2": {
+      "frame": {
+        "x": 302,
+        "y": 15,
+        "w": 161,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 15,
+        "w": 161,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA3": {
+      "frame": {
+        "x": 558,
+        "y": 14,
+        "w": 170,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 14,
+        "w": 170,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA4": {
+      "frame": {
+        "x": 814,
+        "y": 14,
+        "w": 162,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 14,
+        "w": 162,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA5": {
+      "frame": {
+        "x": 1070,
+        "y": 15,
+        "w": 163,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 15,
+        "w": 163,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA6": {
+      "frame": {
+        "x": 1326,
+        "y": 15,
+        "w": 160,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 15,
+        "w": 160,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA7": {
+      "frame": {
+        "x": 46,
+        "y": 273,
+        "w": 160,
+        "h": 236
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 17,
+        "w": 160,
+        "h": 236
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA8": {
+      "frame": {
+        "x": 302,
+        "y": 270,
+        "w": 164,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 14,
+        "w": 164,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA9": {
+      "frame": {
+        "x": 558,
+        "y": 269,
+        "w": 163,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 13,
+        "w": 163,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA10": {
+      "frame": {
+        "x": 815,
+        "y": 270,
+        "w": 161,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 14,
+        "w": 161,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA11": {
+      "frame": {
+        "x": 1071,
+        "y": 271,
+        "w": 162,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 15,
+        "w": 162,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerA12": {
+      "frame": {
+        "x": 1327,
+        "y": 271,
+        "w": 163,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 15,
+        "w": 163,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB1": {
+      "frame": {
+        "x": 60,
+        "y": 525,
+        "w": 134,
+        "h": 241
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 13,
+        "w": 134,
+        "h": 241
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB2": {
+      "frame": {
+        "x": 316,
+        "y": 525,
+        "w": 132,
+        "h": 241
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 13,
+        "w": 132,
+        "h": 241
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB3": {
+      "frame": {
+        "x": 572,
+        "y": 524,
+        "w": 132,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 12,
+        "w": 132,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB4": {
+      "frame": {
+        "x": 823,
+        "y": 524,
+        "w": 134,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 12,
+        "w": 134,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB5": {
+      "frame": {
+        "x": 1079,
+        "y": 524,
+        "w": 141,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 12,
+        "w": 141,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB6": {
+      "frame": {
+        "x": 1336,
+        "y": 524,
+        "w": 138,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 12,
+        "w": 138,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB7": {
+      "frame": {
+        "x": 60,
+        "y": 781,
+        "w": 131,
+        "h": 241
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 13,
+        "w": 131,
+        "h": 241
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB8": {
+      "frame": {
+        "x": 315,
+        "y": 780,
+        "w": 134,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 12,
+        "w": 134,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB9": {
+      "frame": {
+        "x": 570,
+        "y": 780,
+        "w": 134,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 58,
+        "y": 12,
+        "w": 134,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB10": {
+      "frame": {
+        "x": 827,
+        "y": 782,
+        "w": 139,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 14,
+        "w": 139,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB11": {
+      "frame": {
+        "x": 1083,
+        "y": 780,
+        "w": 134,
+        "h": 242
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 12,
+        "w": 134,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    },
+    "dinerB12": {
+      "frame": {
+        "x": 1339,
+        "y": 781,
+        "w": 133,
+        "h": 241
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 59,
+        "y": 13,
+        "w": 133,
+        "h": 241
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 256
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "motion-diners.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

@@ -34,7 +34,7 @@ export default class ActorSkin {
     v.setDisplaySize(width * Math.abs(s.scaleX / this.initialScaleX), height * Math.abs(s.scaleY / this.initialScaleY));
     v.setOrigin(spec.originX ?? s.originX, spec.originY ?? s.originY);
     v.setPosition(s.x + (spec.offsetX || 0), s.y + (spec.offsetY || 0));
-    v.setRotation(s.rotation + (spec.rotation || 0)).setFlip(s.flipX, s.flipY);
+    v.setRotation(s.rotation + (spec.rotation || 0)).setFlip(spec.flipX ?? s.flipX, s.flipY);
     v.setAlpha(s.alpha).setVisible(s.visible && s.active).setDepth(s.depth + 0.01);
     if (v.input) v.input.enabled = !!s.input?.enabled;
     if (s.isTinted) {

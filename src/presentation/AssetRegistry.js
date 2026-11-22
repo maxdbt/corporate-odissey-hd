@@ -9,7 +9,7 @@ function retainPacks(scene, packs) {
   leases.set(scene, owned);
   const needed = new Set([...leases.values()].flatMap(set => [...set]));
   for (const [name, pack] of Object.entries(ASSET_PACKS)) {
-    if (!name.startsWith('world-') || needed.has(name)) continue;
+    if ((!name.startsWith('world-') && !pack.transient) || needed.has(name)) continue;
     for (const [key] of pack.assets) if (scene.textures.exists(key)) scene.textures.remove(key);
   }
 }
@@ -37,6 +37,8 @@ export const HD_ASSETS = [
   ['hd-characters', 'characters.png', 'characters.json'],
   ['hd-jack-motion', 'jack-motion.png', 'jack-motion.json'],
   ['hd-wendy-motion', 'wendy-motion.png', 'wendy-motion.json'],
+  ['hd-jack-locomotion', 'jack-locomotion.png', 'jack-locomotion.json'],
+  ['hd-wendy-locomotion', 'wendy-locomotion.png', 'wendy-locomotion.json'],
   ['hd-enemies', 'office-enemies-cutout.png', 'office-enemies.json'],
   ['hd-spumante', 'spumante.png', 'spumante.json'],
   ['hd-dressing', 'office-dressing.png', 'office-dressing.json']

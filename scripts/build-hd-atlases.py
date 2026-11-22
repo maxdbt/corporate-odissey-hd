@@ -48,6 +48,19 @@ def atlas(image_name, names, cols, rows, preserve_cells=False, output=None):
             'spriteSourceSize': {'x': x0 if preserve_cells else 0, 'y': y0 if preserve_cells else 0, 'w': fw, 'h': fh},
             'sourceSize': {'w': right - left if preserve_cells else fw, 'h': bottom - top if preserve_cells else fh},
         }
+    # Vehicle sheets have generous and unequal transparent margins. Keep one
+    # shared canvas per rider, anchored at the wheels/feet, without altering pixels.
+    if image_name.startswith('ride-'):
+        for start in range(0, len(names), 12):
+            group = [frames[name] for name in names[start:start + 12]]
+            x0 = min(f['spriteSourceSize']['x'] for f in group)
+            y0 = min(f['spriteSourceSize']['y'] for f in group)
+            x1 = max(f['spriteSourceSize']['x'] + f['frame']['w'] for f in group)
+            y1 = max(f['spriteSourceSize']['y'] + f['frame']['h'] for f in group)
+            for f in group:
+                f['spriteSourceSize']['x'] -= x0
+                f['spriteSourceSize']['y'] -= y0
+                f['sourceSize'] = {'w': x1 - x0, 'h': y1 - y0}
     result = {'frames': frames, 'meta': {'app': 'Corporate Odyssey', 'image': image_name,
               'format': 'RGBA8888', 'size': {'w': width, 'h': height}, 'scale': '1'}}
     target = ROOT / (output or Path(image_name).with_suffix('.json').name)
@@ -61,6 +74,8 @@ for char, file in [('man', 'jack-motion.png'), ('woman', 'wendy-motion.png')]:
     names = [f'{char}_run{i}' for i in range(1, 9)] + [f'{char}_{p}' for p in ['idle1', 'idle2', 'attack', 'land']]
     atlas(file, names, 4, 3, True)
 atlas('office-enemies-cutout.png', ENEMIES, 4, 3, False, 'office-enemies.json')
+for char, file in [('man','jack-locomotion.png'),('woman','wendy-locomotion.png')]:
+    atlas(file, [f'{char}_move{i}' for i in range(1,17)], 4, 4, True)
 atlas('spumante.png', ['puddle'], 1, 1)
 atlas('office-dressing.png', ['workstation', 'paperClutter', 'noticeboard', 'foregroundDesk', 'foregroundPlant', 'wallDesk'], 3, 2)
 
@@ -80,3 +95,13 @@ atlas('passengers.png', ['man','woman','chatty','reader','music','sleeper','host
 atlas('food.png', ['panino','cannelloni','dunette','cioccolata','grappa','fonduta','sushi','alghe','paranza','wetSign','disco','toilet'], 4, 3)
 atlas('ceo-motion.png', ['stand','run','attack'], 3, 1)
 atlas('swim.png', [f'{c}_swim{i}' for c in ['man','woman'] for i in range(1,5)], 4, 2, True)
+for group, names in [('office',['talker','party','chief','thief']),('exec',['activist','yesman','strategist','secretary'])]:
+    for part in ['motion','between']:
+        atlas(f'{group}-npc-{part}.png',[f'{name}{i}' for name in names for i in range(1,7)],6,4,True)
+for part in ['','-between']:
+    atlas(f'bathroom-monster{part}.png',[f'monster{i}' for i in range(1,7)],3,2,True)
+for who in ['jack','wendy']:
+    atlas(f'{who}-diver.png',['idle']+[f'swim{i}' for i in range(1,9)]+['hurt','attack','crouch'],4,3,True)
+    atlas(f'{who}-dive-swim.png',[f'swim{i}' for i in range(1,13)],4,3,True)
+for sheet, names in json.loads((Path(__file__).parent / 'hd-motion-sheets.json').read_text()).items():
+    atlas(f'{sheet}.png',[f'{name}{i}' for name in names for i in range(1,13)],6,4,True)

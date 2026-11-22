@@ -1,0 +1,134 @@
+{
+  "frames": {
+    "monster1": {
+      "frame": {
+        "x": 55,
+        "y": 91,
+        "w": 438,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 91,
+        "w": 438,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster2": {
+      "frame": {
+        "x": 543,
+        "y": 134,
+        "w": 426,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 134,
+        "w": 426,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster3": {
+      "frame": {
+        "x": 1048,
+        "y": 85,
+        "w": 450,
+        "h": 379
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 85,
+        "w": 450,
+        "h": 379
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster4": {
+      "frame": {
+        "x": 51,
+        "y": 596,
+        "w": 461,
+        "h": 363
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 51,
+        "y": 84,
+        "w": 461,
+        "h": 363
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster5": {
+      "frame": {
+        "x": 512,
+        "y": 598,
+        "w": 465,
+        "h": 360
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 86,
+        "w": 465,
+        "h": 360
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    },
+    "monster6": {
+      "frame": {
+        "x": 1043,
+        "y": 593,
+        "w": 437,
+        "h": 366
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 81,
+        "w": 437,
+        "h": 366
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "bathroom-monster.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "frames": {
+    "swim1": {
+      "frame": {
+        "x": 20,
+        "y": 83,
+        "w": 341,
+        "h": 256
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 83,
+        "w": 341,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim2": {
+      "frame": {
+        "x": 381,
+        "y": 84,
+        "w": 337,
+        "h": 243
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 84,
+        "w": 337,
+        "h": 243
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim3": {
+      "frame": {
+        "x": 737,
+        "y": 84,
+        "w": 337,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 84,
+        "w": 337,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim4": {
+      "frame": {
+        "x": 1116,
+        "y": 85,
+        "w": 320,
+        "h": 212
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 85,
+        "w": 320,
+        "h": 212
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim5": {
+      "frame": {
+        "x": 29,
+        "y": 445,
+        "w": 322,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 83,
+        "w": 322,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim6": {
+      "frame": {
+        "x": 386,
+        "y": 446,
+        "w": 326,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 84,
+        "w": 326,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim7": {
+      "frame": {
+        "x": 739,
+        "y": 446,
+        "w": 339,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 84,
+        "w": 339,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim8": {
+      "frame": {
+        "x": 1104,
+        "y": 447,
+        "w": 336,
+        "h": 255
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 85,
+        "w": 336,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim9": {
+      "frame": {
+        "x": 15,
+        "y": 809,
+        "w": 336,
+        "h": 255
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 85,
+        "w": 336,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim10": {
+      "frame": {
+        "x": 380,
+        "y": 808,
+        "w": 328,
+        "h": 232
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 84,
+        "w": 328,
+        "h": 232
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim11": {
+      "frame": {
+        "x": 749,
+        "y": 808,
+        "w": 331,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 84,
+        "w": 331,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "swim12": {
+      "frame": {
+        "x": 1100,
+        "y": 808,
+        "w": 333,
+        "h": 237
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 84,
+        "w": 333,
+        "h": 237
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "wendy-dive-swim.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1448,
+      "h": 1086
+    },
+    "scale": "1"
+  }
+}

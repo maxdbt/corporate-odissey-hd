@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import { TEX, EVENTS, DEPTH } from '../../config/constants.js';
 import { audio } from '../../systems/Audio8bit.js';
 import Enemy from '../enemies/Enemy.js';
+import { beginBossAction } from '../../presentation/MotionCatalog.js';
 import EnemyProjectile from '../enemies/EnemyProjectile.js';
 import { bigText, floatText, popFx } from '../enemies/fx.js';
 
@@ -73,6 +74,7 @@ export default class BossClient extends Enemy {
   }
 
   startAttack(now) {
+    beginBossAction(this, this.scene.time.now, 1800);
     this.pending = this.attackIndex % 2 === 0 ? 'feedback' : 'shout';
     this.attackIndex++;
     this.state = 'telegraph';

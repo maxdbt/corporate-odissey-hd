@@ -10,7 +10,9 @@ const root = new URL('../public/assets/', import.meta.url);
 const atlas = (directory, file) => JSON.parse(readFileSync(new URL(directory + '/' + file, root)));
 
 test('summer can load independently of the beach; every manifest asset exists within mobile/PWA budgets', () => {
-  assert.deepEqual(THEME_PACKS[level.visualTheme], ['summer', 'summerProps']);
+  assert.ok(THEME_PACKS[level.visualTheme].includes('summer'));
+  assert.ok(THEME_PACKS[level.visualTheme].includes('summerProps'));
+  assert.ok(!THEME_PACKS[level.visualTheme].includes('beach'));
   assert.ok(!ASSET_PACKS.summer.assets.some(([key]) => key === 'hd-beach'));
   for (const pack of Object.values(ASSET_PACKS)) for (const [, file, json] of pack.assets) {
     const path = new URL(pack.directory + '/' + file, root), png = readFileSync(path);

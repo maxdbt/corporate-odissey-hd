@@ -1,7 +1,10 @@
 # Stato della campagna HD
 
-Aggiornato il 22 novembre 2026: completato il porting locale dei 19 stage, delle scene della trasferta e del finale, con un bonus dedicato per stage. Aggiunte 16 attività; preservati L’ultima mail, Ferie, ma non troppo e Caccia ai ricavi.
+Aggiornato il **23 novembre 2026**: implementati i 19 stage HD, le scene della trasferta e il finale, con un bonus per stage. L'aggiornamento grafico aggiunge cicli più ricchi per protagonisti, creature, boss, passeggeri e commensali, il mostro del bagno illustrato e composizioni animate dei personaggi a bordo dei mezzi.
 
-La matrice implementata, le verifiche e i limiti sono in [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md). Le meccaniche effettive sono in [BONUS_PER_LIVELLO.md](BONUS_PER_LIVELLO.md); i prompt delle immagini in [PROMPTS-CAMPAGNA-HD.md](concepts/PROMPTS-CAMPAGNA-HD.md).
+- [Campagna e matrice livelli](PORTING_CAMPAGNA_HD.md).
+- [Animazioni, boss e mezzi](ANIMAZIONI_HD.md).
+- [Regole dei bonus](BONUS_PER_LIVELLO.md).
+- [Pubblicazione e link](PUBBLICAZIONE_SITES.md).
 
-Dopo il completamento locale, l’utente ha autorizzato commit e push su `max-hd/main` (`maxdbt/corporate-odissey-hd`). Il deploy non è automatico e non fa parte di questa consegna.
+L'utente ha autorizzato commit e push su `max-hd/main` (`maxdbt/corporate-odissey-hd`) e l'aggiornamento del sito esistente. Questa richiesta successiva sostituisce il precedente vincolo di lavoro soltanto locale. GitHub e Sites hanno repository distinti; un push GitHub non pubblica automaticamente Sites.
