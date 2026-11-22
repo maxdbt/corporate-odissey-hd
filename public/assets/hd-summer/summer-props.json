@@ -1,0 +1,174 @@
+{
+  "frames": {
+    "aircon": {
+      "frame": {
+        "x": 42,
+        "y": 181,
+        "w": 327,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 327,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 327,
+        "h": 217
+      }
+    },
+    "fan": {
+      "frame": {
+        "x": 460,
+        "y": 114,
+        "w": 235,
+        "h": 322
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 235,
+        "h": 322
+      },
+      "sourceSize": {
+        "w": 235,
+        "h": 322
+      }
+    },
+    "planeTicket": {
+      "frame": {
+        "x": 803,
+        "y": 176,
+        "w": 298,
+        "h": 186
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 298,
+        "h": 186
+      },
+      "sourceSize": {
+        "w": 298,
+        "h": 186
+      }
+    },
+    "exitDoor": {
+      "frame": {
+        "x": 1204,
+        "y": 100,
+        "w": 280,
+        "h": 332
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 332
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 332
+      }
+    },
+    "mail": {
+      "frame": {
+        "x": 63,
+        "y": 650,
+        "w": 269,
+        "h": 219
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 269,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 269,
+        "h": 219
+      }
+    },
+    "urgentMail": {
+      "frame": {
+        "x": 440,
+        "y": 641,
+        "w": 280,
+        "h": 228
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 228
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 228
+      }
+    },
+    "coldColleague": {
+      "frame": {
+        "x": 809,
+        "y": 584,
+        "w": 256,
+        "h": 374
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 374
+      },
+      "sourceSize": {
+        "w": 256,
+        "h": 374
+      }
+    },
+    "suitcase": {
+      "frame": {
+        "x": 1182,
+        "y": 637,
+        "w": 308,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 308,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 308,
+        "h": 260
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "summer-props.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

@@ -7,7 +7,10 @@ const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 
 export default defineConfig({
   base: './',
   server: { port: 8080, open: true },
-  build: { chunkSizeWarningLimit: 2000 },
+  build: {
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: { output: { manualChunks: { phaser: ['phaser'] } } }
+  },
   define: { __APP_VERSION__: JSON.stringify(pkg.version) },
   plugins: [
     // Installable app that works offline. A new deploy waits for the player's OK (Pwa.js) instead of reloading mid-run.
@@ -35,6 +38,14 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,webp,mp3,json}'],
+        // World art is downloaded when visited, avoiding a full-campaign download on first mobile launch.
+        globIgnores: ['assets/hd-worlds/**'],
+        runtimeCaching: [{
+          urlPattern: /\/assets\/hd-worlds\//,
+          handler: 'CacheFirst',
+          options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 32, maxAgeSeconds: 2592000 },
+            cacheableResponse: { statuses: [0, 200] } }
+        }],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
       }
     })

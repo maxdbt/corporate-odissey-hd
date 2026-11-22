@@ -5,6 +5,22 @@ import { FLOOR, DESK_TOP, row, arc } from './helpers.js';
 export default {
   id: '1-2',
   theme: 'summer',
+  visualTheme: 'summer-hd',
+  art: {
+    dressing: [
+      ['workstation', 115, FLOOR, 57], ['noticeboard', 480, 310, 24],
+      ['workstation', 655, FLOOR, 56], ['paperClutter', 1065, FLOOR, 20],
+      ['workstation', 1475, FLOOR, 55], ['noticeboard', 1760, 309, 23],
+      ['workstation', 2120, FLOOR, 56], ['workstation', 2580, FLOOR, 57],
+      ['noticeboard', 2900, 310, 24], ['workstation', 3210, FLOOR, 57],
+      ['workstation', 3470, FLOOR, 55], ['noticeboard', 3750, 307, 24],
+      ['workstation', 4320, FLOOR, 56], ['paperClutter', 4770, FLOOR, 20],
+      ['workstation', 5270, FLOOR, 57]
+    ],
+    summerProps: [['fan', 285, 350, 26], ['suitcase', 330, FLOOR, 22],
+      ['fan', 725, 350, 26], ['fan', 1225, 350, 26], ['suitcase', 3080, FLOOR, 23],
+      ['fan', 2725, 350, 26], ['fan', 4425, 350, 26], ['suitcase', 5410, FLOOR, 22]]
+  },
   groundTex: TEX.T_SUMMER,
   width: 5600,
   timeLimit: 300,

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -22,6 +23,7 @@ const DEST = { desert: ' nel deserto', glacier: ' sul ghiacciaio', sea: ' in fon
 export default class PackingScene extends Phaser.Scene {
   constructor() {
     super('PackingScene');
+    installStagePresentation(this, { drawMethods: ['drawRoom'], bonus: false });
   }
 
   init(data) {

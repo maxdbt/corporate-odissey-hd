@@ -1,0 +1,414 @@
+{
+  "frames": {
+    "laptop": {
+      "frame": {
+        "x": 28,
+        "y": 69,
+        "w": 252,
+        "h": 212
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 252,
+        "h": 212
+      },
+      "sourceSize": {
+        "w": 252,
+        "h": 212
+      }
+    },
+    "charger": {
+      "frame": {
+        "x": 280,
+        "y": 72,
+        "w": 262,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 262,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 262,
+        "h": 200
+      }
+    },
+    "phone": {
+      "frame": {
+        "x": 592,
+        "y": 60,
+        "w": 209,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 209,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 209,
+        "h": 227
+      }
+    },
+    "earbuds": {
+      "frame": {
+        "x": 872,
+        "y": 74,
+        "w": 191,
+        "h": 193
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 191,
+        "h": 193
+      },
+      "sourceSize": {
+        "w": 191,
+        "h": 193
+      }
+    },
+    "antacid": {
+      "frame": {
+        "x": 39,
+        "y": 374,
+        "w": 236,
+        "h": 117
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 236,
+        "h": 117
+      },
+      "sourceSize": {
+        "w": 236,
+        "h": 117
+      }
+    },
+    "toothpaste": {
+      "frame": {
+        "x": 301,
+        "y": 368,
+        "w": 248,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 248,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 248,
+        "h": 125
+      }
+    },
+    "toothbrush": {
+      "frame": {
+        "x": 577,
+        "y": 322,
+        "w": 238,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 238,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 238,
+        "h": 223
+      }
+    },
+    "underwear": {
+      "frame": {
+        "x": 846,
+        "y": 330,
+        "w": 241,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 241,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 241,
+        "h": 192
+      }
+    },
+    "banana": {
+      "frame": {
+        "x": 35,
+        "y": 600,
+        "w": 235,
+        "h": 194
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 235,
+        "h": 194
+      },
+      "sourceSize": {
+        "w": 235,
+        "h": 194
+      }
+    },
+    "umbrella": {
+      "frame": {
+        "x": 323,
+        "y": 572,
+        "w": 220,
+        "h": 252
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 252
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 252
+      }
+    },
+    "toiletpaper": {
+      "frame": {
+        "x": 600,
+        "y": 590,
+        "w": 190,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 190,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 190,
+        "h": 231
+      }
+    },
+    "notebook": {
+      "frame": {
+        "x": 865,
+        "y": 575,
+        "w": 205,
+        "h": 246
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 205,
+        "h": 246
+      },
+      "sourceSize": {
+        "w": 205,
+        "h": 246
+      }
+    },
+    "sleepmask": {
+      "frame": {
+        "x": 20,
+        "y": 902,
+        "w": 260,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 260,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 260,
+        "h": 125
+      }
+    },
+    "idcard": {
+      "frame": {
+        "x": 305,
+        "y": 880,
+        "w": 242,
+        "h": 163
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 242,
+        "h": 163
+      },
+      "sourceSize": {
+        "w": 242,
+        "h": 163
+      }
+    },
+    "adapter": {
+      "frame": {
+        "x": 584,
+        "y": 867,
+        "w": 216,
+        "h": 199
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 216,
+        "h": 199
+      },
+      "sourceSize": {
+        "w": 216,
+        "h": 199
+      }
+    },
+    "cards": {
+      "frame": {
+        "x": 844,
+        "y": 880,
+        "w": 246,
+        "h": 164
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 246,
+        "h": 164
+      },
+      "sourceSize": {
+        "w": 246,
+        "h": 164
+      }
+    },
+    "suit": {
+      "frame": {
+        "x": 47,
+        "y": 1105,
+        "w": 217,
+        "h": 265
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 217,
+        "h": 265
+      },
+      "sourceSize": {
+        "w": 217,
+        "h": 265
+      }
+    },
+    "dates": {
+      "frame": {
+        "x": 302,
+        "y": 1138,
+        "w": 236,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 236,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 236,
+        "h": 196
+      }
+    },
+    "swimsuit": {
+      "frame": {
+        "x": 566,
+        "y": 1130,
+        "w": 276,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 276,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 276,
+        "h": 217
+      }
+    },
+    "jacket": {
+      "frame": {
+        "x": 842,
+        "y": 1094,
+        "w": 251,
+        "h": 261
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 251,
+        "h": 261
+      },
+      "sourceSize": {
+        "w": 251,
+        "h": 261
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "inventory.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1122,
+      "h": 1402
+    },
+    "scale": "1"
+  }
+}

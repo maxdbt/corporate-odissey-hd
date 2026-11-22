@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, playerTex } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -54,9 +55,11 @@ function ensureRevenueTextures(scene) {
 export default class RevenueScene extends Phaser.Scene {
   constructor() {
     super('RevenueScene');
+    installStagePresentation(this, { world: 'space', drawMethods: ['drawSpace'], bonus: false });
   }
 
-  init() {
+  init(data = {}) {
+    this.preview = !!data.preview;
     this.phase = 'intro';
     this.elapsed = 0;
     this.ebitda = 0;
@@ -277,6 +280,7 @@ export default class RevenueScene extends Phaser.Scene {
   finish() {
     if (this.leaving) return;
     this.leaving = true;
+    if (this.preview) { this.scene.start('MenuScene'); return; }
     const o = this.result;
     const euro = this.revenue + (o.euro || 0);
     if (euro) GameState.addBonus('euro', euro);

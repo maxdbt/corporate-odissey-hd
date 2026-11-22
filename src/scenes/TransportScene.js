@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, TEX } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -22,6 +23,7 @@ const CARDS = [
 export default class TransportScene extends Phaser.Scene {
   constructor() {
     super('TransportScene');
+    installStagePresentation(this, { hideFirstGraphic: true });
   }
 
   init(data) {
@@ -71,6 +73,7 @@ export default class TransportScene extends Phaser.Scene {
   }
 
   drawPlane(x, y) {
+    if (this.hdStage) { this.add.image(x, y, 'hd-world-equipment', 'plane').setDisplaySize(180, 85); return; }
     const g = this.add.graphics();
     g.fillStyle(0xffffff).fillRect(x - 70, y - 8, 140, 16).fillTriangle(x + 70, y - 8, x + 90, y, x + 70, y + 8);
     g.fillTriangle(x - 10, y, x + 20, y, x - 30, y + 40).fillTriangle(x - 10, y, x + 20, y, x - 30, y - 40);

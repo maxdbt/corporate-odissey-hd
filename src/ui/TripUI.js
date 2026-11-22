@@ -4,11 +4,13 @@ import Phaser from 'phaser';
 import { FONT, GAME_WIDTH, GAME_HEIGHT, TEX } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
+const HD = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('graphics') !== 'classic';
+const uiFont = HD ? 'Segoe UI, Arial, sans-serif' : FONT;
 
 export const tstyle = (size, color = '#ffffff', extra = {}) => ({
-  fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: 3, ...extra
+  fontFamily: uiFont, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: HD ? 1 : 3, ...extra
 });
-const plain = (size, color = '#000000', extra = {}) => ({ fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, ...extra });
+const plain = (size, color = '#000000', extra = {}) => ({ fontFamily: uiFont, fontSize: `${size}px`, fontStyle: 'bold', color: HD && color === '#000000' ? '#edf4f6' : color, ...extra });
 
 // Top strip: SALUTE, STRESS, BUDGET. Returns refresh().
 export function tripHud(scene, title) {
@@ -50,10 +52,10 @@ export function choiceDialog(scene, opts) {
   const c = scene.add.container(0, 0).setDepth(opts.depth || 60);
   const g = scene.add.graphics();
   g.fillStyle(0x000000, 0.5).fillRect(left + 6, top + 6, W, H);
-  g.fillStyle(0xd4d0c8, 1).fillRect(left, top, W, H);
+  g.fillStyle(HD ? 0x122939 : 0xd4d0c8, 1).fillRoundedRect(left, top, W, H, HD ? 10 : 0);
   g.lineStyle(2, 0xffffff).lineBetween(left, top, left + W, top).lineBetween(left, top, left, top + H);
   g.lineStyle(2, 0x404040).lineBetween(left + W, top, left + W, top + H).lineBetween(left, top + H, left + W, top + H);
-  g.fillStyle(0x000080, 1).fillRect(left + 3, top + 3, W - 6, 20);
+  g.fillStyle(HD ? 0x285066 : 0x000080, 1).fillRect(left + 3, top + 3, W - 6, 20);
   c.add(g);
   c.add(scene.add.text(left + 10, top + 13, opts.title || 'Trasferta', plain(10, '#ffffff')).setOrigin(0, 0.5));
   c.add(scene.add.text(left + 14, top + 30, opts.text || '', plain(10, '#000000', { wordWrap: { width: W - 28 }, lineSpacing: 3 })));
@@ -72,8 +74,8 @@ export function choiceDialog(scene, opts) {
   });
   const paint = () => rows.forEach((r, i) => {
     const on = i === sel;
-    r.bg.setFillStyle(on ? 0x000080 : 0xd4d0c8);
-    r.label.setColor(r.o.disabled ? '#8a8a8a' : on ? '#ffffff' : '#000000');
+    r.bg.setFillStyle(HD ? (on ? 0x285066 : 0x163141) : (on ? 0x000080 : 0xd4d0c8));
+    r.label.setColor(r.o.disabled ? '#8a8a8a' : on || HD ? '#ffffff' : '#000000');
   });
   paint();
   c.setAlpha(0);

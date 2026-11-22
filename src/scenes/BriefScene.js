@@ -23,6 +23,10 @@ export default class BriefScene extends Phaser.Scene {
   }
 
   create() {
+    if(import.meta.env.DEV){
+      this.time.delayedCall(310,()=>{this.game.canvas.dataset.briefReady='true';});
+      this.events.once('shutdown',()=>{delete this.game.canvas.dataset.briefReady;});
+    }
     setupStaticCamera(this);
     audio.sfx('select');
     this.readyAt = this.time.now + 300;

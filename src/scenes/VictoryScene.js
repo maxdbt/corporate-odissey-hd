@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { FONT, GAME_WIDTH, GAME_HEIGHT, TEX, CHARACTERS, playerTex, playerAnim } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -30,6 +31,7 @@ const PIC_H = 170;
 export default class VictoryScene extends Phaser.Scene {
   constructor() {
     super('VictoryScene');
+    installStagePresentation(this, { world: 'director', extraPacks: ['beach'], bonus: false });
   }
 
   create() {
@@ -129,6 +131,7 @@ export default class VictoryScene extends Phaser.Scene {
   }
 
   goldOffice() {
+    if (this.hdStage) return this.add2(this.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,'hd-world-director')).setDisplaySize(GAME_WIDTH,GAME_HEIGHT);
     const g = this.add2(this.add.graphics());
     g.fillStyle(0x3a2a00, 1).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     for (let x = 0; x < GAME_WIDTH; x += 40) g.fillStyle(x % 80 ? 0x5a4200 : 0x6e5200, 1).fillRect(x, 0, 40, 330);
@@ -139,6 +142,10 @@ export default class VictoryScene extends Phaser.Scene {
 
   // Palm drawn around its base (0, 0) so a rotation tween makes it sway.
   palm(x, y, s = 1, depth = 5) {
+    if (this.hdStage) {
+      const palm=this.add2(this.add.image(x,y,'hd-world-nature','palm')).setOrigin(.5,1).setDepth(depth);
+      return palm.setDisplaySize(155*s*palm.frame.realWidth/palm.frame.realHeight,155*s);
+    }
     const g = this.add2(this.add.graphics({ x, y })).setDepth(depth);
     for (let i = 0; i < 8; i++) g.fillStyle(i % 2 ? 0x8a5a2a : 0x6a4020).fillRect(-4 * s + i * 1.5 * s, -(i + 1) * 12 * s, 8 * s, 12 * s);
     const tx = 12 * s;
@@ -154,6 +161,7 @@ export default class VictoryScene extends Phaser.Scene {
 
   // Sea strip with moving wave crests.
   waves(x, y, w, h, depth = 2) {
+    if (this.hdStage) return;
     const g = this.add2(this.add.graphics()).setDepth(depth);
     g.fillStyle(0x1aa0d8).fillRect(x, y, w, h);
     g.fillStyle(0x0a7ab8).fillRect(x, y + h * 0.5, w, h * 0.5);
@@ -240,6 +248,7 @@ export default class VictoryScene extends Phaser.Scene {
     const g = this.add2(this.add.graphics());
     g.fillStyle(0x10204a).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     for (let y = 0; y < GAME_HEIGHT; y += 24) g.fillStyle(0x142a5a).fillRect(0, y, GAME_WIDTH, 2);
+    if(this.hdStage)g.clear().fillStyle(0x071322,.75).fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
     this.add2(this.add.text(GAME_WIDTH / 2, 34, 'DEVI SCEGLIERE', style(22, '#ffd800', { strokeThickness: 5 }))).setOrigin(0.5);
     const wait = this.add2(this.add.text(GAME_WIDTH / 2, 66, 'Il CdA attende', style(12, '#ffffff'))).setOrigin(0.5);
     let dots = 0;
@@ -291,11 +300,17 @@ export default class VictoryScene extends Phaser.Scene {
     g.fillStyle(0x5a3418).fillRect(x, y, PIC_W, PIC_H);
     for (let i = 0; i < PIC_W; i += 30) g.fillStyle(0x4a2a12).fillRect(x + i, y, 2, PIC_H - 30);
     g.fillStyle(0x8a0a14).fillRect(x, y + PIC_H - 30, PIC_W, 30);
+    if (this.hdStage) { g.setVisible(false); this.add2(this.add.image(x+PIC_W/2,y+PIC_H/2,'hd-world-director')).setDisplaySize(PIC_W,PIC_H); }
     this.add2(this.add.image(x + PIC_W / 2, y + PIC_H - 8, 'throne_empty')).setOrigin(0.5, 1).setScale(1.3);
     [[x + 40, y + 120], [x + PIC_W - 40, y + 110]].forEach(([px, py], i) => {
       const ph = this.add2(this.add.graphics({ x: px, y: py }));
       ph.fillStyle(0x222222).fillRect(-14, -6, 28, 14).fillRect(-16, -12, 32, 6);
       ph.fillStyle(0xd02020).fillRect(-4, -2, 8, 6);
+      if(this.hdStage){
+        ph.setVisible(false);
+        const phone=this.add2(this.add.image(px,py,'hd-world-objects','phone')).setDisplaySize(25,38);
+        this.tweens.add({targets:phone,x:px+2,duration:40,yoyo:true,repeat:-1,delay:i*300});
+      }
       this.tweens.add({ targets: ph, x: px + 2, duration: 40, yoyo: true, repeat: -1, delay: i * 300 });
       this.every({ delay: 900, startAt: i * 450, loop: true, callback: () => {
         const t = this.add2(this.add.text(px, py - 18, 'DRIIN!', style(10, '#ff6060', { strokeThickness: 3 }))).setOrigin(0.5);
@@ -316,6 +331,7 @@ export default class VictoryScene extends Phaser.Scene {
 
   // The island: sun, sea with waves, sand, swaying palm, a hammock.
   islandPic(x, y) {
+    if (this.hdStage) { this.add2(this.add.image(x+PIC_W/2,y+PIC_H/2,'hd-beach')).setDisplaySize(PIC_W,PIC_H); return; }
     const g = this.add2(this.add.graphics());
     g.fillGradientStyle(0x3ab0f0, 0x3ab0f0, 0xbfe8ff, 0xbfe8ff, 1).fillRect(x, y, PIC_W, PIC_H);
     g.fillStyle(0xfff3a0).fillCircle(x + PIC_W - 50, y + 36, 18);
@@ -396,6 +412,7 @@ export default class VictoryScene extends Phaser.Scene {
       for (let i = 0; i < 8; i++) g.fillRect(x + 8 + i * 14, 160 + (i % 3) * 20, 3, 3);
     }
     g.fillStyle(0x6a6a72).fillRect(0, 350, GAME_WIDTH, GAME_HEIGHT - 350);
+    if (this.hdStage) { g.setVisible(false); this.add2(this.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,'hd-office')).setDisplaySize(GAME_WIDTH,GAME_HEIGHT); }
     [180, 420].forEach((x) => this.add2(this.add.image(x + CX, 350, TEX.DESK)).setOrigin(0.5, 1).setScale(1.5));
     this.add2(this.add.image(660 + CX, 350, TEX.XMAS_TREE)).setOrigin(0.5, 1).setScale(1.6);
     this.add2(this.add.text(GAME_WIDTH / 2, 50, '24 DICEMBRE, UN ANNO DOPO', style(18, '#ffffff', { strokeThickness: 5 }))).setOrigin(0.5);
@@ -422,6 +439,7 @@ export default class VictoryScene extends Phaser.Scene {
     audio.music('island');
     const g = this.add2(this.add.graphics());
     g.fillStyle(0x5a3418).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    if (this.hdStage) g.setVisible(false);
     const paper = this.add2(this.add.container(GAME_WIDTH / 2, 230));
     paper.add(this.add.rectangle(0, 0, 300, 340, 0xffffff).setStrokeStyle(2, 0xaaaaaa));
     paper.add(this.add.text(0, -140, 'LETTERA DI DIMISSIONI', style(16, '#2a1a0a', { strokeThickness: 0 })).setOrigin(0.5));
@@ -450,6 +468,7 @@ export default class VictoryScene extends Phaser.Scene {
     this.clear();
     const g = this.add2(this.add.graphics());
     g.fillGradientStyle(0x3ab0f0, 0x3ab0f0, 0xbfe8ff, 0xbfe8ff, 1).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    if (this.hdStage) { g.setVisible(false); this.add2(this.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,'hd-beach')).setDisplaySize(GAME_WIDTH,GAME_HEIGHT).setTint(0xb6d9ed); }
     for (let i = 0; i < 6; i++) {
       const c = this.add2(this.add.ellipse(Phaser.Math.Between(0, GAME_WIDTH), Phaser.Math.Between(60, 400), 120, 36, 0xffffff, 0.9));
       this.tweens.add({ targets: c, x: c.x - 900, duration: 3500 });
@@ -460,6 +479,11 @@ export default class VictoryScene extends Phaser.Scene {
     plane.fillStyle(0xdddddd).fillTriangle(-10, 4, 20, 4, -24, 36);
     plane.fillStyle(0x4a8ad8);
     for (let i = 0; i < 6; i++) plane.fillRect(-36 + i * 14, -4, 7, 6);
+    if (this.hdStage) {
+      plane.setVisible(false);
+      const hdPlane=this.add2(this.add.image(-120,260,'hd-world-equipment','plane')).setDisplaySize(190,80);
+      this.tweens.add({targets:hdPlane,x:GAME_WIDTH+140,y:160,duration:3200,ease:'Sine.InOut'});
+    }
     this.tweens.add({ targets: plane, x: GAME_WIDTH + 140, y: 160, duration: 3200, ease: 'Sine.InOut' });
     this.add2(this.add.text(GAME_WIDTH / 2, 60, 'DESTINAZIONE: CARAIBI', style(20, '#ffffff', { strokeThickness: 5 }))).setOrigin(0.5);
     this.after(3300, () => this.fadeTo(() => this.beach(), 400));
@@ -473,6 +497,7 @@ export default class VictoryScene extends Phaser.Scene {
     this.waves(0, 240, GAME_WIDTH, 110, 1);
     const sand = this.add2(this.add.graphics()).setDepth(3);
     sand.fillStyle(0xf0d890).fillRect(0, 330, GAME_WIDTH, GAME_HEIGHT - 330).fillEllipse(260 + CX, 334, 620 + CX * 2, 60);
+    if (this.hdStage) { g.setVisible(false);sand.setVisible(false);this.add2(this.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,'hd-beach')).setDisplaySize(GAME_WIDTH,GAME_HEIGHT).setDepth(0); }
     this.palm(150 + CX, 380, 1.6, 4);
     this.palm(410 + CX, 384, 1.5, 4);
     // Hammock between the palms with the player lying in it, swinging.
@@ -486,7 +511,9 @@ export default class VictoryScene extends Phaser.Scene {
       if (i === 0) hg.moveTo(px, py); else hg.lineTo(px, py);
     }
     hg.strokePath();
-    const lying = this.add.image(0, 22, ensureBeachPlayer(this, GameState.character)).setScale(2.2).setAngle(-80).setOrigin(0.5, 1);
+    const lying = this.hdStage
+      ? this.add.image(0,24,'hd-characters',GameState.character+'_slide').setDisplaySize(150,150).setOrigin(.5,1)
+      : this.add.image(0, 22, ensureBeachPlayer(this, GameState.character)).setScale(2.2).setAngle(-80).setOrigin(0.5, 1);
     ham.add([lying, hg]);
     this.tweens.add({ targets: ham, angle: { from: -3, to: 3 }, duration: 1300, yoyo: true, repeat: -1, ease: 'Sine.InOut' });
     // Coconut drink on the sand.

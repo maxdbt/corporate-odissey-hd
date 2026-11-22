@@ -1,15 +1,22 @@
 import Phaser from 'phaser';
 import { DEPTH, GAME_HEIGHT, TEX } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
-import { hdAssetsReady, useHdFiltering } from './AssetRegistry.js';
+import { hdAssetsReady, assetPacksReady, useHdFiltering } from './AssetRegistry.js';
+import { THEME_PACKS } from './AssetPacks.js';
 import { officeTheme } from './themes/office.js';
+import { summerTheme } from './themes/summer.js';
+import SummerAtmosphere from './SummerAtmosphere.js';
 import ViewportController from './ViewportController.js';
 import ActorSkin from './ActorSkin.js';
 import OfficeDressing from './OfficeDressing.js';
+import { worldThemes } from './themes/worlds.js';
+import WorldAtmosphere from './WorldAtmosphere.js';
+import WorldDressing from './WorldDressing.js';
 
 export function createPresentation(scene, level) {
   const classic = new URLSearchParams(window.location.search).get('graphics') === 'classic';
-  return level.visualTheme === 'office-hd' && !classic && hdAssetsReady(scene)
+  return (['office-hd', 'summer-hd'].includes(level.visualTheme) || worldThemes[level.visualTheme]) && !classic && hdAssetsReady(scene)
+    && assetPacksReady(scene, THEME_PACKS[level.visualTheme])
     ? new OfficePresentation(scene, level) : null;
 }
 
@@ -17,7 +24,7 @@ export default class OfficePresentation {
   constructor(scene, level) {
     this.scene = scene;
     this.level = level;
-    this.theme = officeTheme;
+    this.theme = worldThemes[level.visualTheme] || (level.visualTheme === 'summer-hd' ? summerTheme : officeTheme);
     this.skins = new Map();
     useHdFiltering(scene);
     if (!scene.textures.exists('hd-code')) {
@@ -35,10 +42,15 @@ export default class OfficePresentation {
 
   drawBackground() {
     const s = this.scene;
-    const texture = s.textures.get('hd-office').getSourceImage();
-    this.background = s.add.tileSprite(0, 0, 1000, GAME_HEIGHT, 'hd-office')
+    const key = this.theme.background || 'hd-office';
+    const texture = s.textures.get(key).getSourceImage();
+    this.background = s.add.tileSprite(0, 0, 1000, GAME_HEIGHT, key)
       .setOrigin(0).setDepth(DEPTH.BG);
     this.backgroundSourceHeight = texture.height;
+    if(this.theme.world){
+      this.background.setVisible(false);
+      this.backgroundSourceWidth=texture.width;this.backgroundPanels=[];
+    }
     const floor = GAME_HEIGHT - 64;
     for (let i = 1; i < this.level.ground.length; i++) {
       const left = (this.level.ground[i - 1][1] + 1) * 32;
@@ -46,16 +58,21 @@ export default class OfficePresentation {
       if (right > left) s.add.rectangle(left, floor, right - left, 64, 0x080b12, 0.96)
         .setOrigin(0).setDepth(DEPTH.PLATFORMS - 1);
     }
-    this.dressing = new OfficeDressing(s, this.level);
+    this.dressing = this.theme.world ? new WorldDressing(s, this.theme) : new OfficeDressing(s, this.level);
+    if (this.theme.id === 'summer-hd') this.atmosphere = new SummerAtmosphere(s, this.level);
+    else if (this.theme.world) this.atmosphere = new WorldAtmosphere(s);
   }
 
-  prop(frame, x, y, height, depth = DEPTH.DECOR, originX = 0.5, originY = 1) {
-    const image = this.scene.add.image(x, y, 'hd-props', frame).setOrigin(originX, originY).setDepth(depth);
+  drawZone(zone) { return this.atmosphere?.drawZone(zone) || false; }
+
+  prop(frame, x, y, height, depth = DEPTH.DECOR, originX = 0.5, originY = 1, texture = 'hd-props') {
+    const image = this.scene.add.image(x, y, texture, frame).setOrigin(originX, originY).setDepth(depth);
     image.setDisplaySize(height * image.frame.realWidth / image.frame.realHeight, height);
     return image;
   }
 
   drawSolid(x, y, w, h) {
+    if (this.theme.floor) return this.drawMaterial(x, y, w, h);
     const s = this.scene;
     s.add.rectangle(x, y, w, h, 0x49272b).setOrigin(0).setDepth(DEPTH.PLATFORMS);
     const frame = s.textures.getFrame('hd-props', 'floor');
@@ -74,6 +91,7 @@ export default class OfficePresentation {
   }
 
   drawDesk(x, y) {
+    if (this.theme.outdoor) return this.drawMaterial(x, y, 64, 16);
     if (y < GAME_HEIGHT - 100) {
       // Elevated desks are mounted to the wall, not miniature tables floating in air.
       const image = this.scene.add.image(x, y, 'hd-dressing', 'wallDesk').setOrigin(0)
@@ -92,11 +110,30 @@ export default class OfficePresentation {
   }
 
   drawPlatform(x, y, w) {
+    if (this.theme.floor) return this.drawMaterial(x, y, w, 14);
     const s = this.scene;
     const frame = s.textures.getFrame('hd-props', 'floor');
     s.add.tileSprite(x, y, w, 15, 'hd-props', 'floor').setOrigin(0)
       .setTileScale(96 / frame.realWidth, 15 / frame.realHeight).setDepth(DEPTH.PLATFORMS);
     s.add.rectangle(x, y, w, 1.5, 0xffd891).setOrigin(0).setDepth(DEPTH.PLATFORMS + 0.1);
+    return true;
+  }
+
+  drawMaterial(x, y, w, h) {
+    const frame = this.theme.floor;
+    const atlas = ['sand', 'ice', 'seabed'].includes(frame) ? 'hd-world-nature' : 'hd-world-furniture';
+    const texture = this.scene.textures.get(atlas), key = frame + '-surface';
+    if (!texture.has(key)) {
+      // Metadata-only cuts use a straight strip inside the painted material. No transparent top margin
+      // or perspective corners may shift the visible floor away from its collision surface.
+      const strips = { marble: [404, 544, 344, 50], metal: [792, 544, 340, 50], wood: [1170, 545, 345, 47],
+        sand: [58, 106, 270, 54], ice: [420, 108, 280, 56], seabed: [810, 110, 280, 60] };
+      texture.add(key, 0, ...strips[frame]);
+    }
+    const f = texture.get(key);
+    this.scene.add.tileSprite(x, y, w, h, atlas, key).setOrigin(0).setDepth(DEPTH.PLATFORMS)
+      .setTileScale(110 / f.realWidth, h / f.realHeight);
+    this.scene.add.rectangle(x, y, w, 1, 0xf5dca9, .85).setOrigin(0).setDepth(DEPTH.PLATFORMS + .1);
     return true;
   }
 
@@ -111,7 +148,7 @@ export default class OfficePresentation {
   drawDecor(texture, x, y) {
     if (texture === TEX.XMAS_TREE && x === 200 && this.level.art?.entryTreeX !== undefined) x = this.level.art.entryTreeX;
     const spec = this.theme.props[texture];
-    if (spec) { this.prop(spec[0], x, y, spec[1]); return true; }
+    if (spec) { this.prop(spec[0], x, y, spec[1], DEPTH.DECOR, 0.5, 1, spec[2]); return true; }
     if (texture === TEX.WHITEBOARD) {
       const g = this.scene.add.graphics().setDepth(DEPTH.DECOR);
       g.fillStyle(0x3c2922, 0.4).fillRoundedRect(x - 28, y - 36, 59, 38, 2);
@@ -161,6 +198,9 @@ export default class OfficePresentation {
     if (grounded && skin.wasGrounded === false) skin.landedAt = p.clock;
     skin.wasGrounded = grounded;
     const pose = p.currentPose;
+    if(pose?.startsWith('swim')&&this.scene.textures.exists('hd-world-swim'))return {
+      texture:'hd-world-swim',frame:c+'_swim'+(Math.floor(p.clock/130)%4+1),height:64,offsetY:14
+    };
     if (pose === 'hurt' || pose === 'crouch' || pose === 'slide' || pose === 'jump' || pose?.startsWith('climb') || pose === 'sleep') {
       texture = 'hd-characters';
       frame = c + '_' + (pose.startsWith('climb') ? 'climb' : pose === 'sleep' ? 'slide' : pose);
@@ -189,12 +229,13 @@ export default class OfficePresentation {
     if (props) {
       return () => {
         const now = this.theme.props[source.texture?.key] || props;
-        return { texture: 'hd-props', frame: now[0], height: now[1], coinSpin: source.kind === 'euro' };
+        return { texture: now[2] || 'hd-props', frame: now[0], height: now[1], ...now[3], coinSpin: source.kind === 'euro' };
       };
     }
     const enemy = this.theme.enemies[key];
     if (enemy) return () => {
       const current = this.theme.enemies[source.texture?.key] || enemy;
+      if(source.texture?.key==='ceo_standing')return {texture:'hd-world-ceo-motion',frame:source.charge||source.leap?'attack':source.state==='move'?'run':'stand',height:80};
       return { texture: 'hd-enemies', frame: current[0], height: current[1], ...current[2] };
     };
     return null;
@@ -210,7 +251,17 @@ export default class OfficePresentation {
       const tileScale = height / this.backgroundSourceHeight;
       this.background.setPosition(left, top).setSize(width + 1, height + 1).setTileScale(tileScale);
       this.background.tilePositionX = left * 0.35 / tileScale;
-      this.dressing.update(left, top, width, height);
+      if(this.backgroundPanels){
+        // Alternating mirrored panels meet on the same edge, avoiding a hard cut
+        // between unrelated ends of the illustrated background while scrolling.
+        const panelWidth=this.backgroundSourceWidth*tileScale;
+        const offset=left*.35,first=Math.floor(offset/panelWidth),count=Math.ceil(width/panelWidth)+2;
+        while(this.backgroundPanels.length<count)this.backgroundPanels.push(s.add.image(0,0,this.theme.background).setOrigin(0).setDepth(DEPTH.BG));
+        this.backgroundPanels.forEach((panel,i)=>panel.setVisible(i<count).setDisplaySize(panelWidth+.5,height+1)
+          .setPosition(left+(first+i)*panelWidth-offset,top).setFlipX((first+i)%2!==0));
+      }
+      this.dressing?.update(left, top, width, height);
+      this.atmosphere?.update(s.time.now, left, width, top, height, tileScale);
     }
     // The display list has only a few hundred objects. New bullets get a skin on the same rendered frame.
     for (const object of [...s.children.list]) {
@@ -252,7 +303,8 @@ export default class OfficePresentation {
       this.nextDiagnosticAt = s.time.now + 200;
       const p = s.player;
       s.game.canvas.dataset.hdDiagnostics = JSON.stringify({
-        level: this.level.id, hp: GameState.hp, stress: GameState.stress, ended: s.ended,
+        level: this.level.id, hp: GameState.hp, stress: GameState.stress, ended: s.ended, theme: this.theme.id,
+        remaining: s.timeLeft, boss: s.bossActive, bonusUsed: GameState.stageBonusAttempts || {},
         player: p ? { x: p.x, y: p.y, pose: p.currentPose, grounded: p.onGround } : null,
         frame: this.skins.get(p)?.image?.frame?.name, skins: this.skins.size,
         anchors: s.enemies.getChildren().filter((e) => e.kind === 'copier' || e.kind === 'cabinet')

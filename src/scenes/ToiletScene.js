@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { FONT, GAME_WIDTH, GAME_HEIGHT, TEX, playerTex, playerAnim } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -61,6 +62,7 @@ export function ensureToiletTextures(scene) {
 export default class ToiletScene extends Phaser.Scene {
   constructor() {
     super('ToiletScene');
+    installStagePresentation(this, { world: 'toilet', drawMethods: ['drawRoom'], keepGraphics: ['selGfx'], bonus: false });
   }
 
   init() {

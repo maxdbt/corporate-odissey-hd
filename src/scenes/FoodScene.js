@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, RENDER_SCALE, TEX, playerTex } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -23,6 +24,7 @@ const VISIONS = [TEX.TEAMS_METEOR, TEX.EXCEL, TEX.P_TEAMS, TEX.MAIL, TEX.TALKER1
 export default class FoodScene extends Phaser.Scene {
   constructor() {
     super('FoodScene');
+    installStagePresentation(this, { world: s => s.scene.get('GameScene')?.level?.theme || 'desert', drawMethods:['drawStand'], bonus:false });
   }
 
   init() {

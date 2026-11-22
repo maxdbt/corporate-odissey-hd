@@ -11,6 +11,10 @@ import { generateClients } from '../gfx/clients.js';
 import { generateAnims } from '../gfx/anims.js';
 import { setupStaticCamera } from '../utils/view.js';
 import { preloadHdAssets } from '../presentation/AssetRegistry.js';
+import { BONUS_BY_ID } from '../bonus/StageBonusCatalog.js';
+import { GameState } from '../state/GameState.js';
+import { startLevel } from '../systems/Trip.js';
+import { LEVELS } from '../levels/index.js';
 
 // Generates every 8-bit texture and animation in code, then opens the menu.
 export default class BootScene extends Phaser.Scene {
@@ -46,8 +50,20 @@ export default class BootScene extends Phaser.Scene {
       generateTrip(this);
       generateClients(this);
       generateAnims(this);
-      const bonus = new URLSearchParams(window.location.search).get('bonus') === 'last-mail';
-      this.scene.start(bonus ? 'LastMailScene' : 'MenuScene', bonus ? { preview: true } : {});
+      const bonus = new URLSearchParams(window.location.search).get('bonus');
+      if (BONUS_BY_ID[bonus]) { this.scene.start('StageBonusScene', { bonus, preview: true }); return; }
+      if (bonus === 'revenue') { this.scene.start('RevenueScene', { preview: true }); return; }
+      if (import.meta.env.DEV) {
+        if (new URLSearchParams(window.location.search).has('ending')) { this.scene.start('VictoryScene'); return; }
+        const requested = new URLSearchParams(window.location.search).get('level');
+        const index = Number(requested);
+        if (requested !== null && Number.isInteger(index) && LEVELS[index]) {
+          GameState.newGame(new URLSearchParams(window.location.search).get('character') === 'woman' ? 'woman' : 'man');
+          startLevel(this, index); return;
+        }
+      }
+      const target = bonus === 'last-mail' ? 'LastMailScene' : bonus === 'beach' ? 'BeachScene' : 'MenuScene';
+      this.scene.start(target, { preview: target !== 'MenuScene' });
     });
   }
 }

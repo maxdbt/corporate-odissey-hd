@@ -3,16 +3,19 @@ import { FONT, GAME_WIDTH, GAME_HEIGHT, TEX, playerTex, playerAnim } from '../co
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
+import { preloadAssetPacks, assetPacksReady, hdAssetsReady } from '../presentation/AssetRegistry.js';
+import BeachPresentation from '../presentation/BeachPresentation.js';
+import { BEACH_RULES, beachReward } from '../systems/BeachRules.js';
+import { toggleFullscreen } from '../systems/Screen.js';
 
 const style = (size, color = '#ffffff', extra = {}) => ({
   fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: 3, ...extra
 });
 
 const SAND_Y = 300;
-const FEET_Y = 404;
-const MAX_TIME = 25;     // seconds: surviving this long ends the trial with the max reward
-const LIVES = 3;
-const HP_PER_SEC = 4;    // mental health gained per second survived (25s = +100%)
+const FEET_Y = BEACH_RULES.feetY;
+const MAX_TIME = BEACH_RULES.duration;
+const LIVES = BEACH_RULES.lives;
 
 // Sun with rays 64x64, generated once.
 function ensureBeachTextures(scene) {
@@ -37,7 +40,11 @@ export default class BeachScene extends Phaser.Scene {
     super('BeachScene');
   }
 
-  init() {
+  init({ preview = false } = {}) {
+    this.preview = preview;
+    this.hd = null;
+    this.roundPaused = false;
+    this.moveDir = 0;
     this.phase = 'intro';
     this.elapsed = 0;
     this.lives = LIVES;
@@ -47,42 +54,79 @@ export default class BeachScene extends Phaser.Scene {
     this.mails = [];
   }
 
+  preload() {
+    if (new URLSearchParams(window.location.search).get('graphics') !== 'classic') {
+      preloadAssetPacks(this, ['summerProps', 'beach']);
+    }
+  }
+
   create() {
     setupStaticCamera(this);
-    ensureBeachTextures(this);
+    this.uiWasActive = this.scene.isActive('UIScene');
+    if (this.uiWasActive) {
+      this.scene.pause('UIScene');
+      this.scene.setVisible(false, 'UIScene');
+      this.scene.get('UIScene').touch?.reset();
+    }
+    const classic = new URLSearchParams(window.location.search).get('graphics') === 'classic';
+    if (!classic && hdAssetsReady(this) && assetPacksReady(this, ['summerProps', 'beach'])) this.hd = new BeachPresentation(this);
+    else ensureBeachTextures(this);
     audio.sfx('powerup');
-    this.drawBeach();
+    if (!this.hd) this.drawBeach();
 
     // Player on the sand
     const c = GameState.character || 'man';
     this.walkAnim = playerAnim(c, 'walk');
     this.idleTex = playerTex(c, 'idle');
     this.player = this.add.sprite(GAME_WIDTH / 2, FEET_Y, this.idleTex).setOrigin(0.5, 1).setScale(2).setDepth(5);
+    this.hd?.attachPlayer(this.player);
 
     // HUD
-    this.add.rectangle(0, 0, GAME_WIDTH, 30, 0x000000, 0.55).setOrigin(0).setDepth(20);
-    this.add.text(10, 15, 'VACANZA!', style(12, '#ffd800')).setOrigin(0, 0.5).setDepth(21);
-    this.timeText = this.add.text(GAME_WIDTH / 2, 15, '', style(12)).setOrigin(0.5).setDepth(21);
-    this.hpText = this.add.text(GAME_WIDTH - 10, 15, '', style(12, '#9dffb0')).setOrigin(1, 0.5).setDepth(21);
-    this.livesGfx = this.add.graphics().setDepth(21);
-    this.add.text(120, 15, 'RELAX', style(10, '#7fd4ff')).setOrigin(0, 0.5).setDepth(21);
+    if (!this.hd) {
+      this.add.rectangle(0, 0, GAME_WIDTH, 30, 0x000000, 0.55).setOrigin(0).setDepth(20);
+      this.add.text(10, 15, 'VACANZA!', style(12, '#ffd800')).setOrigin(0, 0.5).setDepth(21);
+      this.timeText = this.add.text(GAME_WIDTH / 2, 15, '', style(12)).setOrigin(0.5).setDepth(21);
+      this.hpText = this.add.text(GAME_WIDTH - 10, 15, '', style(12, '#9dffb0')).setOrigin(1, 0.5).setDepth(21);
+      this.livesGfx = this.add.graphics().setDepth(21);
+      this.add.text(120, 15, 'RELAX', style(10, '#7fd4ff')).setOrigin(0, 0.5).setDepth(21);
+      this.classicPause = this.add.text(GAME_WIDTH / 2, 205, 'PAUSA\nP / ESC PER RIPRENDERE',
+        style(18, '#ffffff', { align: 'center', backgroundColor: '#101c29', padding: { x: 20, y: 14 } }))
+        .setOrigin(0.5).setDepth(50).setVisible(false);
+    }
     this.refreshHud();
 
     // Intro banner
-    this.banner = this.add.text(GAME_WIDTH / 2, 170,
+    if (!this.hd) this.banner = this.add.text(GAME_WIDTH / 2, 170,
       'HAI PRESO AL VOLO UN BIGLIETTO AEREO!\nSCHIVA LE MAIL DI LAVORO\nPIU\' RESISTI, PIU\' SALUTE MENTALE RECUPERI',
       style(15, '#ffffff', { align: 'center', strokeThickness: 5, lineSpacing: 6 })).setOrigin(0.5).setDepth(30);
     this.time.delayedCall(2600, () => {
-      this.banner.setText('VIA!').setFontSize(28);
+      this.banner?.setText('VIA!').setFontSize(28);
       this.phase = 'play';
-      this.time.delayedCall(700, () => this.banner.setVisible(false));
+      this.time.delayedCall(700, () => this.banner?.setVisible(false));
     });
 
-    // Input: arrows/A-D, touch = hold left or right half of the screen.
+    // HD touch uses the two visible arrows; classic keeps its half-screen controls.
     const kb = this.input.keyboard;
     this.keys = kb ? kb.addKeys({ left: 'LEFT', right: 'RIGHT', a: 'A', d: 'D' }, true, false) : null;
     if (kb) ['ENTER', 'SPACE', 'Z'].forEach((k) => kb.on(`keydown-${k}`, () => this.finish()));
     this.input.on('pointerdown', () => this.finish());
+    kb?.on('keydown-P', (e) => { if (!e.repeat) this.togglePause(); });
+    kb?.on('keydown-ESC', (e) => { if (!e.repeat) this.togglePause(); });
+    kb?.on('keydown-F', (e) => { if (!e.repeat) toggleFullscreen(); });
+    this.onBlur = () => { if (!this.roundPaused && this.phase !== 'result') this.togglePause(); };
+    this.game.events.on(Phaser.Core.Events.BLUR, this.onBlur);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.cleanup, this);
+  }
+
+  togglePause() {
+    if (this.phase === 'result') return;
+    this.roundPaused = !this.roundPaused;
+    this.time.paused = this.roundPaused;
+    if (this.roundPaused) this.tweens.pauseAll(); else this.tweens.resumeAll();
+    this.input.keyboard?.resetKeys();
+    this.moveDir = 0;
+    this.classicPause?.setVisible(this.roundPaused);
+    this.hd?.refreshHud();
   }
 
   drawBeach() {
@@ -151,9 +195,10 @@ export default class BeachScene extends Phaser.Scene {
     for (let x = 0; x < GAME_WIDTH; x += 16) w.fillRect(x, SAND_Y - 2 + foam + ((x / 16) % 2) * 2, 10, 3);
   }
 
-  reward() { return Math.min(100, Math.floor(this.elapsed) * HP_PER_SEC); }
+  reward() { return beachReward(this.elapsed).hp; }
 
   refreshHud() {
+    if (this.hd) { this.hd.refreshHud(); return; }
     const t = Math.floor(this.elapsed);
     this.timeText.setText(`RESISTI: ${t}s / ${MAX_TIME}s`);
     this.hpText.setText(`SALUTE +${this.reward()}%`);
@@ -172,19 +217,21 @@ export default class BeachScene extends Phaser.Scene {
     const aimed = Math.random() < 0.2 + p * 0.4;
     const x = aimed ? Phaser.Math.Clamp(this.player.x + Phaser.Math.Between(-40, 40), 20, GAME_WIDTH - 20) : Phaser.Math.Between(20, GAME_WIDTH - 20);
     const m = this.add.image(x, -12, TEX.MAIL).setScale(2.2).setDepth(6);
-    if (urgent) m.setTint(0xff5050);
+    if (urgent && !this.hd) m.setTint(0xff5050);
     m.vy = (140 + p * 200) * (urgent ? 1.35 : 1) + Math.random() * 40;
     m.vx = Phaser.Math.Between(-30, 30);
     m.wobble = Math.random() * Math.PI * 2;
+    this.hd?.attachMail(m, urgent);
     this.mails.push(m);
   }
 
   update(time, delta) {
-    this.drawWaves(time);
-    const dt = delta / 1000;
-    if (this.phase !== 'play') return;
+    if (!this.hd && !this.roundPaused) this.drawWaves(time);
+    if (this.roundPaused || this.phase !== 'play') return;
+    const dt = Math.min(delta, 100) / 1000;
 
     this.elapsed += dt;
+    time = this.elapsed * 1000; // Simulation clock excludes pauses and background-tab time.
 
     // Movement
     const k = this.keys;
@@ -192,8 +239,10 @@ export default class BeachScene extends Phaser.Scene {
     if (k && (k.left.isDown || k.a.isDown)) dir -= 1;
     if (k && (k.right.isDown || k.d.isDown)) dir += 1;
     const ptr = this.input.activePointer;
-    if (ptr.isDown) dir = ptr.x / this.cameras.main.zoom < GAME_WIDTH / 2 ? -1 : 1;
-    this.player.x = Phaser.Math.Clamp(this.player.x + dir * 240 * dt, 20, GAME_WIDTH - 20);
+    if (this.hd) dir = this.hd.direction() || dir;
+    else if (ptr.isDown) dir = ptr.x / this.cameras.main.zoom < GAME_WIDTH / 2 ? -1 : 1;
+    this.moveDir = dir;
+    this.player.x = Phaser.Math.Clamp(this.player.x + dir * BEACH_RULES.speed * dt, 20, GAME_WIDTH - 20);
     if (dir) {
       this.player.setFlipX(dir < 0);
       if (this.anims.exists(this.walkAnim)) this.player.play(this.walkAnim, true);
@@ -216,6 +265,7 @@ export default class BeachScene extends Phaser.Scene {
     // Falling mails + collisions
     const pb = new Phaser.Geom.Rectangle(this.player.x - 10, FEET_Y - 44, 20, 42);
     this.mails = this.mails.filter((m) => {
+      if (this.phase !== 'play' || !m.scene) return false;
       m.wobble += dt * 4;
       m.y += m.vy * dt;
       m.x += (m.vx + Math.sin(m.wobble) * 40) * dt;
@@ -230,12 +280,19 @@ export default class BeachScene extends Phaser.Scene {
       }
       return true;
     });
+    // endTrial can destroy the entire group from inside the collision callback.
+    if (this.phase === 'result') this.mails = [];
 
     this.refreshHud();
     if (this.elapsed >= MAX_TIME) this.endTrial(true);
   }
 
   splash(x) {
+    if (this.hd) {
+      const dust = this.add.ellipse(this.hd.mapX(x), this.hd.mapY(FEET_Y), 8, 3, 0xf0d1a1, 0.6).setDepth(4);
+      this.tweens.add({ targets: dust, scaleX: 2.5, alpha: 0, duration: 280, onComplete: () => dust.destroy() });
+      return;
+    }
     for (let i = 0; i < 4; i++) {
       const s = this.add.rectangle(x, FEET_Y - 2, 2, 2, 0xd9b25e).setDepth(4);
       this.tweens.add({ targets: s, x: x + Phaser.Math.Between(-12, 12), y: FEET_Y - Phaser.Math.Between(6, 14), alpha: 0, duration: 300, onComplete: () => s.destroy() });
@@ -248,8 +305,11 @@ export default class BeachScene extends Phaser.Scene {
     this.invulnUntil = time + 1000;
     audio.sfx('hurt');
     this.cameras.main.shake(150, 0.006);
-    const t = this.add.text(this.player.x, FEET_Y - 60, Phaser.Utils.Array.GetRandom(['RE: URGENTE', 'FW: FW: FW:', 'SEI REPERIBILE?', 'CALL VELOCE?']),
-      style(10, '#ff6060')).setOrigin(0.5).setDepth(25);
+    const t = this.add.text(this.hd ? this.hd.mapX(this.player.x) : this.player.x,
+      this.hd ? this.hd.mapY(FEET_Y) - 92 : FEET_Y - 60,
+      Phaser.Utils.Array.GetRandom(['RE: URGENTE', 'FW: FW: FW:', 'SEI REPERIBILE?', 'CALL VELOCE?']),
+      style(10, '#ff6060', this.hd ? { fontFamily: 'Segoe UI, Arial, sans-serif', strokeThickness: 2 } : {}))
+      .setOrigin(0.5).setDepth(25);
     this.tweens.add({ targets: t, y: t.y - 30, alpha: 0, duration: 900, onComplete: () => t.destroy() });
     this.refreshHud();
     if (this.lives <= 0) this.endTrial(false);
@@ -258,14 +318,17 @@ export default class BeachScene extends Phaser.Scene {
   endTrial(survived) {
     if (this.phase !== 'play') return;
     this.phase = 'result';
+    this.survived = survived;
+    this.moveDir = 0;
     this.player.stop();
     this.player.setTexture(this.idleTex).setAlpha(1);
     this.mails.forEach((m) => m.destroy());
     this.mails = [];
-    const hp = this.reward();
-    const stressDown = Math.min(50, Math.floor(this.elapsed));
+    const { hp, stressDown } = beachReward(this.elapsed);
     this.result = { hp, stressDown };
     audio.sfx(survived ? 'victory' : 'checkpoint');
+    this.readyAt = this.time.now + 600;
+    if (this.hd) return;
 
     const cx = GAME_WIDTH / 2;
     this.add.rectangle(cx, 200, 460, 170, 0x000000, 0.75).setStrokeStyle(3, 0xffd800).setDepth(40);
@@ -281,11 +344,28 @@ export default class BeachScene extends Phaser.Scene {
   finish() {
     if (this.phase !== 'result' || this.leaving || this.time.now < this.readyAt) return;
     this.leaving = true;
+    if (this.preview) { this.scene.start('MenuScene'); return; }
     GameState.addHp(this.result.hp);
     GameState.addStress(-this.result.stressDown);
     const gs = this.scene.get('GameScene');
     this.scene.resume('GameScene');
     gs.ui?.message?.(`BENTORNATO! SALUTE +${this.result.hp}%`, '#9dffb0', 2000);
     this.scene.stop();
+  }
+
+  cleanup() {
+    this.game.events.off(Phaser.Core.Events.BLUR, this.onBlur);
+    this.time.paused = false;
+    this.hd?.destroy();
+    this.hd = null;
+    this.banner = null;
+    this.classicPause = null;
+    if (this.uiWasActive && this.scene.isPaused('UIScene')) {
+      this.scene.resume('UIScene');
+      this.scene.setVisible(true, 'UIScene');
+    }
+    const gs = this.scene.get('GameScene');
+    gs.input?.keyboard?.resetKeys();
+    gs.inputCtl?.reset?.();
   }
 }

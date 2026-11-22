@@ -1,0 +1,334 @@
+{
+  "frames": {
+    "sand": {
+      "frame": {
+        "x": 31,
+        "y": 86,
+        "w": 329,
+        "h": 105
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 105
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 105
+      }
+    },
+    "ice": {
+      "frame": {
+        "x": 414,
+        "y": 84,
+        "w": 326,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 326,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 326,
+        "h": 116
+      }
+    },
+    "seabed": {
+      "frame": {
+        "x": 797,
+        "y": 86,
+        "w": 326,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 326,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 326,
+        "h": 107
+      }
+    },
+    "coral": {
+      "frame": {
+        "x": 1227,
+        "y": 23,
+        "w": 230,
+        "h": 204
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 230,
+        "h": 204
+      },
+      "sourceSize": {
+        "w": 230,
+        "h": 204
+      }
+    },
+    "cactus": {
+      "frame": {
+        "x": 123,
+        "y": 274,
+        "w": 146,
+        "h": 226
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 146,
+        "h": 226
+      },
+      "sourceSize": {
+        "w": 146,
+        "h": 226
+      }
+    },
+    "icicle": {
+      "frame": {
+        "x": 512,
+        "y": 265,
+        "w": 128,
+        "h": 184
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 184
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 184
+      }
+    },
+    "palm": {
+      "frame": {
+        "x": 856,
+        "y": 263,
+        "w": 212,
+        "h": 239
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 212,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 212,
+        "h": 239
+      }
+    },
+    "market": {
+      "frame": {
+        "x": 1199,
+        "y": 271,
+        "w": 289,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 289,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 289,
+        "h": 223
+      }
+    },
+    "hut": {
+      "frame": {
+        "x": 36,
+        "y": 559,
+        "w": 318,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 318,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 318,
+        "h": 182
+      }
+    },
+    "reefBar": {
+      "frame": {
+        "x": 420,
+        "y": 532,
+        "w": 313,
+        "h": 215
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 215
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 215
+      }
+    },
+    "office": {
+      "frame": {
+        "x": 801,
+        "y": 512,
+        "w": 312,
+        "h": 238
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 312,
+        "h": 238
+      },
+      "sourceSize": {
+        "w": 312,
+        "h": 238
+      }
+    },
+    "mine": {
+      "frame": {
+        "x": 1250,
+        "y": 545,
+        "w": 204,
+        "h": 187
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 204,
+        "h": 187
+      },
+      "sourceSize": {
+        "w": 204,
+        "h": 187
+      }
+    },
+    "camel": {
+      "frame": {
+        "x": 69,
+        "y": 779,
+        "w": 255,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 255,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 255,
+        "h": 229
+      }
+    },
+    "snowmobile": {
+      "frame": {
+        "x": 416,
+        "y": 827,
+        "w": 294,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 294,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 294,
+        "h": 132
+      }
+    },
+    "submarine": {
+      "frame": {
+        "x": 798,
+        "y": 802,
+        "w": 313,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 167
+      }
+    },
+    "seahorse": {
+      "frame": {
+        "x": 1273,
+        "y": 777,
+        "w": 141,
+        "h": 233
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 141,
+        "h": 233
+      },
+      "sourceSize": {
+        "w": 141,
+        "h": 233
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "nature.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

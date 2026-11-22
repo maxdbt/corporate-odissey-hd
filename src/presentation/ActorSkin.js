@@ -29,7 +29,7 @@ export default class ActorSkin {
     const v = this.image;
     if (v.texture.key !== spec.texture || v.frame.name !== spec.frame) v.setTexture(spec.texture, spec.frame);
     const frame = v.frame;
-    const height = spec.height;
+    const height = spec.maxWidth ? Math.min(spec.height, spec.maxWidth * frame.realHeight / frame.realWidth) : spec.height;
     const width = spec.width ?? height * frame.realWidth / frame.realHeight;
     v.setDisplaySize(width * Math.abs(s.scaleX / this.initialScaleX), height * Math.abs(s.scaleY / this.initialScaleY));
     v.setOrigin(spec.originX ?? s.originX, spec.originY ?? s.originY);

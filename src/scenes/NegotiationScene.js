@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, TEX, playerTex, playerAnim } from '../config/constants.js';
 import { CLIENTS, CURSES } from '../data/clients.js';
 import { drawRoom } from '../gfx/clients.js';
@@ -90,6 +91,7 @@ const OUTCOMES = [
 export default class NegotiationScene extends Phaser.Scene {
   constructor() {
     super('NegotiationScene');
+    installStagePresentation(this, { drawMethods: ['drawOffice'] });
   }
 
   init(data) {

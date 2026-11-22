@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-Selezionare il primo scenario dal menu e avviare Jack o Wendy. Il menu e gli altri stage conservano il tema originale.
+Selezionare il primo scenario dal menu e avviare Jack o Wendy. Il menu conserva il tema originale. Anche 1-2 è stato successivamente convertito: vedi [Estate d'Inferno e Ferie, ma non troppo](PORTING_ESTATE.md); gli altri stage conservano il tema originale.
 
 Su PC sono attivi tastiera, HUD e pausa; joystick e azioni mobili sono nascosti. **F** attiva lo schermo intero se disponibile; **Esc** ne consente l'uscita senza aprire nello stesso gesto il menu di abbandono. Il fullscreen resta un'azione del browser avviata dall'utente.
 
@@ -105,3 +105,8 @@ La revisione delle proporzioni è verificata a **1600×900** e **932×430**: avv
 Per l'ufficio estivo, riusare personaggi, animazioni, oggetti, input e HUD, sostituendo fondale e decorazioni con un tema separato. Per mensa, sala riunioni, trasferte ed executive, conservare gli stessi contratti e aggiungere cataloghi di ambiente ed entità coerenti con la storia.
 
 Non è necessario duplicare Player o GameScene per cambiare aspetto. Il nuovo tema può condividere AssetRegistry, ActorSkin e i componenti dell'interfaccia, mentre le meccaniche specifiche restano nei sistemi esistenti.
+
+
+## Aggiornamento: campagna completa
+
+Il 22 novembre 2026 il porting è stato esteso localmente a tutti i 19 stage e ai bonus dedicati. I numeri di dimensioni e test sopra descrivono la prima iterazione del solo ufficio. Per lo stato attuale leggere [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md). La consegna Git della campagna completa è stata successivamente autorizzata su `max-hd/main`; il deploy resta separato.

@@ -1,0 +1,74 @@
+{
+  "frames": {
+    "stand": {
+      "frame": {
+        "x": 193,
+        "y": 42,
+        "w": 300,
+        "h": 627
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 627
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 627
+      }
+    },
+    "run": {
+      "frame": {
+        "x": 836,
+        "y": 77,
+        "w": 472,
+        "h": 590
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 472,
+        "h": 590
+      },
+      "sourceSize": {
+        "w": 472,
+        "h": 590
+      }
+    },
+    "attack": {
+      "frame": {
+        "x": 1559,
+        "y": 174,
+        "w": 493,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 493,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 493,
+        "h": 495
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "ceo-motion.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2172,
+      "h": 724
+    },
+    "scale": "1"
+  }
+}

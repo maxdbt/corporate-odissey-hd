@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, TEX, playerTex } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { LEVELS } from '../levels/index.js';
@@ -154,6 +155,7 @@ const TRAIN = [
 export default class JourneyScene extends Phaser.Scene {
   constructor() {
     super('JourneyScene');
+    installStagePresentation(this, { drawMethods: ['drawCabin'] });
   }
 
   init(data) {

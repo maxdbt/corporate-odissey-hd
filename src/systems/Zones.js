@@ -47,6 +47,7 @@ export default class Zones {
 
   createVisual(z) {
     const s = this.scene;
+    if (s.presentation?.drawZone(z)) return;
     const { x, y, w, h } = z;
     switch (z.type) {
       case 'heat': {

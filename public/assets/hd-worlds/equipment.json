@@ -1,0 +1,334 @@
+{
+  "frames": {
+    "plane": {
+      "frame": {
+        "x": 49,
+        "y": 56,
+        "w": 313,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 152
+      }
+    },
+    "train": {
+      "frame": {
+        "x": 403,
+        "y": 102,
+        "w": 347,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 347,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 347,
+        "h": 100
+      }
+    },
+    "taxi": {
+      "frame": {
+        "x": 804,
+        "y": 78,
+        "w": 320,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 137
+      }
+    },
+    "motorcycle": {
+      "frame": {
+        "x": 1197,
+        "y": 63,
+        "w": 303,
+        "h": 166
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 303,
+        "h": 166
+      },
+      "sourceSize": {
+        "w": 303,
+        "h": 166
+      }
+    },
+    "sled": {
+      "frame": {
+        "x": 25,
+        "y": 341,
+        "w": 340,
+        "h": 94
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 94
+      }
+    },
+    "skis": {
+      "frame": {
+        "x": 418,
+        "y": 301,
+        "w": 317,
+        "h": 173
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 317,
+        "h": 173
+      },
+      "sourceSize": {
+        "w": 317,
+        "h": 173
+      }
+    },
+    "fins": {
+      "frame": {
+        "x": 829,
+        "y": 302,
+        "w": 273,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 273,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 273,
+        "h": 180
+      }
+    },
+    "mask": {
+      "frame": {
+        "x": 1204,
+        "y": 296,
+        "w": 283,
+        "h": 176
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 283,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 283,
+        "h": 176
+      }
+    },
+    "parasol": {
+      "frame": {
+        "x": 61,
+        "y": 537,
+        "w": 261,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 261,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 261,
+        "h": 216
+      }
+    },
+    "wings": {
+      "frame": {
+        "x": 406,
+        "y": 555,
+        "w": 340,
+        "h": 185
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 185
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 185
+      }
+    },
+    "router": {
+      "frame": {
+        "x": 823,
+        "y": 563,
+        "w": 277,
+        "h": 176
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 277,
+        "h": 176
+      },
+      "sourceSize": {
+        "w": 277,
+        "h": 176
+      }
+    },
+    "safe": {
+      "frame": {
+        "x": 1221,
+        "y": 541,
+        "w": 241,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 241,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 241,
+        "h": 210
+      }
+    },
+    "calendar": {
+      "frame": {
+        "x": 60,
+        "y": 808,
+        "w": 266,
+        "h": 184
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 266,
+        "h": 184
+      },
+      "sourceSize": {
+        "w": 266,
+        "h": 184
+      }
+    },
+    "heater": {
+      "frame": {
+        "x": 434,
+        "y": 808,
+        "w": 285,
+        "h": 185
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 285,
+        "h": 185
+      },
+      "sourceSize": {
+        "w": 285,
+        "h": 185
+      }
+    },
+    "valve": {
+      "frame": {
+        "x": 814,
+        "y": 798,
+        "w": 291,
+        "h": 189
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 291,
+        "h": 189
+      },
+      "sourceSize": {
+        "w": 291,
+        "h": 189
+      }
+    },
+    "golf": {
+      "frame": {
+        "x": 1228,
+        "y": 815,
+        "w": 231,
+        "h": 171
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 231,
+        "h": 171
+      },
+      "sourceSize": {
+        "w": 231,
+        "h": 171
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "equipment.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

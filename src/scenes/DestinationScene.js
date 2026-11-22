@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT } from '../config/constants.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
@@ -23,6 +24,7 @@ const SITES = [
 export default class DestinationScene extends Phaser.Scene {
   constructor() {
     super('DestinationScene');
+    installStagePresentation(this, { hideFirstGraphic: true });
   }
 
   init(data) {
@@ -56,16 +58,23 @@ export default class DestinationScene extends Phaser.Scene {
   card(site, i) {
     const x = CARD_X[i];
     const top = CARD_Y - CARD_H / 2;
-    const frame = this.add.rectangle(x, CARD_Y, CARD_W, CARD_H, 0xfff4dc).setStrokeStyle(4, 0x6a4a2a)
+    const frame = this.add.rectangle(x, CARD_Y, CARD_W, CARD_H, this.hdStage ? 0x102536 : 0xfff4dc).setStrokeStyle(2, 0x9b8666)
       .setInteractive({ useHandCursor: true });
     frame.on('pointerover', () => { if (!this.done) { this.sel = i; this.paint(); } });
     frame.on('pointerdown', () => this.choose(i));
     const g = this.add.graphics();
-    this.office(g, x - PIC_W / 2, top + 14);
-    this[site.draw](g, x - PIC_W / 2, top + 14);
+    if (this.hdStage) {
+      this.add.image(x, top + 14 + PIC_H / 2, 'hd-world-nature', 'office').setDisplaySize(128, PIC_H);
+      const hints = { desert: ['hd-world-nature','cactus'], glacier: ['hd-world-cast','penguin'], sea: ['hd-world-nature','coral'] };
+      this.add.image(x + 72, top + PIC_H - 2, ...hints[site.leg]).setDisplaySize(23, 26);
+    }
+    else {
+      this.office(g, x - PIC_W / 2, top + 14);
+      this[site.draw](g, x - PIC_W / 2, top + 14);
+    }
     g.lineStyle(3, 0x3a2a1a).strokeRect(x - PIC_W / 2, top + 14, PIC_W, PIC_H);
     this.add.text(x, top + PIC_H + 30, `${i + 1}. ${site.name}`, tstyle(13, '#ffd800')).setOrigin(0.5);
-    this.add.text(x, top + PIC_H + 56, site.text, tstyle(11, '#3a2a1a', { strokeThickness: 0, align: 'center' })).setOrigin(0.5, 0);
+    this.add.text(x, top + PIC_H + 56, site.text, tstyle(11, this.hdStage ? '#e5ddcb' : '#3a2a1a', { strokeThickness: 0, align: 'center' })).setOrigin(0.5, 0);
     return { frame };
   }
 
@@ -110,8 +119,8 @@ export default class DestinationScene extends Phaser.Scene {
   // ---------------------------------------------------------------- choice
 
   paint() {
-    this.cards.forEach((c, i) => c.frame.setStrokeStyle(4, i === this.sel ? 0xffd800 : 0x6a4a2a)
-      .setFillStyle(i === this.sel ? 0xffffff : 0xfff4dc));
+    this.cards.forEach((c, i) => c.frame.setStrokeStyle(2, i === this.sel ? 0xffd38a : 0x786c5b)
+      .setFillStyle(this.hdStage ? (i === this.sel ? 0x1f3c4e : 0x102536) : (i === this.sel ? 0xffffff : 0xfff4dc)));
   }
 
   move(d) {

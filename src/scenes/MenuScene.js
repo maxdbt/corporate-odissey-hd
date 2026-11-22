@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { FONT, GAME_WIDTH, GAME_HEIGHT, CHARACTERS, LEVEL_META, TRIP_STAGES_IN_MENU, playerTex, playerAnim } from '../config/constants.js';
 import { startLevel } from '../systems/Trip.js';
 import { GameState } from '../state/GameState.js';
@@ -21,6 +22,7 @@ let mobileNoticeShown = false;
 export default class MenuScene extends Phaser.Scene {
   constructor() {
     super('MenuScene');
+    installStagePresentation(this, { world: 'travel', drawMethods: ['_drawBackground'], bonus: false, chrome: false, pause: false });
   }
 
   create() {
@@ -89,6 +91,13 @@ export default class MenuScene extends Phaser.Scene {
     this.tweens.add({ targets: this.startBtn, scale: 1.08, duration: 500, yoyo: true, repeat: -1 });
 
     // Free preview of the POV bonus; campaign rewards are earned at its desk terminal.
+    this.add.text(14, 48, 'BONUS FERIE\nMA NON TROPPO', style(10, '#9dffce', { align: 'left' }))
+      .setOrigin(0, 0).setPadding(5).setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        audio.unlock();
+        GameState.character = CHARACTERS[this.selected];
+        this.scene.start('BeachScene', { preview: true });
+      });
     this.add.text(GAME_WIDTH - 14, 48, "BONUS POV\nL'ULTIMA MAIL", style(10, '#9dffce', { align: 'right' }))
       .setOrigin(1, 0).setPadding(5).setInteractive({ useHandCursor: true })
       .on('pointerdown', () => { audio.unlock(); this.scene.start('LastMailScene', { preview: true }); });

@@ -1,0 +1,174 @@
+{
+  "frames": {
+    "man": {
+      "frame": {
+        "x": 64,
+        "y": 13,
+        "w": 319,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 319,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 319,
+        "h": 424
+      }
+    },
+    "woman": {
+      "frame": {
+        "x": 521,
+        "y": 14,
+        "w": 272,
+        "h": 426
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 272,
+        "h": 426
+      },
+      "sourceSize": {
+        "w": 272,
+        "h": 426
+      }
+    },
+    "chatty": {
+      "frame": {
+        "x": 948,
+        "y": 33,
+        "w": 330,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 330,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 330,
+        "h": 405
+      }
+    },
+    "reader": {
+      "frame": {
+        "x": 1389,
+        "y": 13,
+        "w": 328,
+        "h": 425
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 328,
+        "h": 425
+      },
+      "sourceSize": {
+        "w": 328,
+        "h": 425
+      }
+    },
+    "music": {
+      "frame": {
+        "x": 69,
+        "y": 459,
+        "w": 326,
+        "h": 420
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 326,
+        "h": 420
+      },
+      "sourceSize": {
+        "w": 326,
+        "h": 420
+      }
+    },
+    "sleeper": {
+      "frame": {
+        "x": 485,
+        "y": 458,
+        "w": 324,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 324,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 324,
+        "h": 418
+      }
+    },
+    "hostess": {
+      "frame": {
+        "x": 1019,
+        "y": 448,
+        "w": 178,
+        "h": 433
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 178,
+        "h": 433
+      },
+      "sourceSize": {
+        "w": 178,
+        "h": 433
+      }
+    },
+    "phone": {
+      "frame": {
+        "x": 1387,
+        "y": 460,
+        "w": 318,
+        "h": 417
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 318,
+        "h": 417
+      },
+      "sourceSize": {
+        "w": 318,
+        "h": 417
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "passengers.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1774,
+      "h": 887
+    },
+    "scale": "1"
+  }
+}

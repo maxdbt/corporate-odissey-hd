@@ -4,8 +4,9 @@ import { setupStaticCamera } from '../utils/view.js';
 
 // Changes presentation resolution only; physics stays in the original logical world.
 export default class ViewportController {
-  constructor(scene) {
+  constructor(scene, options = {}) {
     this.scene = scene;
+    this.options = options;
     this.baseSize = { width: GAME_WIDTH * RENDER_SCALE, height: GAME_HEIGHT * RENDER_SCALE };
     this.metrics = { width: GAME_WIDTH, height: GAME_HEIGHT, scale: RENDER_SCALE, touch: inputMode.touch };
     this.safeAreaProbe = document.createElement('div');
@@ -50,7 +51,7 @@ export default class ViewportController {
     cam.setSize(rasterWidth, rasterHeight);
     // The approved composition gives actors and furniture the same scale as the room.
     // A wide, distant camera made even the HD sprites read as miniatures.
-    const normalZoom = 1.95;
+    const normalZoom = this.options.zoom || 1.95;
     this.zoom = Math.max(normalZoom, width / 1120);
     scene.camZoom = density * this.zoom;
     if (!scene.bossActive && !scene.player?.isDizzy?.()) cam.setZoom(scene.camZoom);

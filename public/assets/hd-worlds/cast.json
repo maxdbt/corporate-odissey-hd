@@ -1,0 +1,334 @@
+{
+  "frames": {
+    "cook": {
+      "frame": {
+        "x": 50,
+        "y": 10,
+        "w": 254,
+        "h": 299
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 254,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 254,
+        "h": 299
+      }
+    },
+    "chief": {
+      "frame": {
+        "x": 357,
+        "y": 12,
+        "w": 231,
+        "h": 299
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 231,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 231,
+        "h": 299
+      }
+    },
+    "thief": {
+      "frame": {
+        "x": 657,
+        "y": 38,
+        "w": 275,
+        "h": 275
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 275,
+        "h": 275
+      },
+      "sourceSize": {
+        "w": 275,
+        "h": 275
+      }
+    },
+    "activist": {
+      "frame": {
+        "x": 994,
+        "y": 15,
+        "w": 212,
+        "h": 296
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 212,
+        "h": 296
+      },
+      "sourceSize": {
+        "w": 212,
+        "h": 296
+      }
+    },
+    "dog": {
+      "frame": {
+        "x": 34,
+        "y": 399,
+        "w": 262,
+        "h": 184
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 262,
+        "h": 184
+      },
+      "sourceSize": {
+        "w": 262,
+        "h": 184
+      }
+    },
+    "penguin": {
+      "frame": {
+        "x": 354,
+        "y": 346,
+        "w": 224,
+        "h": 236
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 236
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 236
+      }
+    },
+    "penguinSlide": {
+      "frame": {
+        "x": 631,
+        "y": 457,
+        "w": 302,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 302,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 302,
+        "h": 120
+      }
+    },
+    "snowman": {
+      "frame": {
+        "x": 995,
+        "y": 320,
+        "w": 222,
+        "h": 264
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 222,
+        "h": 264
+      },
+      "sourceSize": {
+        "w": 222,
+        "h": 264
+      }
+    },
+    "jellyfish": {
+      "frame": {
+        "x": 29,
+        "y": 635,
+        "w": 255,
+        "h": 245
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 255,
+        "h": 245
+      },
+      "sourceSize": {
+        "w": 255,
+        "h": 245
+      }
+    },
+    "shark": {
+      "frame": {
+        "x": 325,
+        "y": 640,
+        "w": 286,
+        "h": 253
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 286,
+        "h": 253
+      },
+      "sourceSize": {
+        "w": 286,
+        "h": 253
+      }
+    },
+    "yesman": {
+      "frame": {
+        "x": 671,
+        "y": 631,
+        "w": 223,
+        "h": 265
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 223,
+        "h": 265
+      },
+      "sourceSize": {
+        "w": 223,
+        "h": 265
+      }
+    },
+    "strategist": {
+      "frame": {
+        "x": 995,
+        "y": 610,
+        "w": 191,
+        "h": 288
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 191,
+        "h": 288
+      },
+      "sourceSize": {
+        "w": 191,
+        "h": 288
+      }
+    },
+    "secretary": {
+      "frame": {
+        "x": 64,
+        "y": 920,
+        "w": 250,
+        "h": 322
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 250,
+        "h": 322
+      },
+      "sourceSize": {
+        "w": 250,
+        "h": 322
+      }
+    },
+    "bossClient": {
+      "frame": {
+        "x": 314,
+        "y": 937,
+        "w": 275,
+        "h": 304
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 275,
+        "h": 304
+      },
+      "sourceSize": {
+        "w": 275,
+        "h": 304
+      }
+    },
+    "bossCEO": {
+      "frame": {
+        "x": 627,
+        "y": 924,
+        "w": 307,
+        "h": 319
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 307,
+        "h": 319
+      },
+      "sourceSize": {
+        "w": 307,
+        "h": 319
+      }
+    },
+    "hostess": {
+      "frame": {
+        "x": 982,
+        "y": 923,
+        "w": 218,
+        "h": 322
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 218,
+        "h": 322
+      },
+      "sourceSize": {
+        "w": 218,
+        "h": 322
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "cast.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1"
+  }
+}

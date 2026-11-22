@@ -21,8 +21,18 @@ def atlas(image_name, names, cols, rows, preserve_cells=False, output=None):
         col, row = index % cols, index // cols
         left, top = round(col * width / cols), round(row * height / rows)
         right, bottom = round((col + 1) * width / cols), round((row + 1) * height / rows)
+        # The cast sheet has intentionally uneven row heights. Grid boundaries would
+        # include the next character's hair under a pair of feet.
+        if ROOT.name == 'hd-worlds' and image_name == 'cast.png':
+            top, bottom = [0, 315, 604, 910, height][row:row + 2]
+        if ROOT.name == 'hd-worlds' and image_name == 'inventory.png':
+            top, bottom = [0, 310, 560, 842, 1080, height][row:row + 2]
+        if ROOT.name == 'hd-worlds' and image_name == 'food.png':
+            top, bottom = [0, 320, 655, height][row:row + 2]
         cell_alpha = alpha.crop((left, top, right, bottom))
-        box = cell_alpha.point(lambda a: 255 if a >= 90 else 0).getbbox()
+        # New painted sheets include soft light spill. Anchor to the solid object, not its halo.
+        threshold = 250 if ROOT.name == 'hd-worlds' and name != 'palm' else 90
+        box = cell_alpha.point(lambda a: 255 if a >= threshold else 0).getbbox()
         if not box:
             raise ValueError(f'Empty atlas cell: {image_name}/{name}')
         x0, y0 = max(0, box[0] - 2), max(0, box[1] - 2)
@@ -53,3 +63,20 @@ for char, file in [('man', 'jack-motion.png'), ('woman', 'wendy-motion.png')]:
 atlas('office-enemies-cutout.png', ENEMIES, 4, 3, False, 'office-enemies.json')
 atlas('spumante.png', ['puddle'], 1, 1)
 atlas('office-dressing.png', ['workstation', 'paperClutter', 'noticeboard', 'foregroundDesk', 'foregroundPlant', 'wallDesk'], 3, 2)
+
+ROOT = ROOT.parent / 'hd-summer'
+atlas('summer-props.png', ['aircon', 'fan', 'planeTicket', 'exitDoor', 'mail', 'urgentMail', 'coldColleague', 'suitcase'], 4, 2)
+
+ROOT = ROOT.parent / 'hd-worlds'
+atlas('furniture.png', ['table', 'counter', 'checkout', 'bench', 'postit', 'marble', 'metal', 'wood', 'gate', 'conveyor', 'microphone', 'tray'], 4, 3)
+atlas('cast.png', ['cook', 'chief', 'thief', 'activist', 'dog', 'penguin', 'penguinSlide', 'snowman', 'jellyfish', 'shark', 'yesman', 'strategist', 'secretary', 'bossClient', 'bossCEO', 'hostess'], 4, 4)
+atlas('nature.png', ['sand', 'ice', 'seabed', 'coral', 'cactus', 'icicle', 'palm', 'market', 'hut', 'reefBar', 'office', 'mine', 'camel', 'snowmobile', 'submarine', 'seahorse'], 4, 4)
+atlas('objects.png', ['pasta', 'steak', 'salad', 'cake', 'passport', 'boardingPass', 'briefcase', 'bag', 'revenue', 'cost', 'ship', 'paperPlane', 'trophy', 'phone', 'coffee', 'folder'], 4, 4)
+atlas('equipment.png', ['plane', 'train', 'taxi', 'motorcycle', 'sled', 'skis', 'fins', 'mask', 'parasol', 'wings', 'router', 'safe', 'calendar', 'heater', 'valve', 'golf'], 4, 4)
+atlas('clients.png', ['pharaoh', 'penguinCEO', 'mermaid', 'mummy', 'bear', 'octopus', 'egyptian', 'winter', 'diver', 'orb', 'fish', 'crab'], 4, 3)
+atlas('inventory.png', ['laptop','charger','phone','earbuds','antacid','toothpaste','toothbrush','underwear','banana','umbrella','toiletpaper','notebook','sleepmask','idcard','adapter','cards','suit','dates','swimsuit','jacket'], 4, 5)
+atlas('executive-props.png', ['throne','helicopter','rotor','ac','antenna','screen','safe','reception','library','scales','sofa','parachute'], 4, 3)
+atlas('passengers.png', ['man','woman','chatty','reader','music','sleeper','hostess','phone'], 4, 2)
+atlas('food.png', ['panino','cannelloni','dunette','cioccolata','grappa','fonduta','sushi','alghe','paranza','wetSign','disco','toilet'], 4, 3)
+atlas('ceo-motion.png', ['stand','run','attack'], 3, 1)
+atlas('swim.png', [f'{c}_swim{i}' for c in ['man','woman'] for i in range(1,5)], 4, 2, True)

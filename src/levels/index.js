@@ -1,4 +1,5 @@
 import { LEVEL_META } from '../config/constants.js';
+import { WORLD_BY_STAGE } from '../presentation/WorldCatalog.js';
 import level1_1 from './level1_1.js';
 import level1_2 from './level1_2.js';
 import level2_1 from './level2_1.js';
@@ -23,6 +24,7 @@ export const LEVELS = [
   stage(), stage(), level4_airport, level4_station, stage({ journey: 'plane' }), stage({ journey: 'train' }),
   level4_desert, level4_glacier, level4_sea, stage(),
   level5_1, level5_2, level5_3, level5_4, level5_5
-].map((lvl, i) => ({ ...LEVEL_META[i], ...lvl }));
+].map((lvl, i) => ({ ...LEVEL_META[i],
+  ...(WORLD_BY_STAGE[LEVEL_META[i].id] ? { visualTheme: WORLD_BY_STAGE[LEVEL_META[i].id] + '-hd' } : {}), ...lvl }));
 
 export default LEVELS;

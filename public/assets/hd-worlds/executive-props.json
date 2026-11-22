@@ -1,0 +1,254 @@
+{
+  "frames": {
+    "throne": {
+      "frame": {
+        "x": 89,
+        "y": 30,
+        "w": 211,
+        "h": 294
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 211,
+        "h": 294
+      },
+      "sourceSize": {
+        "w": 211,
+        "h": 294
+      }
+    },
+    "helicopter": {
+      "frame": {
+        "x": 410,
+        "y": 126,
+        "w": 328,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 328,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 328,
+        "h": 106
+      }
+    },
+    "rotor": {
+      "frame": {
+        "x": 813,
+        "y": 171,
+        "w": 321,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 321,
+        "h": 21
+      },
+      "sourceSize": {
+        "w": 321,
+        "h": 21
+      }
+    },
+    "ac": {
+      "frame": {
+        "x": 1184,
+        "y": 93,
+        "w": 316,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 316,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 316,
+        "h": 192
+      }
+    },
+    "antenna": {
+      "frame": {
+        "x": 143,
+        "y": 399,
+        "w": 99,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 99,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 99,
+        "h": 260
+      }
+    },
+    "screen": {
+      "frame": {
+        "x": 413,
+        "y": 414,
+        "w": 326,
+        "h": 206
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 326,
+        "h": 206
+      },
+      "sourceSize": {
+        "w": 326,
+        "h": 206
+      }
+    },
+    "safe": {
+      "frame": {
+        "x": 843,
+        "y": 375,
+        "w": 234,
+        "h": 272
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 234,
+        "h": 272
+      },
+      "sourceSize": {
+        "w": 234,
+        "h": 272
+      }
+    },
+    "reception": {
+      "frame": {
+        "x": 1173,
+        "y": 413,
+        "w": 341,
+        "h": 214
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 341,
+        "h": 214
+      },
+      "sourceSize": {
+        "w": 341,
+        "h": 214
+      }
+    },
+    "library": {
+      "frame": {
+        "x": 41,
+        "y": 716,
+        "w": 312,
+        "h": 281
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 312,
+        "h": 281
+      },
+      "sourceSize": {
+        "w": 312,
+        "h": 281
+      }
+    },
+    "scales": {
+      "frame": {
+        "x": 425,
+        "y": 715,
+        "w": 302,
+        "h": 266
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 302,
+        "h": 266
+      },
+      "sourceSize": {
+        "w": 302,
+        "h": 266
+      }
+    },
+    "sofa": {
+      "frame": {
+        "x": 781,
+        "y": 789,
+        "w": 358,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 358,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 358,
+        "h": 151
+      }
+    },
+    "parachute": {
+      "frame": {
+        "x": 1197,
+        "y": 702,
+        "w": 293,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 293,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 293,
+        "h": 134
+      }
+    }
+  },
+  "meta": {
+    "app": "Corporate Odyssey",
+    "image": "executive-props.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1536,
+      "h": 1024
+    },
+    "scale": "1"
+  }
+}

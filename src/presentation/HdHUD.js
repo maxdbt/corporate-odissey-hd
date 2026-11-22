@@ -1,5 +1,6 @@
 import { GameState } from '../state/GameState.js';
 import { WEAPON_LABEL } from '../config/constants.js';
+import { ensurePortraits } from './CharacterPortraits.js';
 
 const FONT = 'Segoe UI, Arial, sans-serif';
 const textStyle = (size = 12, color = '#f5f3ee') => ({
@@ -20,15 +21,7 @@ export default class HdHUD {
       const t = scene.add.text(0, 0, text, textStyle(size, color));
       this.root.add(t); return t;
     };
-    const texture = scene.textures.get('hd-characters');
-    for (const character of ['man', 'woman']) {
-      const name = character + '_portrait';
-      if (!texture.has(name)) {
-        const f = texture.get(character + '_idle');
-        const size = Math.round(f.cutHeight * 0.32);
-        texture.add(name, 0, Math.round(f.cutX + f.cutWidth / 2 - size / 2), f.cutY, size, size);
-      }
-    }
+    ensurePortraits(scene);
     this.portrait = scene.add.image(27, 23, 'hd-characters', GameState.character + '_portrait').setDisplaySize(37, 39);
     this.root.add(this.portrait);
     this.hpLabel = make('SALUTE', 12);
@@ -61,6 +54,14 @@ export default class HdHUD {
     this.bannerText = scene.add.text(0, 0, '', { ...textStyle(17), align: 'center', wordWrap: { width: 600 } }).setOrigin(0.5);
     this.banner.add([this.bannerPanel, this.bannerText]);
     this.root.add(this.banner);
+    this.quest = scene.add.container(0, 0).setVisible(false);
+    this.quest.add(scene.add.rectangle(0,0,222,38,0x101c29,.9).setOrigin(1,0).setStrokeStyle(.7,0xd1b67d,.65));
+    this.questText = scene.add.text(-8,5,'',textStyle(10,'#e7d4a9')).setOrigin(1,0);
+    this.quest.add(this.questText); this.root.add(this.quest);
+    this.bossRoot = scene.add.container(0,0).setVisible(false);
+    this.bossGfx = scene.add.graphics();
+    this.bossLabel = scene.add.text(0,-9,'',textStyle(10,'#ffd2c8')).setOrigin(.5,1);
+    this.bossRoot.add([this.bossGfx,this.bossLabel]);this.root.add(this.bossRoot);
     this.layout();
   }
 
@@ -93,6 +94,8 @@ export default class HdHUD {
     this.ferieLabel.setPosition(w - 169, 32);
     this.buttons.forEach((b, i) => { const x = w - 85 + i * 31; b.box.setPosition(x, 23); b.text.setPosition(x, 23); });
     this.statusText.setPosition(w / 2, 58);
+    this.quest.setPosition(w-8,51);this.questText.setResolution(this.metrics.scale);
+    this.bossRoot.setPosition(w/2,91);this.bossLabel.setResolution(this.metrics.scale);
     this.banner.setPosition(w / 2, 107);
     const bw = Math.min(630, w - 100);
     this.bannerPanel.clear().fillStyle(0x101c29, 0.94).fillRoundedRect(-bw / 2, -33, bw, 66, 8)
@@ -120,6 +123,14 @@ export default class HdHUD {
     set(this.timer, Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0'));
     this.timer.setColor(seconds < 30 ? '#ff8f82' : '#ffffff');
     set(this.weaponText, data.device ? WEAPON_LABEL[data.weapon] + '  ·  V/E CAMBIA' : 'TROVA UN LAPTOP');
+    this.quest.setVisible(!!(data.meal||data.budget));
+    if(data.meal){
+      const courses=[['primo','PRIMO'],['secondo','SECONDO'],['contorno','CONTORNO'],['dolce','DOLCE']];
+      set(this.questText,'VASSOIO · '+courses.filter(([key])=>data.meal[key]).length+'/4\n'+courses.map(([key,label])=>(data.meal[key]?'✓ ':'○ ')+label).join('  '));
+      this.questText.setFontSize(8);
+    }else if(data.budget){
+      set(this.questText,'BUDGET TRASFERTA  '+Math.round(data.budget.value)+' €\nBUONI PASTO  '+GameState.tickets);this.questText.setFontSize(10);
+    }
     set(this.statusText, data.stress >= 100 ? 'PANICO · COMANDI INVERTITI' :
       (data.statuses || []).filter((x) => x.name !== 'invuln').map((x) => STATUS[x.name] || x.name.toUpperCase()).join('  ·  '));
     if (this.banner.visible && this.scene.time.now > this.bannerUntil) this.banner.setVisible(false);
@@ -132,7 +143,13 @@ export default class HdHUD {
   }
   fog(ms) { this.fogUntil = this.scene.time.now + ms; }
   bossBar(name, ratio) {
-    if (ratio !== null) this.message(name + '  ' + Math.round(ratio * 100) + '%', '#ffaaa1', 600);
+    this.bossRoot.setVisible(ratio !== null);
+    if(ratio===null)return;
+    const value=Math.max(0,Math.min(1,ratio));
+    this.bossLabel.setText(name+' · '+Math.round(value*100)+'%');
+    this.bossGfx.clear().fillStyle(0x14202e,.95).fillRoundedRect(-150,-5,300,10,4)
+      .fillStyle(0xe06b65).fillRoundedRect(-149,-4,Math.max(1,298*value),8,3)
+      .lineStyle(.8,0xf2d6ae).strokeRoundedRect(-150,-5,300,10,4);
   }
   teamsCall(ms) { this.message('CHIAMATA TEAMS…', '#d5c8ff', ms); }
   destroy() { this.root.destroy(); }

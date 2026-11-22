@@ -2,7 +2,7 @@
 
 Corporate Odyssey è un platform 2D satirico ambientato nel mondo del lavoro. Il giocatore attraversa uffici, mensa, riunioni, trasferte e piani executive, gestendo salute mentale, stress, bonus e giorni di ferie. Il gioco gira nel browser con Phaser e include controlli touch e supporto PWA.
 
-La baseline è la versione **0.9.9**, commit `abceb61`, analizzata il **15 novembre 2026**. Le modifiche locali aggiungono il porting HD giocabile del primo livello, con fondali realistici, asset illustrati e animazioni estese. Gli altri stage conservano il loro tema originale. La [pubblicazione su ChatGPT Sites](PUBBLICAZIONE_SITES.md) usa una copia separata della build: il repository GitHub non viene aggiornato.
+La baseline analizzata è la versione **0.9.9**, commit `abceb61` (15 novembre 2026). Il porting locale del **22 novembre 2026** copre ora **tutti i 19 stage**, scene della trasferta e finale, con **un bonus per stage**. La consegna Git richiesta usa il remoto `max-hd` (`maxdbt/corporate-odissey-hd`); Sites resta separato. Dettagli e limiti delle verifiche in [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md).
 
 ## Documentazione
 
@@ -13,10 +13,15 @@ La baseline è la versione **0.9.9**, commit `abceb61`, analizzata il **15 novem
 | [Sviluppo](DEVELOPMENT.md) | Installazione, comandi, controlli, build, pubblicazione e manutenzione |
 | [Direzione artistica](ART_DIRECTION.md) | Riferimento grafico scelto e cinque proposte esplorate |
 | [Porting HD implementato](PORTING_HD.md) | Componenti riutilizzabili, asset, animazioni, risoluzione e verifiche |
+| [Campagna completa HD](PORTING_CAMPAGNA_HD.md) | Tutti i 19 stage, 16 nuovi bonus, architettura e prove locali |
+| [Estate e Ferie implementati](PORTING_ESTATE.md) | Porting 1-2, contrasto caldo/freddo, bonus spiaggia, asset e verifiche locali |
 | [Prompt per il porting del primo livello](PROMPT_PORTING_LIVELLO_1.md) | Istruzioni operative complete per realizzare lo stile concordato su PC e mobile |
+| [Prompt per il porting dei livelli successivi](PROMPT_PORTING_LIVELLI_SUCCESSIVI.md) | Estensione HD all'ufficio estivo, mensa, riunioni, trasferte ed executive, con asset riutilizzabili e verifiche PC/mobile |
 | [Indagine sul finale](SURVEY.md) | Registrazione locale delle scelte e configurazione dell'invio facoltativo |
 | [Prompt delle immagini](concepts/PROMPTS.md) | Specifiche usate con ImageGen per le cinque tavole |
 | [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md) | Documentazione del minigioco presente nelle altre modifiche locali |
+| [Bonus dedicati ai livelli](BONUS_PER_LIVELLO.md) | Regole effettive dei 19 bonus, accessi, premi e pause |
+| [Concept Estate d'Inferno e bonus](concepts/ESTATE-INFERNO.md) | Tavole approvate del livello estivo e di Ferie, ma non troppo |
 
 ## Avvio rapido
 
@@ -45,3 +50,5 @@ Il workflow di pubblicazione usa Node.js **22**. Nel controllo locale sono stati
 Installazione con `npm ci`, build di produzione e generazione del service worker riuscite. Il menu, il briefing e l'avvio del livello 1-1 sono stati aperti nel browser; nei log raccolti durante questa prova non sono comparsi errori o avvisi. Questi controlli non costituiscono una prova completa di tutti i livelli o delle prestazioni su telefoni reali.
 
 Per il porting sono stati aggiunti controlli automatici sugli atlanti e svolte prove di animazione, movimento, salto, input mobile simulato, ridimensionamento, fullscreen, ritorno al menu e avvio dello stage 1-2. I dettagli e i limiti sono in [PORTING_HD.md](PORTING_HD.md).
+
+Per la campagna completa: **18/18 test superati**, build di produzione riuscita e prove dei 19 ingressi, bonus, transizioni e finali. Il [resoconto attuale](PORTING_CAMPAGNA_HD.md) distingue prove browser, mobile simulato e verifiche ancora necessarie su hardware reale.

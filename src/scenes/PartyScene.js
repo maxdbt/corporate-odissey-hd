@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { GAME_WIDTH, GAME_HEIGHT, TEX, IS_TOUCH, playerTex } from '../config/constants.js';
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
@@ -82,6 +83,7 @@ const bpmAt = (t) => BPM_START + (BPM_END - BPM_START) * Phaser.Math.Clamp(t / S
 export default class PartyScene extends Phaser.Scene {
   constructor() {
     super('PartyScene');
+    installStagePresentation(this, { world: 'party', drawMethods: ['drawRoom'], keepGraphics: ['beams'], bonus: false });
   }
 
   init() {

@@ -21,10 +21,12 @@ import RevenueDoor from '../systems/RevenueDoor.js';
 import LastMailTerminal from '../systems/LastMailTerminal.js';
 import { ensureExecTextures } from '../gfx/exec.js';
 import { createPresentation } from '../presentation/OfficePresentation.js';
+import { preloadAssetPacks } from '../presentation/AssetRegistry.js';
+import { THEME_PACKS } from '../presentation/AssetPacks.js';
+import StageBonusPortal from '../bonus/StageBonusAccess.js';
 
 const PIT_DAMAGE = 20;
 const BURNOUT_DELAY = 1400;
-let debugLevelChecked = false;
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -33,17 +35,17 @@ export default class GameScene extends Phaser.Scene {
 
   init(data = {}) {
     let levelIndex = data.levelIndex ?? GameState.levelIndex ?? 0;
-    // Debug helper: ?level=N jumps straight to level N (first entry only).
-    if (!debugLevelChecked) {
-      debugLevelChecked = true;
-      const q = new URLSearchParams(window.location.search).get('level');
-      if (q !== null && !Number.isNaN(parseInt(q, 10))) levelIndex = parseInt(q, 10);
-    }
     this.levelIndex = Phaser.Math.Clamp(levelIndex, 0, LEVELS.length - 1);
     this.fromCheckpoint = !!data.fromCheckpoint && GameState.checkpoint?.levelIndex === this.levelIndex;
     if (!this.fromCheckpoint) GameState.beginLevel(this.levelIndex);
     else GameState.levelIndex = this.levelIndex;
     if (LEVELS[this.levelIndex].trip && !this.fromCheckpoint) beginStage(this.levelIndex);
+  }
+
+  preload() {
+    if (new URLSearchParams(window.location.search).get('graphics') !== 'classic') {
+      preloadAssetPacks(this, THEME_PACKS[LEVELS[this.levelIndex].visualTheme]);
+    }
   }
 
   create() {
@@ -90,6 +92,11 @@ export default class GameScene extends Phaser.Scene {
     // Player
     let [sx, sy] = level.start;
     if (this.fromCheckpoint) { sx = GameState.checkpoint.x; sy = GameState.checkpoint.y; }
+    // Local art/transition QA: never included in a production build or a saved checkpoint.
+    if (import.meta.env.DEV && !this.fromCheckpoint) {
+      const spawn = Number(new URLSearchParams(window.location.search).get('inspectX'));
+      if (Number.isFinite(spawn) && spawn > 0) sx = Phaser.Math.Clamp(spawn, 32, level.width - 80);
+    }
     this.player = new Player(this, sx, sy, GameState.character);
     this.lastSafe = { x: sx, y: sy };
     if (this.fromCheckpoint) this.placeFlag(sx, sy);
@@ -119,6 +126,7 @@ export default class GameScene extends Phaser.Scene {
     this.partyDoor = level.partyDoor ? new PartyDoor(this, ...level.partyDoor) : null;
     this.revenueDoor = level.revenueDoor ? new RevenueDoor(this, ...level.revenueDoor) : null;
     this.lastMailTerminal = level.lastMailTerminal ? new LastMailTerminal(this, ...level.lastMailTerminal) : null;
+    this.stageBonusPortal = new StageBonusPortal(this);
     this.forcedRunUntil = 0;
     this.inputLockUntil = 0;
 
@@ -686,6 +694,7 @@ export default class GameScene extends Phaser.Scene {
     if (input.jumpPressed || input.attackPressed) audio.unlock?.();
 
     this.lastMailTerminal?.update(input);
+    this.stageBonusPortal?.update(input);
     if (!this.scene.isActive()) return;
 
     this.hazards.forEach((h) => h.update?.(time, delta));
@@ -766,6 +775,7 @@ export default class GameScene extends Phaser.Scene {
     this.scene.stop('BeachScene');
     this.scene.stop('RevenueScene');
     this.scene.stop('LastMailScene');
+    this.scene.stop('StageBonusScene');
     this.presentation?.destroy();
     this.presentation = null;
   }

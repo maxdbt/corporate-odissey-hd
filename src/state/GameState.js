@@ -26,6 +26,8 @@ export const GameState = {
   levelMods: { enemySpeedMult: 1, colleaguesHostile: false },
 
   newGame(character) {
+    this.stageBonusAttempts = {};
+    this.stageBonusRewards = {};
     this.character = character;
     this.levelIndex = 0;
     this.hp = 100;
