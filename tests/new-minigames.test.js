@@ -8,11 +8,12 @@ import {PACKING_ITEMS,rotatedCells} from '../src/bonus/new/PackingPuzzle.js';
 import {distance,clamp,overlap} from '../src/bonus/new/physics.js';
 import {PARTY_ITEMS} from '../src/bonus/new/PartyEscape.js';
 
-test('only eight new games are published, two Christmas pauses are separated and old routes are retired',()=>{
+test('eight campaign games retain their entrances and retired routes stay closed except the redesigned mail bonus',()=>{
  assert.deepEqual(STAGE_BONUSES.map(b=>b.id),['party','parking','pedalo','tray','call','taxi','packing','golf']);
  assert.equal(BONUSES_BY_STAGE['1-1'].length,2);assert.ok(BONUSES_BY_STAGE['1-1'][1].x-BONUSES_BY_STAGE['1-1'][0].x>2000);
  const main=readFileSync(new URL('../src/main.js',import.meta.url),'utf8'),boot=readFileSync(new URL('../src/scenes/BootScene.js',import.meta.url),'utf8');
- for(const name of ['BeachScene','LastMailScene','RevenueScene','ToiletScene']){assert.ok(!main.includes('import '+name));assert.ok(!boot.includes("scene.start('"+name));}
+ for(const name of ['BeachScene','RevenueScene','ToiletScene']){assert.ok(!main.includes('import '+name));assert.ok(!boot.includes("scene.start('"+name));}
+ assert.ok(main.includes('import LastMailScene'));assert.ok(boot.includes("scene.start('LastMailScene'"));
 });
 
 test('all seven new models freeze on pause, bound suspended-tab time, reject actions after completion and award only a win',()=>{

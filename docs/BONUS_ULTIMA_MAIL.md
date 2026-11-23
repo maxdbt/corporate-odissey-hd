@@ -1,69 +1,91 @@
-# Bonus POV — L’ultima mail
+# L’ultima mail — ultimo minuto prima delle ferie
 
-Bonus giocabile in prima persona, ambientato nell’ufficio natalizio del concept approvato. È il 24 dicembre, ore 17:59: il dipendente vuole andare in ferie, mentre continuano ad arrivare richieste «urgenti». Il gesto centrale è timbrarle **A GENNAIO**. Il tono è satirico: difendere il proprio tempo, evitare il burnout, concedersi un caffè.
+Revisione locale del 23 novembre 2026. Il bonus natalizio con il timbro **A GENNAIO** torna nel menu come prova libera. Il gesto ora richiede una decisione: gestire una scadenza reale, rimandare una richiesta non urgente oppure eliminare spam e doppioni.
 
-## Accesso
+## Accesso e integrazione
 
-- Anteprima libera: avviare il progetto e aprire `/?bonus=last-mail`.
-- Menu: pulsante **BONUS POV — L’ULTIMA MAIL**.
-- Campagna: PC verde sulla prima scrivania di **Natale in Ufficio**, coordinate logiche `(332, 360)`. Avvicinarsi e premere SU, oppure toccare il computer. Disponibile una volta per tentativo del livello.
+- Menu principale → minigiochi → **L’ultima mail**.
+- Raccolta `?bonus=all`: nona voce, anche con il tasto 9.
+- Apertura diretta: `?bonus=last-mail`.
+- `&controls=touch` forza il layout touch; resta compatibile anche `&touch=1`.
 
-L’anteprima non modifica lo stato della campagna. La pubblicazione usa una copia separata in `E:\Repos\max\corporate-odyssey-last-mail-public`, con la propria identità Sites. Il repository principale non viene committato o inviato al remoto dalla pubblicazione.
+La nuova voce è dichiarata in `MenuBonusCatalog.js`, separata dagli otto ingressi della campagna. Non sostituisce **Questa call poteva essere una mail**, che resta il gioco di carte. In questa revisione L’ultima mail è disponibile dal menu e in anteprima: il vecchio PC di accesso nello stage 1-1 non è stato riattivato.
 
-## Regole
+Le prove libere non cambiano salute, stress, soldi, checkpoint o giorni di ferie della campagna. Il codice storico dei premi resta disponibile in `LastMailScene`, ma non è esposto da un nuovo ingresso della storia.
 
-Il turno dura 45 secondi di simulazione. Le richieste arrivano su tre corsie; un clic, un tocco o il tasto della corsia le respinge. Le richieste ignorate aggiungono 14 stress; quelle timbrate tolgono 2 stress e aumentano combo e punti. Il moltiplicatore massimo è ×4.
+## Obiettivo e regole
 
-Occorre raccogliere almeno un biglietto dorato **FERIE APPROVATE** e arrivare alla fine con stress inferiore a 100. Il biglietto vale 40 punti e toglie 8 stress. Il caffè si può usare una volta e toglie 30 stress.
+È il 24 dicembre, ore 17:59. Hai **60 secondi** per sistemare **12 richieste** e lasciare l’ufficio.
 
-Nella campagna, la vittoria concede un giorno di ferie, un checkpoint presso il giocatore, −20 stress e un euro ogni 50 punti. La sconfitta aggiunge 10 stress. Questi esiti sono applicati una sola volta; lo stress interno del minigioco non viene trasferito direttamente alla campagna. Uscire prima del risultato non concede premi e consuma comunque il tentativo.
-
-## Comandi e adattamento
-
-| Azione | PC | Telefono |
+| Destinazione | Quando usarla | Esempio |
 | --- | --- | --- |
-| Timbrare / raccogliere | Clic oppure 1, 2, 3 | Tocco sulla richiesta |
-| Caffè | Spazio | Pulsante CAFFÈ |
-| Pausa / ripresa | P oppure Esc | Pulsante pausa |
-| Schermo intero | F oppure icona | Icona, quando supportata dal browser |
-| Audio | M oppure icona | Icona |
-| Battute vocali | Pulsante V nell’HUD | Pulsante V nell’HUD |
+| CHIUDI ORA | Scadenza reale di oggi, pratica già pronta | Il corriere aspetta la conferma del ritiro |
+| A GENNAIO | Richiesta che può aspettare il rientro | Presentazione del 15 gennaio, anche se il capo scrive URGENTISSIMO |
+| CESTINO | Spam, doppioni e messaggi senza un’azione necessaria | Catena di auguri, newsletter pubblicitaria |
 
-Il bonus occupa l’intera finestra. Su PC il pulsante touch del caffè è nascosto; lo schermo intero richiede un gesto dell’utente e il supporto del browser. Sul telefono si gioca in orizzontale: ruotare in verticale mette in pausa. Cambio scheda, perdita del focus e pagina nascosta interrompono il turno. Le finestre hanno focus da tastiera, pulsanti con etichette e battute sottotitolate. `?touch=1` forza il layout touch per le verifiche su desktop; non simula un vero dispositivo.
+Le prime tre richieste mostrano i tre casi; le altre nove cambiano ordine a ogni partita. Arriva un foglio ogni quattro secondi nella prima parte e ogni tre nella seconda. La scrivania contiene al massimo tre richieste; ciascuna rimane disponibile per 18 secondi. Si può cambiare il foglio selezionato per decidere le priorità.
 
-## Grafica e animazione
+Una scelta corretta riduce lo stress di 3 e vale 35 punti per le urgenze o 25 per le altre richieste, moltiplicati dalla combo. Il moltiplicatore sale ogni tre scelte corrette consecutive, fino a ×4. Errori e richieste scadute azzerano la combo: costano 22 stress per le urgenze reali, 12 negli altri casi. Un solo caffè riduce lo stress di 25.
 
-- Fondale illustrato realistico in WebP, 1672 × 941, con ufficio, neve, sala feste, scrivania e caffè.
-- Mano con timbro: atlas trasparente 2 × 2, quattro pose distinte — riposo, preparazione, impatto, recupero. Sequenza circa 240 ms.
-- Carte animate con posizione, scala e rotazione per suggerire l’avvicinamento; timbro sul foglio e dissolvenza della richiesta risolta.
-- HUD e testo HTML/CSS nitidi alla risoluzione della finestra. Il bonus non eredita il filtro pixel art del canvas del platform.
-- Circa 583 kB per i due asset grafici, circa 231 kB per le quattro battute. Nessun video in background e nessuna API generativa durante il gioco.
+Per ottenere le ferie servono almeno **9 scelte corrette, comprese 3 delle 4 urgenze reali**. Quando tutta la posta è stata processata, la scrivania passa a due azioni esplicite:
 
-## Audio
+1. Attivare la risposta automatica: «Sono in ferie. Torno a gennaio.»
+2. Spegnere il PC prima che il minuto finisca.
 
-Voce sintetica **Chad**, giovane maschile, modello **Eleven v3**, lingua italiana, velocità 1,08. Interpretazione eccitata con tag `[excited]`; le espressioni romanesche sono nel copione. Non è una clonazione della voce dell’utente. Le quattro clip MP3 sono locali, accompagnate da effetti Web Audio per carta, timbro, raccolta e caffè.
+Il solo possesso delle ferie non conclude il gioco. La vittoria arriva dopo lo spegnimento e aggiunge 150 punti; scadenza del tempo, 100 stress o obiettivi insufficienti fanno perdere. Timbrare tutto A GENNAIO non è una strategia vincente. Il riepilogo mostra punti, scelte corrette ed errori.
 
-| Evento | File | Battuta |
+## Comandi e accessibilità
+
+| Azione | PC | Touch |
 | --- | --- | --- |
-| Timbro | `a-gennaio.mp3` | Aò! Se ne riparla a gennaio! |
-| Vittoria | `sto-in-ferie.mp3` | Daje! Mo’ basta! Sto in ferie! |
-| Richiesta persa | `e-natale.mp3` | Ma quale urgente! È Natale! |
-| Caffè | `caffe.mp3` | Aò! Una tazzina e me ripiglio! Va’, famme fa’ un caffè! |
+| Scegliere un foglio | Clic sulla posta, frecce sinistra/destra | Tocco sulla posta |
+| Decidere | Pulsanti o tasti 1, 2, 3 | Pulsanti CHIUDI ORA, A GENNAIO, CESTINO |
+| Spostare fisicamente un foglio | Trascinare la richiesta sulla destinazione | Stesso gesto con il dito |
+| Caffè | Spazio o pulsante | Pulsante CAFFÈ |
+| Risposta automatica / spegnimento | Pulsante o Invio | Pulsante nella schermata centrale |
+| Pausa | P, Esc o pulsante | Pulsante pausa |
+| Schermo intero / audio | F / M o pulsanti | Pulsanti, secondo il supporto del browser |
 
-Un intervallo minimo limita la ripetizione delle battute; caffè ed esito hanno priorità. L’audio viene sbloccato dal pulsante di avvio e le clip automatiche usano lo stesso AudioContext anche su mobile. È possibile disattivare tutto l’audio o solo le voci. Se una clip non è disponibile, il gioco continua con i sottotitoli.
+Il tocco sul foglio lo seleziona: non lo risolve automaticamente. Se un foglio scade durante il trascinamento, il gesto viene annullato. La pausa ferma timer e scadenze, impedisce azioni di gioco e conserva la selezione. Perdita del focus, scheda nascosta e rotazione verticale su touch mettono in pausa; il ritorno in orizzontale richiede una ripresa esplicita.
 
-Nella [revisione audio locale del 23 novembre 2026](AUDIO.md), il contesto è condiviso con il resto del gioco: carta e timbro passano dal bus effetti, le battute dal bus voci, entrambi soggetti al volume generale e al muto. La pausa del bonus sospende anche l’audio. Uscire interrompe le battute e scollega l’uscita del bonus, mantenendo disponibile il contesto per la campagna. Le quattro registrazioni e i sottotitoli restano quelli esistenti.
+I pulsanti hanno etichette leggibili; gli esiti corretti ed errati sono spiegati con testo, oltre al colore. Le finestre gestiscono il focus da tastiera; l’impostazione di sistema per il movimento ridotto disattiva animazioni CSS e spostamento della mano.
 
-## Struttura
+## Grafica, audio e prestazioni
 
-- `src/scenes/LastMailScene.js`: ciclo di vita Phaser, pausa/ripresa della campagna e premi.
-- `src/systems/LastMailRound.js`: regole indipendenti da grafica e audio.
-- `src/systems/LastMailTerminal.js`: computer nel primo livello.
-- `src/systems/LastMailAudio.js`: clip vocali ed effetti.
-- `src/ui/LastMailView.js` e `last-mail.css`: scena DOM, interazioni e animazioni.
-- `public/assets/last-mail/`: asset definitivi.
-- `tests/last-mail.test.js`: vittoria, requisito ferie, burnout, pausa, caffè, doppie interazioni e premi ripetuti.
+Riutilizzati il fondale natalizio illustrato `office.webp` e l’atlante trasparente `stamp-frames.webp`, senza nuovi asset generati. Il timbro mantiene quattro pose illustrate, con movimento interpolato fra preparazione, impatto e recupero. Fogli, ricevute e monitor finale sono elementi DOM nitidi, con composizione adattata a desktop e telefono in orizzontale.
+
+Nessun servizio remoto è necessario per giocare. Le battute italiane esistenti restano locali; la battuta A GENNAIO si attiva solo quando quella destinazione è corretta. Il caffè e la vittoria usano le registrazioni esistenti; i volumi e il muto sono condivisi con il gioco. Il getter `round.paused` raccorda la pausa al direttore audio.
+
+La lista visibile è limitata a tre richieste. I nodi della posta vengono riutilizzati finché la richiesta resta presente; il contenuto del foglio viene ricostruito solo al cambio di selezione o obiettivo.
+
+## File principali
+
+- `src/systems/LastMailRound.js`: contenuti delle richieste, ordine, regole, scadenze, scelte, finale e premio singolo.
+- `src/ui/LastMailView.js` e `last-mail.css`: scrivania, trascinamento, tastiera, touch, finestre e animazione.
+- `src/scenes/LastMailScene.js`: ciclo di vita, anteprima e ritorno alla raccolta.
+- `src/bonus/MenuBonusCatalog.js`: voce aggiuntiva per il menu, senza ingresso implicito nella campagna.
+- `src/menu/MenuModel.js`, `GameMenu.js`, `BonusHubScene.js`, `BootScene.js`, `main.js`: percorsi di avvio e registrazione.
+- `tests/last-mail.test.js`: sei verifiche delle regole e della separazione fra menu e campagna.
 
 ## Verifica
 
-Eseguire `node --test tests/last-mail.test.js` e `npm run build`. I file WebP e MP3 sono inclusi nella cache della PWA. La verifica nel browser comprende layout desktop e viewport 844 × 390 / 390 × 844, timbro con clic e tastiera, caffè, pausa, rotazione e uscita. Le viewport non sostituiscono una prova prestazionale su telefono fisico; non è attestato un frame rate su hardware mobile.
+Superati 22 test di regole, menu e audio, più due controlli mirati di catalogo e pausa dei modelli condivisi:
+
+```powershell
+node --test tests/last-mail.test.js tests/menu.test.js tests/audio.test.js
+node --test --test-name-pattern="eight campaign|all seven" tests/new-minigames.test.js
+```
+
+Il percorso corretto è verificato a 30, 60 e 120 aggiornamenti al secondo. Coperti anche errori, requisito delle urgenze, caffè singolo, pausa, ritardi di scheda sospesa, scadenza durante il finale e premi non ripetibili.
+
+Collaudo browser: partita completata con 12 scelte corrette e due azioni finali, timeout, riprova, ritorno alla raccolta, apertura della nona voce, trascinamento con feedback di errore, pausa/ripresa e rotazione. Layout verificato a 844×390; non equivale a un collaudo prestazionale o multitouch su telefono fisico.
+
+Build Vite/PWA in una cartella separata, `E:\Repos\max\corporate-odyssey-last-mail-preview-20261123`. Rimane l’avviso sulla dimensione del bundle generale, che include anche modifiche contemporanee ad altri giochi. Nessun push o pubblicazione remota effettuato da questa revisione.
+
+Anteprima locale: [L’ultima mail](http://localhost:49765/?bonus=last-mail), disponibile mentre il processo preview resta avviato.
+
+![Scrivania aggiornata](screenshots/last-mail-redesign-desktop.jpg)
+
+![Versione telefono](screenshots/last-mail-redesign-mobile.jpg)
+
+![Vittoria verificata](screenshots/last-mail-redesign-win.jpg)

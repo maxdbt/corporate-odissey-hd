@@ -1,6 +1,6 @@
 # Revisione dei minigiochi — 23 novembre 2026
 
-Sono giocabili **otto nuove attività**, distribuite nella campagna. La raccolta si apre dal menu principale o con `?bonus=all`. I vecchi bonus sono esclusi dal menu, dal registro delle scene e dagli ingressi della campagna. I vecchi indirizzi di anteprima rimandano alla raccolta.
+Sono giocabili **otto attività della campagna**. La raccolta si apre dal menu principale o con `?bonus=all`. Il successivo rifacimento di [L’ultima mail](BONUS_ULTIMA_MAIL.md) aggiunge una nona voce alla raccolta, disponibile in prova libera anche con `?bonus=last-mail`: tre destinazioni per le richieste e due azioni finali per andare in ferie. Gli altri vecchi bonus restano esclusi dalla raccolta e dagli ingressi della campagna; i rispettivi indirizzi rimandano alla raccolta.
 
 **Revisione successiva del taxi:** L'indirizzo giusto ora usa una [città HD esplorabile](TAXI_CITTA_HD.md), camera che segue l'auto, traffico, passanti, mappa e modalità senza timer. La nuova scena sostituisce il precedente tabellone.
 
@@ -53,7 +53,7 @@ Suite della revisione isolata: **65 test superati**. Soluzioni reali per i tre p
 
 Chrome: aperte e controllate le otto attività; movimento, trascinamento, carte, rotazioni; rientro dal bonus festa alla campagna. Layout mobile controllato a 844 × 390: non equivale a una prova su telefono fisico.
 
-Build Vite/PWA completata in una cartella temporanea esterna al repository. Anteprima attiva durante la consegna: [raccolta locale](http://127.0.0.1:8098/?bonus=all). Il server precedente sulla porta 8092 è stato arrestato. Nella build verificati anche i nuovi asset e il reindirizzamento del vecchio link L'ultima mail alla raccolta; nessun errore nella console delle schermate controllate.
+Build iniziale Vite/PWA completata in una cartella temporanea esterna al repository. Anteprima attiva durante quella consegna: [raccolta locale](http://127.0.0.1:8098/?bonus=all). Il server precedente sulla porta 8092 è stato arrestato. In quella build erano verificati anche i nuovi asset e il reindirizzamento del vecchio link L'ultima mail alla raccolta; il successivo rifacimento ha ripristinato l'apertura diretta, come descritto in [BONUS_ULTIMA_MAIL.md](BONUS_ULTIMA_MAIL.md). Nessun errore nella console delle schermate controllate.
 
 Schermate reali: [raccolta](screenshots/new-bonus-hub.jpg), [parcheggio](screenshots/new-parking.jpg), [pedalò](screenshots/new-pedalo.jpg), [vassoio](screenshots/new-tray.jpg).
 

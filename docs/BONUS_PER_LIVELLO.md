@@ -1,6 +1,6 @@
 # Bonus della campagna HD
 
-La revisione del 23 novembre 2026 sostituisce il precedente catalogo di 19 bonus con **otto nuovi minigiochi**. I vecchi giochi non sono più accessibili da menu, link di anteprima o ingressi della campagna.
+La revisione del 23 novembre 2026 sostituisce il precedente catalogo di 19 bonus con **otto minigiochi della campagna**. Il successivo rifacimento di [L’ultima mail](BONUS_ULTIMA_MAIL.md) lo reintegra nel menu come prova libera, senza ripristinare il suo vecchio ingresso nello stage. Gli altri bonus ritirati non sono accessibili dalla raccolta o dagli ingressi della campagna.
 
 La documentazione aggiornata con regole, collocazioni, comandi, premi e verifiche è in [Revisione dei minigiochi](REVISIONE_MINIGIOCHI.md).
 

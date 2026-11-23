@@ -1,88 +1,70 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LastMailRound } from '../src/systems/LastMailRound.js';
+import {LastMailRound,MAIL_TASKS} from '../src/systems/LastMailRound.js';
+import {MENU_BONUSES} from '../src/bonus/MenuBonusCatalog.js';
+import {STAGE_BONUSES} from '../src/bonus/StageBonusCatalog.js';
 
-function play(round, strategy = () => {}) {
-  round.start();
-  for (let step = 0; step < 460 && round.phase === 'play'; step++) {
-    round.tick(0.1);
-    strategy(round);
+function sortDesk(fps=60,strategy=card=>card.answer) {
+  const r=new LastMailRound();r.start();
+  for(let n=0;n<fps*65&&r.phase==='play'&&r.objective==='sort';n++){
+    r.tick(1/fps);
+    for(const card of [...r.cards]){const action=strategy(card);if(action)r.decide(card.id,action);}
+    assert.ok(r.cards.length<=3);
   }
-  return round;
+  return r;
 }
-
-test('surviving a full shift and collecting leave wins once, with a bounded reward', () => {
-  const r = play(new LastMailRound({ random: () => 0.5 }), (round) => {
-    for (const card of [...round.cards]) round.hit(card.id);
-  });
-  assert.equal(r.phase, 'result');
-  assert.equal(r.remaining, 0);
-  assert.equal(r.won, true);
-  assert.ok(r.collected >= 1 && r.resolved >= 20);
-  assert.ok(r.multiplier <= 4);
-  assert.deepEqual(r.claimReward(), { vacationDays: 1, stress: -20, euro: Math.floor(r.score / 50) });
-  assert.equal(r.claimReward(), null);
-  const score = r.score;
-  r.start(); r.resume(); r.tick(1); r.hit(1);
-  assert.equal(r.score, score);
-  assert.equal(r.phase, 'result');
+test('real choices reach the two explicit exit steps consistently at 30, 60 and 120 Hz',()=>{
+  const times=[];
+  for(const fps of [30,60,120]){
+    const r=sortDesk(fps);times.push(r.elapsed);
+    assert.equal(r.phase,'play');assert.equal(r.objective,'autoreply');assert.equal(r.collected,1);
+    assert.equal(r.resolved,12);assert.equal(r.urgentDone,4);assert.equal(r.claimReward(),null);
+    assert.equal(r.complete('shutdown'),false);
+    assert.equal(r.complete('autoreply'),true);assert.equal(r.complete('autoreply'),false);
+    assert.equal(r.complete('shutdown'),true);assert.equal(r.won,true);
+    assert.deepEqual(r.claimReward(),{vacationDays:1,stress:-20,euro:Math.min(30,Math.floor(r.score/50))});
+    assert.equal(r.claimReward(),null);
+    const end=JSON.stringify(r);r.tick(20);r.decide(1,'close');r.complete('shutdown');r.coffee();r.start();r.resume();
+    assert.equal(JSON.stringify(r),end);
+  }
+  assert.ok(Math.max(...times)-Math.min(...times)<.5);
 });
-
-test('the golden leave pass is required even if all work requests are handled', () => {
-  const r = play(new LastMailRound(), (round) => {
-    for (const card of [...round.cards]) if (card.kind !== 'vacation') round.hit(card.id);
-  });
-  assert.equal(r.remaining, 0);
-  assert.equal(r.won, false);
-  assert.equal(r.stress, 0);
-  assert.deepEqual(r.claimReward(), { vacationDays: 0, stress: 10, euro: 0 });
+test('stamping every request A GENNAIO cannot win; wrong urgent choices cost more',()=>{
+  const r=sortDesk(60,()=> 'defer');assert.equal(r.won,false);assert.ok(r.errors>0);assert.equal(r.urgentDone,0);
+  const q=new LastMailRound();q.start();q.tick(.1);
+  const first=q.current;assert.equal(first.answer,'close');
+  assert.equal(q.decide(first.id,'defer').correct,false);assert.equal(q.stress,37);
+  assert.equal(q.decide(first.id,'close'),null);assert.equal(q.urgentDone,0);
+  q.spawn();const deferred=q.current;q.decide(deferred.id,'trash');assert.equal(q.stress,49);
 });
-
-test('ignored requests cause burnout before the clock expires', () => {
-  const r = play(new LastMailRound());
-  assert.equal(r.won, false);
-  assert.equal(r.stress, 100);
-  assert.ok(r.remaining > 0);
-  assert.equal(r.cards.length, 0);
+test('selection does not resolve requests, pause freezes sort and final steps, and coffee is single-use',()=>{
+  const r=new LastMailRound({stress:55});r.start();r.tick(.1);
+  const id=r.current.id;r.select(id);assert.equal(r.resolved,0);
+  r.pause();const snapshot=JSON.stringify(r);
+  r.tick(300);r.decide(id,'close');r.select(id);r.coffee();r.complete('autoreply');
+  assert.equal(JSON.stringify(r),snapshot);r.resume();
+  assert.equal(r.coffee(),true);assert.equal(r.stress,30);assert.equal(r.coffee(),false);
+  assert.equal(r.decide(id,'close').correct,true);
+  const final=sortDesk();final.pause();assert.equal(final.complete('autoreply'),false);
+  final.resume();assert.equal(final.complete('autoreply'),true);
 });
-
-test('pause freezes deadlines, score and coffee, then resumes the same round', () => {
-  const r = new LastMailRound();
-  r.start();
-  for (let i = 0; i < 10; i++) r.tick(0.1);
-  const id = r.cards[0].id;
-  r.pause();
-  const elapsed = r.elapsed, age = r.cards[0].age;
-  for (let i = 0; i < 100; i++) r.tick(0.1);
-  assert.equal(r.elapsed, elapsed);
-  assert.equal(r.cards[0].age, age);
-  assert.equal(r.hit(id), null);
-  assert.equal(r.coffee(), false);
-  assert.equal(r.claimReward(), null);
-  r.resume();
-  assert.equal(r.hit(id).type, 'stamp');
-  assert.equal(r.hit(id), null);
-  assert.equal(r.resolved, 1);
+test('ignoring mail loses, suspended deltas are bounded and final shutdown still has a deadline',()=>{
+  const r=sortDesk(60,()=>null);assert.equal(r.phase,'result');assert.equal(r.won,false);assert.ok(r.missed>0);
+  const q=new LastMailRound();q.start();q.tick(300);assert.equal(q.elapsed,.1);
+  q.tick(NaN);q.tick(-1);q.tick(Infinity);assert.equal(q.elapsed,.1);
+  const late=sortDesk();while(late.phase==='play')late.tick(.1);
+  assert.equal(late.won,false);assert.equal(late.computerOff,false);
 });
-
-test('coffee is usable once and stress cannot become negative', () => {
-  const r = new LastMailRound({ stress: 55 });
-  assert.equal(r.coffee(), false);
-  r.start();
-  assert.equal(r.coffee(), true);
-  assert.equal(r.stress, 25);
-  assert.equal(r.coffee(), false);
-  assert.equal(r.stress, 25);
-  const fresh = new LastMailRound({ stress: 15 });
-  fresh.start(); fresh.coffee();
-  assert.equal(fresh.stress, 0);
+test('one genuine urgency may be mistaken, but two cannot unlock the permit',()=>{
+  let wrong=0;const one=sortDesk(60,c=>c.answer==='close'&&wrong++<1?'defer':c.answer);
+  assert.equal(one.objective,'autoreply');assert.equal(one.urgentDone,3);assert.equal(one.errors,1);
+  wrong=0;const two=sortDesk(60,c=>c.answer==='close'&&wrong++<2?'defer':c.answer);
+  assert.equal(two.won,false);assert.equal(two.collected,0);
 });
-
-test('suspended-tab deltas cannot instantly expire a shift or a request', () => {
-  const r = new LastMailRound();
-  r.start(); r.tick(300);
-  assert.equal(r.elapsed, 0.1);
-  r.tick(NaN); r.tick(-1); r.tick(Infinity);
-  assert.equal(r.elapsed, 0.1);
-  assert.equal(r.phase, 'play');
+test('restored menu bonus is distinct from the call cards and adds no implicit campaign entrance',()=>{
+  assert.equal(MENU_BONUSES.length,STAGE_BONUSES.length+1);
+  assert.ok(MENU_BONUSES.some(b=>b.id==='call'));
+  const mail=MENU_BONUSES.find(b=>b.id==='last-mail');
+  assert.equal(mail.freePlayOnly,true);assert.ok(!STAGE_BONUSES.includes(mail));
+  assert.equal(MAIL_TASKS.filter(c=>c.answer==='close').length,4);
 });

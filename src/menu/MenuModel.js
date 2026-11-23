@@ -30,6 +30,7 @@ export function chooseMenuLevel(worlds,index){
  return worlds.flatMap(w=>w.levels).find(l=>l.index===index)||worlds[0]?.levels[0]||null;
 }
 export function bonusDestination(bonus,hasScene){
+ if(bonus.id==='last-mail'&&hasScene('LastMailScene'))return 'LastMailScene';
  if(bonus.id==='golf'&&hasScene('DirectorMinigolfScene'))return 'DirectorMinigolfScene';
  if(bonus.id==='taxi'&&hasScene('CityTaxiScene'))return 'CityTaxiScene';
  return 'StageBonusScene';

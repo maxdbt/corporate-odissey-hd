@@ -51,6 +51,7 @@ export default class BootScene extends Phaser.Scene {
       generateClients(this);
       generateAnims(this);
       const bonus = new URLSearchParams(window.location.search).get('bonus');
+      if (bonus === 'last-mail') { this.scene.start('LastMailScene', { preview: true }); return; }
       if (BONUS_BY_ID[bonus]) { this.scene.start('StageBonusScene', { bonus, preview: true }); return; }
       if (bonus !== null) { this.scene.start('BonusHubScene'); return; }
       if (import.meta.env.DEV) {

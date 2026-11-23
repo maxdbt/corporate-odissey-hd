@@ -58,7 +58,7 @@ export default class LastMailScene extends Phaser.Scene {
     if (this.leaving) return;
     this.leaving = true;
     if (this.preview) {
-      this.scene.start('MenuScene');
+      this.scene.start('BonusHubScene');
       return;
     }
     const gs = this.scene.get('GameScene');

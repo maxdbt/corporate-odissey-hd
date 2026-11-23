@@ -11,6 +11,7 @@ Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e 
 - [Minigiochi aggiornati](REVISIONE_MINIGIOCHI.md): otto nuove attività, accessi nella campagna, controlli e verifiche.
 - [Fuga dalla festa aziendale](FUGA_FESTA_HD.md): salone HD, 24 colleghi distinti e animati, obiettivi distanti e cappotto indossabile.
 - [Ferie, ma non troppo](FERIE_PEDALO_ARCADE.md): fuga in pedalò a schermo pieno, onde, combo e inseguimento del capo.
+- [L’ultima mail](BONUS_ULTIMA_MAIL.md): bonus del timbro reintegrato nel menu, con scelte fra urgenze, rinvii e cestino e un finale interattivo.
 - [L'indirizzo giusto](TAXI_CITTA_HD.md): città HD esplorabile, traffico e passanti.
 - [Bonus per livello](BONUS_PER_LIVELLO.md): catalogo attuale e ritiro dei vecchi giochi.
 - [Stato sintetico](CAMPAGNA_HD_STATO.md).
@@ -39,7 +40,6 @@ Il server Vite usa la porta 8080; leggere l'indirizzo effettivo nel terminale. N
 - [Prompt del primo livello](PROMPT_PORTING_LIVELLO_1.md) e [prompt dei livelli successivi](PROMPT_PORTING_LIVELLI_SUCCESSIVI.md).
 - [Prompt dei concept](concepts/PROMPTS.md), [campagna](concepts/PROMPTS-CAMPAGNA-HD.md), [animazioni e mezzi](concepts/PROMPTS-ANIMAZIONI-HD.md).
 - [Concept Estate e Ferie](concepts/ESTATE-INFERNO.md).
-- [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md): documento storico; questo minigioco non è più accessibile.
 
 I documenti sono organizzati tramite questo indice, mantenendo i percorsi esistenti per conservare validi i collegamenti. Concept illustrativi, screenshot del gioco e resoconti di collaudo sono distinti.
 

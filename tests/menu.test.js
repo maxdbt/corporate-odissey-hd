@@ -25,6 +25,7 @@ test('golf uses the dedicated scene when registered and remains compatible with 
  assert.equal(bonusDestination({id:'golf'},name=>name==='DirectorMinigolfScene'),'DirectorMinigolfScene');
  assert.equal(bonusDestination({id:'golf'},()=>false),'StageBonusScene');
  assert.equal(bonusDestination({id:'pedalo'},()=>true),'StageBonusScene');
+ assert.equal(bonusDestination({id:'last-mail'},()=>true),'LastMailScene');
  assert.equal(bonusDestination({id:'taxi'},()=>true),'CityTaxiScene');
  assert.equal(bonusDestination({id:'taxi'},()=>false),'StageBonusScene');
 });

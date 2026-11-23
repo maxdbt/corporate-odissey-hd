@@ -26,6 +26,7 @@ import DirectorMinigolfScene from './scenes/DirectorMinigolfScene.js';
 import CityTaxiScene from './scenes/CityTaxiScene.js';
 import PartyEscapeScene from './scenes/PartyEscapeScene.js';
 import StagePauseScene from './scenes/StagePauseScene.js';
+import LastMailScene from './scenes/LastMailScene.js';
 import './systems/Screen.js';
 import { startPwa } from './systems/Pwa.js';
 import { GameAudioDirector } from './audio/GameAudioDirector.js';
@@ -55,7 +56,7 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   input: { activePointers: 4 },
-  scene: [BootScene, MenuScene, WorldIntroScene, BonusHubScene, CityTaxiScene, PartyEscapeScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, StageBonusScene, DirectorMinigolfScene, StagePauseScene, ElevatorScene, GameOverScene, VictoryScene]
+  scene: [BootScene, MenuScene, WorldIntroScene, BonusHubScene, CityTaxiScene, PartyEscapeScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, StageBonusScene, DirectorMinigolfScene, StagePauseScene, LastMailScene, ElevatorScene, GameOverScene, VictoryScene]
 };
 
 window.__game = new Phaser.Game(config);
