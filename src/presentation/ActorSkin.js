@@ -12,6 +12,9 @@ export default class ActorSkin {
     this.initialScaleX = spec.referenceScaleX ?? (source.scaleX || 1);
     this.initialScaleY = spec.referenceScaleY ?? (source.scaleY || 1);
     this.image = scene.add.image(source.x, source.y, spec.texture, spec.frame);
+    // Narrative actors can live inside moving/hidden/masked containers too.
+    // Keep their local transform and draw order instead of replacing the source texture.
+    if (source.parentContainer) source.parentContainer.addAt(this.image, source.parentContainer.getIndex(source) + 1);
     if (source.input) {
       this.image.setInteractive({ useHandCursor: true }).on('pointerdown', (...args) => {
         if (source.input?.enabled) source.emit('pointerdown', ...args);
@@ -36,6 +39,8 @@ export default class ActorSkin {
     v.setPosition(s.x + (spec.offsetX || 0), s.y + (spec.offsetY || 0));
     v.setRotation(s.rotation + (spec.rotation || 0)).setFlip(spec.flipX ?? s.flipX, s.flipY);
     v.setAlpha(s.alpha).setVisible(s.visible && s.active).setDepth(s.depth + 0.01);
+    v.setScrollFactor(s.scrollFactorX, s.scrollFactorY);
+    if (s.mask) v.setMask(s.mask); else if (v.mask) v.clearMask();
     if (v.input) v.input.enabled = !!s.input?.enabled;
     if (s.isTinted) {
       if (s.tintFill) v.setTintFill(s.tintTopLeft);

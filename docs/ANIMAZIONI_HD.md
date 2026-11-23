@@ -7,6 +7,7 @@ Aggiornamento del 23 novembre 2026. Le immagini mantengono lo stile 2D illustrat
 | Famiglia | Fotogrammi | Comportamento |
 | --- | --- | --- |
 | Jack e Wendy a piedi | 16 ciascuno | Locomozione legata alla distanza percorsa |
+| Ballo di Natale: Jack, Wendy e cinque colleghi distinti | 12 ciascuno | Coreografie dedicate sul posto, sincronizzate al brano; [revisione e collaudo](REVISIONE_SCENE_HD.md) |
 | Jack e Wendy in mare | 12 ciascuno | Nuoto con costume, bombola, maschera e pinne |
 | Otto archetipi di colleghi | 12 ciascuno | Sei pose e sei nuovi intermedi, intercalati |
 | Squali, meduse, pinguini, cani, pupazzi di neve, pesci, granchi | 12 per ciclo | Coda, pinne, tentacoli, zampe e gesti |

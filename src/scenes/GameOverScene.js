@@ -3,6 +3,8 @@ import { FONT, GAME_WIDTH, GAME_HEIGHT, LEVEL_META, playerTex } from '../config/
 import { GameState } from '../state/GameState.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
+import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
+import { stageBackdrop } from '../presentation/NarrativeVisuals.js';
 
 const style = (size, color = '#ffffff', extra = {}) => ({
   fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: 4, ...extra
@@ -11,6 +13,10 @@ const style = (size, color = '#ffffff', extra = {}) => ({
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super('GameOverScene');
+    installStagePresentation(this, { world: 'director',
+      packs: s => stageBackdrop(LEVEL_META[s.levelIndex]?.id).packs,
+      background: s => stageBackdrop(LEVEL_META[s.levelIndex]?.id).texture,
+      heroHeight: 94, bonus: false, pause: false, chrome: false });
   }
 
   init(data) {
@@ -22,7 +28,11 @@ export default class GameOverScene extends Phaser.Scene {
     audio.stopMusic();
     audio.sfx('gameover');
     setupStaticCamera(this);
-    this.add.rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT, 0x1a0000).setOrigin(0);
+    if (this.hdStage) {
+      this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, 2000, GAME_HEIGHT, 0x07131f, .76);
+      const panel = this.add.graphics().fillStyle(0x0c1d2a, .94).fillRoundedRect(GAME_WIDTH / 2 - 310, 24, 620, 382, 20);
+      panel.lineStyle(1, 0xd7b47b, .7).strokeRoundedRect(GAME_WIDTH / 2 - 310, 24, 620, 382, 20);
+    } else this.add.rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT, 0x1a0000).setOrigin(0);
 
     const title = this.add.text(GAME_WIDTH / 2, 70, 'BURNOUT!', style(52, '#ff3030', { strokeThickness: 8 })).setOrigin(0.5);
     this.tweens.add({ targets: title, scale: 1.08, duration: 400, yoyo: true, repeat: -1 });
@@ -31,7 +41,8 @@ export default class GameOverScene extends Phaser.Scene {
       style(12, '#ffb0b0', { align: 'center' })).setOrigin(0.5);
 
     // Collapsed employee
-    const spr = this.add.image(GAME_WIDTH / 2, 178, playerTex(GameState.character, 'sleep')).setScale(3);
+    const spr = this.add.image(GAME_WIDTH / 2, 183, playerTex(GameState.character, 'sleep')).setScale(3);
+    this.player = spr;
     const zzz = this.add.text(GAME_WIDTH / 2 + 50, 150, 'Zzz', style(16)).setOrigin(0.5);
     this.tweens.add({ targets: zzz, y: 136, alpha: 0.3, duration: 800, yoyo: true, repeat: -1 });
     spr.setTint(0xbbbbbb);
@@ -79,6 +90,7 @@ export default class GameOverScene extends Phaser.Scene {
     this.texts = this.options.map((o, i) => {
       const t = this.add.text(GAME_WIDTH / 2, 250 + i * 40, o.label, style(15, o.color)).setOrigin(0.5)
         .setInteractive({ useHandCursor: true });
+      if (this.hdStage) t.setPadding(18, 8).setBackgroundColor('#173342');
       t.on('pointerover', () => { this.selected = i; this._refresh(); });
       t.on('pointerdown', () => this._choose(i));
       return t;

@@ -13,7 +13,7 @@ import { setupStaticCamera } from '../utils/view.js';
 import { preloadHdAssets } from '../presentation/AssetRegistry.js';
 import { BONUS_BY_ID } from '../bonus/StageBonusCatalog.js';
 import { GameState } from '../state/GameState.js';
-import { startLevel } from '../systems/Trip.js';
+import { startLevel, ensureTrip } from '../systems/Trip.js';
 import { LEVELS } from '../levels/index.js';
 
 // Generates every 8-bit texture and animation in code, then opens the menu.
@@ -55,12 +55,28 @@ export default class BootScene extends Phaser.Scene {
       if (BONUS_BY_ID[bonus]) { this.scene.start('StageBonusScene', { bonus, preview: true }); return; }
       if (bonus !== null) { this.scene.start('BonusHubScene'); return; }
       if (import.meta.env.DEV) {
+        const query = new URLSearchParams(window.location.search);
+        const preview = query.get('scene');
+        if (['elevator', 'burnout', 'food', 'food-toxic', 'food-trip', 'dance'].includes(preview)) {
+          GameState.newGame(query.get('character') === 'woman' ? 'woman' : 'man');
+          const requested = Number(query.get('level') ?? 14);
+          const levelIndex = Number.isInteger(requested) && LEVELS[requested] ? requested : 14;
+          GameState.seenWorldIntros['5:' + GameState.character] = true;
+          if (preview === 'dance') this.scene.start('PartyScene', { preview: true, previewOutcome: query.get('outcome') });
+          else if (preview.startsWith('food')) {
+            ensureTrip(10);
+            this.scene.start('FoodScene', { previewPhase: preview.slice(5) || 'choose' });
+          } else this.scene.start(preview === 'elevator' ? 'ElevatorScene' : 'GameOverScene', {
+            levelIndex, preview: query.get('autoplay') !== '1'
+          });
+          return;
+        }
         if (new URLSearchParams(window.location.search).has('ending')) { this.scene.start('VictoryScene'); return; }
         const requested = new URLSearchParams(window.location.search).get('level');
         const index = Number(requested);
         if (requested !== null && Number.isInteger(index) && LEVELS[index]) {
           GameState.newGame(new URLSearchParams(window.location.search).get('character') === 'woman' ? 'woman' : 'man');
-          startLevel(this, index); return;
+          startLevel(this, index, { skipIntro: query.get('skipIntro') === '1' }); return;
         }
       }
       this.scene.start('MenuScene');

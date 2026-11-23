@@ -6,6 +6,7 @@ Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e 
 
 - [Campagna completa](PORTING_CAMPAGNA_HD.md): matrice dei 19 stage, scene e prove della campagna.
 - [Animazioni HD e mezzi](ANIMAZIONI_HD.md): cicli attuali, boss, costumi da sub, personaggi a bordo e manutenzione.
+- [Scene di raccordo e ballo HD](REVISIONE_SCENE_HD.md): ascensore, burnout, cibo, briefing, quiz e 84 nuove pose di danza per sette personaggi.
 - [Musica, jingle ed effetti](AUDIO.md): integrati nel gioco locale, con 19 temi di livello, varianti per boss e bonus, sblocco al primo comando, mix e anteprima d’ascolto.
 - [Introduzioni animate](INTRODUZIONI_ANIMATE.md): cinque mondi, dieci clip da 15 secondi con Jack/Wendy e voci italiane, integrate localmente nel gioco.
 - [Minigiochi aggiornati](REVISIONE_MINIGIOCHI.md): otto nuove attività, accessi nella campagna, controlli e verifiche.

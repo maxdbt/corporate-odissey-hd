@@ -1,0 +1,252 @@
+{
+  "frames": {
+    "sistemista_dance1": {
+      "frame": {
+        "x": 85,
+        "y": 5,
+        "w": 197,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 15,
+        "w": 197,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance2": {
+      "frame": {
+        "x": 443,
+        "y": 8,
+        "w": 208,
+        "h": 344
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 81,
+        "y": 18,
+        "w": 208,
+        "h": 344
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance3": {
+      "frame": {
+        "x": 807,
+        "y": 13,
+        "w": 197,
+        "h": 339
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 23,
+        "w": 197,
+        "h": 339
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance4": {
+      "frame": {
+        "x": 84,
+        "y": 371,
+        "w": 205,
+        "h": 343
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 19,
+        "w": 205,
+        "h": 343
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance5": {
+      "frame": {
+        "x": 446,
+        "y": 367,
+        "w": 199,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 15,
+        "w": 199,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance6": {
+      "frame": {
+        "x": 808,
+        "y": 367,
+        "w": 209,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 15,
+        "w": 209,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance7": {
+      "frame": {
+        "x": 85,
+        "y": 729,
+        "w": 207,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 14,
+        "w": 207,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance8": {
+      "frame": {
+        "x": 447,
+        "y": 728,
+        "w": 211,
+        "h": 349
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 13,
+        "w": 211,
+        "h": 349
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance9": {
+      "frame": {
+        "x": 809,
+        "y": 726,
+        "w": 201,
+        "h": 351
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 85,
+        "y": 11,
+        "w": 201,
+        "h": 351
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance10": {
+      "frame": {
+        "x": 86,
+        "y": 1093,
+        "w": 210,
+        "h": 346
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 16,
+        "w": 210,
+        "h": 346
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance11": {
+      "frame": {
+        "x": 446,
+        "y": 1092,
+        "w": 201,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 15,
+        "w": 201,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "sistemista_dance12": {
+      "frame": {
+        "x": 810,
+        "y": 1091,
+        "w": 197,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 14,
+        "w": 197,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "image": "sistemista-dance.png",
+    "size": {
+      "w": 1086,
+      "h": 1448
+    },
+    "scale": "1"
+  }
+}

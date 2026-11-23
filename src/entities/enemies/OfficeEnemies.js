@@ -156,6 +156,7 @@ export class ClientHell extends Enemy {
 
   shoot() {
     if (!this.up) return;
+    this.visualAction = { at: this.now, duration: 850, kind: 'attack' };
     const vx = 210 * this.dir * this.speedMult();
     new EnemyProjectile(this.scene, this.x + this.dir * 14, this.y - 14, TEX.FLAME, {
       vx, damage: { hp: 10, stress: 8 }, lifespan: 2600

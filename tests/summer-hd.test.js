@@ -16,9 +16,18 @@ test('summer can load independently of the beach; every manifest asset exists wi
   assert.ok(!ASSET_PACKS.summer.assets.some(([key]) => key === 'hd-beach'));
   for (const pack of Object.values(ASSET_PACKS)) for (const [, file, json] of pack.assets) {
     const path = new URL(pack.directory + '/' + file, root), png = readFileSync(path);
-    assert.equal(png.toString('ascii', 1, 4), 'PNG');
-    const width = png.readUInt32BE(16), height = png.readUInt32BE(20);
-    assert.ok(width <= 4096 && height <= 4096, file);
+    let width, height;
+    if (file.endsWith('.webp')) {
+      assert.equal(png.toString('ascii', 0, 4), 'RIFF');
+      assert.equal(png.toString('ascii', 8, 12), 'WEBP');
+      // The delivery encoder uses lossy VP8 backgrounds; atlases remain RGBA PNG.
+      assert.equal(png.toString('ascii', 12, 16), 'VP8 ');
+      width = png.readUInt16LE(26) & 0x3fff; height = png.readUInt16LE(28) & 0x3fff;
+    } else {
+      assert.equal(png.toString('ascii', 1, 4), 'PNG');
+      width = png.readUInt32BE(16); height = png.readUInt32BE(20);
+    }
+    assert.ok(width > 0 && height > 0 && width <= 4096 && height <= 4096, file);
     assert.ok(statSync(path).size < 5 * 1024 * 1024, file);
     if (!json) continue;
     assert.equal(png[25], 6, 'sprites must keep alpha');

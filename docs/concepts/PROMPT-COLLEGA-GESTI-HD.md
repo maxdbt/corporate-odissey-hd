@@ -1,0 +1,10 @@
+# Collega logorroico — gesti HD
+
+23 novembre 2026. Generato con ImageGen integrato. Asset finale: `public/assets/hd-worlds/talker-gestures.png`, atlante JSON accanto all’immagine. Dodici gesti quando il collega è fermo; il cammino conserva il suo ciclo esistente. Metadati rigenerabili con `python scripts/pack_dance_art.py`, PNG non modificato.
+
+## Prompt finale
+
+Use case: stylized-concept.
+Create a production transparent 2D sprite sheet with EXACTLY 12 sequential idle-talking poses of the SAME office colleague, in a strict regular 3-column by 4-row grid, portrait 3:4 canvas. True RGBA transparency, no background, ground, shadow, dividers or text. All full bodies fit completely within their equal cells, consistent scale and center, both feet planted on same baseline.
+Character identity: slim cheerful nerdy adult Italian male office chatterbox, wavy tousled brown hair, rectangular black eyeglasses, large expressive smile, light gray/beige blazer with rolled sleeves, white shirt, navy blue tie, ID badge on a blue lanyard, dark charcoal trousers and brown formal shoes. Match a polished hand-painted comic 2D adventure with detailed fabric shading, clean soft dark outlines, warm light and expressive face. Smooth high definition, not pixel art, not 3D.
+He stands in a mild right-facing three-quarter view and TALKS with animated hands, maintaining both feet on floor. Frames left to right then down: neutral small smile with right hand near chest; preparing to talk; index finger rises; pointing one finger while mouth opens; open hand explaining; shoulders shrug; both hands partly open; left hand sweeps lightly outward; head tilts with raised brow; nods as mouth closes; hand returns to chest; settles close to first pose. Small progressive changes and twelve genuinely different drawings. Stable height and anatomical proportions across frames; never stretched vertically, never growing or shrinking, no running, no walking, no duplicated heads or hands. Keep 10% clear padding inside each grid cell for antialiasing and gestures.

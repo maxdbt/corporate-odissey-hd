@@ -40,9 +40,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,png,webp,mp3,json}'],
         // World art is downloaded when visited, avoiding a full-campaign download on first mobile launch.
         // Intros stream on demand; posters and subtitles also stay out of the bulk precache.
-        globIgnores: ['assets/hd-worlds/**', 'assets/hd-minigolf/**', 'assets/hd-minigames/**', 'assets/hd-city-taxi/**', 'assets/hd-party-escape/**', 'assets/intro/**'],
+        globIgnores: ['assets/hd-worlds/**', 'assets/hd-minigolf/**', 'assets/hd-minigames/**', 'assets/hd-city-taxi/**', 'assets/hd-party-escape/**', 'assets/hd-dance/**', 'assets/hd-interludes/**', 'assets/intro/**'],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:hd-worlds|hd-minigolf|hd-minigames|hd-city-taxi|hd-party-escape)\//,
+          urlPattern: /\/assets\/(?:hd-worlds|hd-minigolf|hd-minigames|hd-city-taxi|hd-party-escape|hd-dance|hd-interludes)\//,
           handler: 'CacheFirst',
           options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 96, maxAgeSeconds: 2592000 },
             cacheableResponse: { statuses: [0, 200] } }

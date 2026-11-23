@@ -4,8 +4,9 @@ import { QUIZZES, nextQuizId } from '../data/quizzes.js';
 import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
 
+const HD = new URLSearchParams(window.location.search).get('graphics') !== 'classic';
 const style = (size, color = '#ffffff', extra = {}) => ({
-  fontFamily: FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: 3, ...extra
+  fontFamily: HD ? 'Segoe UI, Arial, sans-serif' : FONT, fontSize: `${size}px`, fontStyle: 'bold', color, stroke: '#000000', strokeThickness: HD ? 0 : 3, ...extra
 });
 
 const LETTERS = ['A', 'B', 'C'];
@@ -37,6 +38,11 @@ export default class QuizScene extends Phaser.Scene {
 
     // Monitor frame
     const g = this.add.graphics();
+    if (HD) {
+      g.fillStyle(0x0c2231, .98).fillRoundedRect(cx - PANEL_W / 2 - 14, cy - PANEL_H / 2 - 14, PANEL_W + 28, PANEL_H + 28, 18);
+      g.lineStyle(1, 0xcdb17b, .8).strokeRoundedRect(cx - PANEL_W / 2 - 14, cy - PANEL_H / 2 - 14, PANEL_W + 28, PANEL_H + 28, 18);
+      g.fillStyle(0x284655).fillRoundedRect(cx - PANEL_W / 2, cy - PANEL_H / 2, PANEL_W, 25, 7);
+    } else {
     g.fillStyle(0xb8b8a8, 1).fillRect(cx - PANEL_W / 2 - 14, cy - PANEL_H / 2 - 14, PANEL_W + 28, PANEL_H + 28);
     g.fillStyle(0x6e6e62, 1).fillRect(cx - PANEL_W / 2 - 6, cy - PANEL_H / 2 - 6, PANEL_W + 12, PANEL_H + 12);
     g.fillStyle(0x0a2a6a, 1).fillRect(cx - PANEL_W / 2, cy - PANEL_H / 2, PANEL_W, PANEL_H);
@@ -46,17 +52,19 @@ export default class QuizScene extends Phaser.Scene {
     // Window title bar
     g.fillStyle(0xd0d0d0, 1).fillRect(cx - PANEL_W / 2, cy - PANEL_H / 2, PANEL_W, 20);
     g.fillStyle(0xff4040, 1).fillRect(cx + PANEL_W / 2 - 18, cy - PANEL_H / 2 + 4, 12, 12);
-    this.add.text(cx - PANEL_W / 2 + 8, cy - PANEL_H / 2 + 10, 'URGENTE.exe  -  MICRO-PROVA', style(10, '#000000', { stroke: '#d0d0d0', strokeThickness: 0 }))
+    }
+    this.add.text(cx - PANEL_W / 2 + 8, cy - PANEL_H / 2 + 12, 'URGENTE.exe  /  MICRO-PROVA', style(10, HD ? '#e8c58c' : '#000000', { strokeThickness: 0 }))
       .setOrigin(0, 0.5);
 
     const top = cy - PANEL_H / 2 + 28;
     this.add.text(cx, top + 6, this.quiz.title, style(16, '#ffd800')).setOrigin(0.5, 0);
-    this.add.text(cx, top + 34, this.quiz.question, style(13, '#ffffff', { align: 'center', lineSpacing: 4 })).setOrigin(0.5, 0);
+    this.add.text(cx, top + 34, this.quiz.question, style(13, '#ffffff', { align: 'center', lineSpacing: 4, wordWrap: { width: PANEL_W - 40 } })).setOrigin(0.5, 0);
 
     this.choiceTexts = this.quiz.choices.map((c, i) => {
       const t = this.add.text(cx - PANEL_W / 2 + 40, top + 108 + i * 40, `${LETTERS[i]}) ${c.label}`, style(13))
         .setOrigin(0, 0.5)
         .setInteractive({ useHandCursor: true });
+      if (HD) t.setPadding(12, 8).setFixedSize(PANEL_W - 80, 34).setBackgroundColor('#183545');
       t.on('pointerover', () => { if (this.phase === 'choose') { this.selected = i; this._refresh(); } });
       t.on('pointerdown', () => this._choose(i));
       return t;
@@ -65,7 +73,7 @@ export default class QuizScene extends Phaser.Scene {
     this.hint = this.add.text(cx, cy + PANEL_H / 2 - 18, '1/2/3 o A/B/C  -  FRECCE + INVIO  -  TOCCA UNA RISPOSTA', style(9, '#9be7ff'))
       .setOrigin(0.5);
 
-    this.outcomeText = this.add.text(cx, top + 150, '', style(14, '#ffffff', { align: 'center', lineSpacing: 6 }))
+    this.outcomeText = this.add.text(cx, top + 150, '', style(14, '#ffffff', { align: 'center', lineSpacing: 6, wordWrap: { width: PANEL_W - 60 } }))
       .setOrigin(0.5).setVisible(false);
 
     const kb = this.input.keyboard;
@@ -95,6 +103,7 @@ export default class QuizScene extends Phaser.Scene {
 
   _refresh() {
     this.choiceTexts.forEach((t, i) => t.setColor(i === this.selected ? '#ffd800' : '#ffffff'));
+    if (HD) this.choiceTexts.forEach((t, i) => t.setBackgroundColor(i === this.selected ? '#305665' : '#183545'));
     this.cursor.setY(this.choiceTexts[this.selected].y);
   }
 

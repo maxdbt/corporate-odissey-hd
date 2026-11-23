@@ -24,10 +24,12 @@ const VISIONS = [TEX.TEAMS_METEOR, TEX.EXCEL, TEX.P_TEAMS, TEX.MAIL, TEX.TALKER1
 export default class FoodScene extends Phaser.Scene {
   constructor() {
     super('FoodScene');
-    installStagePresentation(this, { world: s => s.scene.get('GameScene')?.level?.theme || 'desert', drawMethods:['drawStand'], bonus:false });
+    installStagePresentation(this, { world: s => s.scene.get('GameScene')?.level?.theme || 'desert',
+      drawMethods:['drawStand'], extraPacks: ['world-toilet'], bonus:false });
   }
 
-  init() {
+  init(data = {}) {
+    this.previewPhase = data.previewPhase;
     this.phase = 'choose';
     this.sel = 1;
     this.behind = ['trip', 'toxic'];
@@ -60,6 +62,10 @@ export default class FoodScene extends Phaser.Scene {
     });
     audio.sfx('quiz');
     this.cameras.main.fadeIn(250, 0, 0, 0);
+    if (['toxic', 'trip'].includes(this.previewPhase)) this.time.delayedCall(500, () => {
+      this.dish = this.menu.dishes[0];
+      if (this.previewPhase === 'toxic') this.toilet(); else this.hallucination();
+    });
   }
 
   drawStand() {
@@ -127,6 +133,7 @@ export default class FoodScene extends Phaser.Scene {
 
   // Full-screen psychedelic whirl: icons spin around the player for TRIP_MS.
   hallucination() {
+    const duration = this.previewPhase ? 20000 : TRIP_MS;
     this.phase = 'trip';
     audio.sfx('freeze');
     const layer = this.add.container(0, 0).setDepth(40);
@@ -146,11 +153,11 @@ export default class FoodScene extends Phaser.Scene {
     this.tripCount = this.add.text(GAME_WIDTH / 2, 385, '', tstyle(14, '#ffd800', { strokeThickness: 5 })).setOrigin(0.5);
     layer.add([this.tripText, this.tripCount]);
     this.tripLayer = layer;
-    this.tripEnd = this.time.now + TRIP_MS;
+    this.tripEnd = this.time.now + duration;
     // Sway around the centre of the screen, zoomed in so the rotated corners stay covered.
     const cam = this.cameras.main;
     cam.setOrigin(0.5).setZoom(RENDER_SCALE * 1.15).setScroll(GAME_WIDTH / 2 - cam.width / 2, GAME_HEIGHT / 2 - cam.height / 2);
-    this.time.delayedCall(TRIP_MS, () => {
+    this.time.delayedCall(duration, () => {
       setupStaticCamera(this);
       layer.destroy();
       this.outcome('trip');
@@ -159,6 +166,7 @@ export default class FoodScene extends Phaser.Scene {
 
   // Locked in the stand's toilet for TOXIC_MS: the door shakes, the countdown runs.
   toilet() {
+    const duration = this.previewPhase ? 20000 : TOXIC_MS;
     this.phase = 'toxic';
     ensureToiletTextures(this);
     audio.sfx('hurt');
@@ -171,22 +179,33 @@ export default class FoodScene extends Phaser.Scene {
     g.fillStyle(0x6a7a6a).fillRect(0, 380, GAME_WIDTH, 70);
     g.fillStyle(0x4a5a4a).fillRect(GAME_WIDTH / 2 - 80, 150, 160, 232);
     layer.add(g);
-    const door = this.add.container(GAME_WIDTH / 2, 160);
-    door.add(this.add.rectangle(0, 0, 140, 220, 0x8a6a4a).setOrigin(0.5, 0).setStrokeStyle(4, 0x4a3a2a));
-    door.add(this.add.rectangle(0, 40, 70, 18, 0xd02020));
-    door.add(this.add.text(0, 40, 'OCCUPATO', tstyle(9, '#ffffff', { strokeThickness: 2 })).setOrigin(0.5));
-    door.add(this.add.rectangle(50, 110, 8, 14, 0xd0d0d0));
+    const doorX = this.hdStage ? GAME_WIDTH * .81 : GAME_WIDTH / 2;
+    const door = this.add.container(doorX, 160);
+    if (this.hdStage) {
+      g.clear();
+      layer.add(this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'hd-world-toilet').setDisplaySize(GAME_WIDTH, GAME_HEIGHT));
+      layer.add(this.add.rectangle(GAME_WIDTH / 2, 65, GAME_WIDTH, 90, 0x09202a, .88));
+      layer.add(this.add.rectangle(GAME_WIDTH / 2, 422, GAME_WIDTH, 56, 0x09202a, .94));
+      door.add(this.add.rectangle(0, 50, 104, 38, 0x14252c, .96).setStrokeStyle(1, 0xe9c581));
+      door.add(this.add.circle(-36, 50, 4, 0xef765c));
+      door.add(this.add.text(7, 50, 'OCCUPATO', tstyle(10, '#ffe8b8', { strokeThickness: 0 })).setOrigin(.5));
+    } else {
+      door.add(this.add.rectangle(0, 0, 140, 220, 0x8a6a4a).setOrigin(0.5, 0).setStrokeStyle(4, 0x4a3a2a));
+      door.add(this.add.rectangle(0, 40, 70, 18, 0xd02020));
+      door.add(this.add.text(0, 40, 'OCCUPATO', tstyle(9, '#ffffff', { strokeThickness: 2 })).setOrigin(0.5));
+      door.add(this.add.rectangle(50, 110, 8, 14, 0xd0d0d0));
+      layer.add(this.add.image(120, 380, 'wc_toilet').setOrigin(0.5, 1).setScale(1.5));
+    }
     layer.add(door);
-    layer.add(this.add.image(120, 380, 'wc_toilet').setOrigin(0.5, 1).setScale(1.5));
     layer.add(this.add.text(GAME_WIDTH / 2, 60, `INTOSSICAZIONE ALIMENTARE!\nBLOCCATO NEL BAGNO ${this.menu.ofPlace}`,
       tstyle(16, '#b8f070', { align: 'center', strokeThickness: 5, lineSpacing: 4 })).setOrigin(0.5));
-    const moan = this.add.text(GAME_WIDTH / 2 + 110, 200, 'OOOH...\nIL MIO STOMACO...', tstyle(10, '#000000', {
+    const moan = this.add.text(this.hdStage ? GAME_WIDTH * .54 : GAME_WIDTH / 2 + 110, 200, 'OOOH...\nIL MIO STOMACO...', tstyle(10, '#000000', {
       strokeThickness: 0, backgroundColor: '#ffffff', padding: { x: 6, y: 4 }, align: 'center' })).setOrigin(0, 0.5);
     layer.add(moan);
     const count = this.add.text(GAME_WIDTH / 2, 420, '', tstyle(14, '#ffd800', { strokeThickness: 5 })).setOrigin(0.5);
     layer.add(count);
-    this.tweens.add({ targets: door, x: GAME_WIDTH / 2 + 4, duration: 60, yoyo: true, repeat: -1, repeatDelay: 500 });
-    const end = this.time.now + TOXIC_MS;
+    this.tweens.add({ targets: door, x: doorX + 4, duration: 60, yoyo: true, repeat: -1, repeatDelay: 500 });
+    const end = this.time.now + duration;
     const tick = this.time.addEvent({
       delay: 100, loop: true,
       callback: () => {
@@ -195,7 +214,7 @@ export default class FoodScene extends Phaser.Scene {
       }
     });
     this.time.addEvent({ delay: 1000, repeat: 3, callback: () => audio.sfx('hurt') });
-    this.time.delayedCall(TOXIC_MS, () => {
+    this.time.delayedCall(duration, () => {
       tick.remove();
       layer.destroy();
       this.outcome('toxic');
@@ -206,7 +225,14 @@ export default class FoodScene extends Phaser.Scene {
     if (this.phase !== 'trip' || !this.tripLayer) return;
     // Rainbow stripes, spinning icons, swaying camera.
     const g = this.tripBg.clear();
-    for (let i = 0; i < 10; i++) {
+    if (this.hdStage) {
+      g.fillGradientStyle(0x112633, 0x182d4a, 0x352646, 0x412339).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+      for (let i = 0; i < 6; i++) {
+        const col = Phaser.Display.Color.HSVToRGB((time / 6500 + i / 6) % 1, .45, .8).color;
+        g.fillStyle(col, .13).fillEllipse(GAME_WIDTH / 2 + Math.cos(time / 1900 + i) * 240,
+          GAME_HEIGHT / 2 + Math.sin(time / 2100 + i) * 150, 340, 300);
+      }
+    } else for (let i = 0; i < 10; i++) {
       const col = Phaser.Display.Color.HSVToRGB(((time / 900) + i / 10) % 1, 0.8, 1).color;
       g.fillStyle(col).fillRect(0, i * 45, GAME_WIDTH, 45);
     }
@@ -242,6 +268,7 @@ export default class FoodScene extends Phaser.Scene {
   }
 
   finish() {
+    if (this.previewPhase) { this.scene.start('MenuScene'); return; }
     const gs = this.scene.get('GameScene');
     setupStaticCamera(this);
     if (gs && this.result?.time) gs.timeLeft = Math.max(1, gs.timeLeft + this.result.time);

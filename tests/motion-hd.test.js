@@ -71,6 +71,37 @@ test('sea, boss and passenger scenes explicitly load their animation packs',()=>
  assert.ok(ASSET_PACKS['fauna-sea'].transient);
 });
 
+test('desk client keeps normal HD height after emerging and animates without travelling',()=>{
+ const s={...source('clienthell'),scaleX:1,scaleY:.05},skin={},seen=new Set();
+ const birth=entityMotionSpec(scene,s,skin,16,35);
+ assert.equal(birth.referenceScaleY,1,'the hidden 5% scale must not become a 20x multiplier');
+ for(let i=0;i<12;i++){
+  scene.time.now=i*95;s.scaleY=1;
+  const pose=entityMotionSpec(scene,s,skin,16,35);seen.add(pose.frame);
+  assert.equal(pose.height*Math.abs(s.scaleY/birth.referenceScaleY),35);
+ }
+ assert.equal(seen.size,12,'stationary desk clients must gesture instead of freezing a walk frame');
+ beginBossAction(s,1200,850);scene.time.now=1500;
+ assert.equal(entityMotionSpec(scene,s,skin,16,35).texture,'hd-motion-angry-action');
+ assert.equal(s.x,0);assert.equal(s.body.velocity.x,0);
+});
+
+test('gray colleague has twelve stationary gestures, normal proportions and resumes locomotion',()=>{
+ const s={...source('talker1'),kind:'talker',scaleX:1,scaleY:1},skin={},seen=new Set();
+ for(let i=0;i<12;i++){
+  scene.time.now=i*100;const pose=npcMotionSpec(scene,s,skin,16,40);
+  assert.equal(pose.texture,'hd-office-talker-gestures');assert.ok(frames[pose.texture][pose.frame]);
+  assert.equal(pose.referenceScaleY,1);seen.add(pose.frame);
+ }
+ assert.equal(seen.size,12);
+ s.x+=2;s.body.velocity.x=42;
+ assert.notEqual(npcMotionSpec(scene,s,skin,16,40).texture,'hd-office-talker-gestures');
+ s.body.velocity.x=0;
+ assert.equal(npcMotionSpec(scene,s,skin,16,40).texture,'hd-office-talker-gestures');
+ const paused=npcMotionSpec(scene,s,skin,0,40);
+ assert.deepEqual(npcMotionSpec(scene,s,skin,0,40),paused);
+});
+
 test('every vehicle uses 12 integrated rider frames per character and releases its attachments on dismount',()=>{
  for(const type of [...Object.keys(RIDE_SKINS),'camel-flying'])for(const character of ['man','woman']){
   const texture='hd-ride-'+type;

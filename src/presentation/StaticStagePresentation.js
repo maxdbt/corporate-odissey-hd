@@ -11,7 +11,9 @@ import { setupStaticCamera } from '../utils/view.js';
 import { BONUS_BY_STAGE } from '../bonus/StageBonusCatalog.js';
 import { openStageBonus } from '../bonus/StageBonusAccess.js';
 import { toggleFullscreen } from '../systems/Screen.js';
-import { advanceLocomotion, npcMotionSpec, entityMotionSpec, HERO_FRAME_COUNT } from './MotionCatalog.js';
+import { npcMotionSpec, entityMotionSpec } from './MotionCatalog.js';
+import { narrativeHeroSpec } from './NarrativeVisuals.js';
+import { colleagueDanceSpec } from './DanceVisuals.js';
 
 const enabled=()=>new URLSearchParams(window.location.search).get('graphics')!=='classic';
 const font='Segoe UI, Arial, sans-serif';
@@ -20,9 +22,10 @@ const font='Segoe UI, Arial, sans-serif';
 export function installStagePresentation(scene, options={}) {
  const originalPreload=scene.preload,originalCreate=scene.create;
  const theme=()=> (typeof options.world==='function'?options.world(scene):options.world)||LEVELS[scene.levelIndex]?.visualTheme?.replace(/-hd$/,'')||'travel';
+ const packs=()=>[...(typeof options.packs==='function'?options.packs(scene):options.packs??THEME_PACKS[theme()+'-hd']??[]),...(options.extraPacks||[])];
  scene.preload=function(){
   originalPreload?.call(this);
-  if(enabled())preloadAssetPacks(this,[...(THEME_PACKS[theme()+'-hd']||[]),...(options.extraPacks||[])]);
+  if(enabled())preloadAssetPacks(this,packs());
  };
  for(const name of options.drawMethods||[]){
   const original=scene[name];
@@ -38,8 +41,7 @@ export function installStagePresentation(scene, options={}) {
   };
  }
  scene.create=function(){
-  const packs=THEME_PACKS[theme()+'-hd'];
-  this.hdStage=enabled()&&assetPacksReady(this,packs)?new StaticStagePresentation(this,theme(),options):null;
+  this.hdStage=enabled()&&assetPacksReady(this,packs())?new StaticStagePresentation(this,theme(),options):null;
   originalCreate.call(this);
   this.hdStage?.start();
  };
@@ -52,12 +54,22 @@ class StaticStagePresentation {
   const parent=scene.scene.get('GameScene')?.presentation?.viewport;
   this.sharedViewport=parent&&scene.scene.isPaused('GameScene')?parent:null;
   this.viewport=this.sharedViewport||new ViewportController(scene,{zoom:1});
-  this.background=scene.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,'hd-world-'+world).setDisplaySize(GAME_WIDTH,GAME_HEIGHT).setDepth(-100);
+  const background=typeof options.background==='function'?options.background(scene):options.background;
+  this.background=scene.add.image(GAME_WIDTH/2,GAME_HEIGHT/2,background||'hd-world-'+world).setDepth(-100);
+  this.fitBackground();
   this.onPost=(_,delta)=>this.update(delta);
-  this.onResize=()=>setupStaticCamera(scene);
+  this.onResize=()=>{setupStaticCamera(scene);this.fitBackground();options.onResize?.(scene);};
+ }
+ fitBackground(){
+  const image=this.background;
+  if(this.options.backgroundFit==='stretch'){
+   image.setDisplaySize(Math.max(GAME_WIDTH,this.viewport.metrics.width),GAME_HEIGHT);return;
+  }
+  image.setScale(Math.max(Math.max(GAME_WIDTH,this.viewport.metrics.width)/image.width,GAME_HEIGHT/image.height));
  }
  start(){
   const s=this.scene,key=s.sys.settings.key;
+  const controlsX=this.options.controlsX??GAME_WIDTH-18;
   setupStaticCamera(s);
   if(this.options.hideFirstGraphic)s.children.list.find(o=>o.type==='Graphics')?.setVisible(false);
   if(key==='RevenueScene'&&s.ship){
@@ -79,7 +91,7 @@ class StaticStagePresentation {
     fontFamily:font,fontSize:'12px',fontStyle:'bold',color:'#ffe4a6',backgroundColor:'#102737',padding:{x:12,y:8}
    }).setOrigin(1,.5).setDepth(56).setInteractive({useHandCursor:true}).on('pointerdown',()=>openStageBonus(s));
   }
-  if(this.options.chrome!==false)this.fullscreen=s.add.text(GAME_WIDTH-18,54,'⛶',{fontFamily:font,fontSize:'24px',color:'#fff',backgroundColor:'#102737',padding:{x:6,y:2}})
+  if(this.options.chrome!==false)this.fullscreen=s.add.text(controlsX,54,'⛶',{fontFamily:font,fontSize:'24px',color:'#fff',backgroundColor:'#102737',padding:{x:6,y:2}})
    .setOrigin(1,.5).setDepth(56).setInteractive({useHandCursor:true}).on('pointerdown',toggleFullscreen);
   if(this.options.pause!==false){
    const pause=()=>{
@@ -89,7 +101,7 @@ class StaticStagePresentation {
    this.pauseKey=ev=>{if(!ev.repeat&&['p','P'].includes(ev.key))pause();};
    s.input.keyboard?.on('keydown',this.pauseKey);
    this.onBlur=pause;s.game.events.on(Phaser.Core.Events.BLUR,this.onBlur);
-   s.add.text(GAME_WIDTH-65,54,'Ⅱ',{fontFamily:font,fontSize:'24px',color:'#fff',backgroundColor:'#102737',padding:{x:6,y:2}})
+   s.add.text(controlsX-47,54,'Ⅱ',{fontFamily:font,fontSize:'24px',color:'#fff',backgroundColor:'#102737',padding:{x:6,y:2}})
     .setOrigin(1,.5).setDepth(56).setInteractive({useHandCursor:true}).on('pointerdown',pause);
   }
   s.events.on(Phaser.Scenes.Events.POST_UPDATE,this.onPost);
@@ -99,45 +111,45 @@ class StaticStagePresentation {
  }
  resolve(source){
   const key=source.texture?.key;
+  if(source.visualDance?.character)return()=>colleagueDanceSpec(source);
   if(key?.startsWith('pax_')&&this.scene.textures.exists('hd-world-passengers')){
    return (skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,118)||({texture:'hd-world-passengers',frame:source.texture.key.slice(4).replace(/[12]$/,''),height:118});
   }
   if(key?.startsWith('man_')||key?.startsWith('woman_')){
-   const char=key.includes('woman')?'woman':'man';
-   return (skin,delta)=>{
-    const moving=source.anims?.isPlaying;
-    if(moving&&skin)return {texture:'hd-'+(char==='woman'?'wendy':'jack')+'-locomotion',frame:char+'_move'+(advanceLocomotion(skin,source,delta,100,HERO_FRAME_COUNT)+1),height:source===this.scene.player?92:65};
-    return {texture:'hd-'+(char==='woman'?'wendy':'jack')+'-motion',frame:char+'_'+(moving?'run'+(Math.floor(this.scene.time.now/90)%8+1):'idle1'),height:source===this.scene.player?92:65};
-   };
+   return (skin={},delta=0)=>narrativeHeroSpec(source,skin,delta,this.scene.time.now,
+    this.options.heroHeight || (source===this.scene.player?92:65));
   }
   if(key==='rev_r'||key==='rev_c'||key==='rev_cx')return()=>({texture:'hd-world-objects',frame:source.texture.key==='rev_r'?'revenue':'cost',height:36,width:36});
   const p=this.theme.props[key],e=this.theme.enemies[key];
   if(p&&this.scene.textures.exists(p[2]||'hd-props'))return(skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,p[1])||({texture:p[2]||'hd-props',frame:p[0],height:p[1],...p[3]});
-  if(e)return(skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,e[1])||npcMotionSpec(this.scene,source,skin,delta,e[1])||({texture:e[2]?.texture||'hd-enemies',frame:e[0],height:e[1],...e[2]});
+  if(e)return(skin,delta)=>entityMotionSpec(this.scene,source,skin,delta,source.hdHeight||e[1])||npcMotionSpec(this.scene,source,skin,delta,source.hdHeight||e[1])||({texture:e[2]?.texture||'hd-enemies',frame:e[0],height:source.hdHeight||e[1],...e[2]});
   return null;
  }
  update(delta){
   const s=this.scene;
   const visit=obj=>{
    if(obj.type==='Text'&&!obj.hdStyled){obj.setStyle({fontFamily:font,strokeThickness:Math.min(1.2,obj.style.strokeThickness)}).setResolution(this.viewport.metrics.scale);obj.hdStyled=true;}
-   if(obj.type==='Container'){obj.list.forEach(visit);return;}
+   if(obj.type==='Container'){[...obj.list].forEach(visit);return;}
    if(!obj.texture||obj.texture.key.startsWith('hd-')||this.skins.has(obj))return;
    const resolver=this.resolve(obj);
    if(!resolver)return;
-   if(obj.parentContainer){
-    // Decorative sprites inside a moving container retain its transform and visibility.
-    const spec=resolver();
-    // Packing refreshes the original texture on each choice. Keep its original
-    // dimensions so repeating that swap cannot shrink an already-HD slot icon.
-    obj.hdOriginalSize ||= {w:obj.displayWidth,h:obj.displayHeight};
-    const {w,h}=obj.hdOriginalSize;
-    obj.setTexture(spec.texture,spec.frame).setDisplaySize(w,h);
-   }else this.skins.set(obj,new ActorSkin(s,obj,(skin,delta)=>(this.resolve(obj)||resolver)(skin,delta)));
+   const nested=obj.parentContainer&&!obj.hdHeight&&{w:obj.displayWidth,h:obj.displayHeight};
+   this.skins.set(obj,new ActorSkin(s,obj,(skin,delta)=>{
+    const spec=(this.resolve(obj)||resolver)(skin,delta);
+    return nested?{...spec,width:undefined,height:nested.h,maxWidth:nested.w}:spec;
+   }));
   };
   [...s.children.list].forEach(visit);
   for(const [source,skin]of this.skins){if(!source.scene||!skin.source){skin.destroy();this.skins.delete(source);}else skin.sync(delta);}
   if(this.bonusButton){const config=BONUS_BY_STAGE[LEVELS[s.levelIndex]?.id];this.bonusButton.setAlpha(GameState.stageBonusAttempts?.[config.id] ? .4 : 1);}
-  if(import.meta.env.DEV)s.game.canvas.dataset.staticStage=JSON.stringify({scene:s.sys.settings.key,world:this.world,level:LEVELS[s.levelIndex]?.id,skins:this.skins.size,phase:s.phase||null});
+  if(import.meta.env.DEV){
+   const legacy=new Set();
+   const inspect=o=>{if(!o.visible||!o.active)return;if(o.type==='Container'){o.list.forEach(inspect);return;}
+    const key=o.texture?.key;if(['Image','Sprite','TileSprite'].includes(o.type)&&key&&!key.startsWith('hd-')&&!key.startsWith('__')&&!this.skins.has(o))legacy.add(key);};
+   s.children.list.forEach(inspect);
+   s.game.canvas.dataset.staticStage=JSON.stringify({scene:s.sys.settings.key,world:this.world,level:LEVELS[s.levelIndex]?.id,
+    skins:this.skins.size,phase:s.phase||null,legacyTextures:[...legacy]});
+  }
  }
  destroy(){
   const s=this.scene;s.events.off(Phaser.Scenes.Events.POST_UPDATE,this.onPost);

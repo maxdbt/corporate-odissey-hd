@@ -6,6 +6,8 @@ import { audio } from '../systems/Audio8bit.js';
 import { setupStaticCamera } from '../utils/view.js';
 import { tstyle, resultPanel, effectLines } from '../ui/TripUI.js';
 import { ensurePartyTextures } from '../gfx/party.js';
+import { ensureDanceUi } from '../presentation/DancePresentation.js';
+import { danceBeatAt, DANCE_COLLEAGUES } from '../presentation/DanceVisuals.js';
 
 const SONG_S = 25;
 const BPM_START = 110;
@@ -31,7 +33,7 @@ const LANES = [
 const KEYS = {
   ArrowLeft: 0, a: 0, A: 0, ArrowDown: 1, s: 1, S: 1, ArrowUp: 2, w: 2, W: 2, ArrowRight: 3, d: 3, D: 3
 };
-const PLAYER_X = 380 + DX / 2;
+const PLAYER_X = 300 + DX / 2;
 const PLAYER_Y = 432;
 
 // Jingle Bells, one entry per beat-long slot: [note, beats] (16 bars, loops).
@@ -83,10 +85,13 @@ const bpmAt = (t) => BPM_START + (BPM_END - BPM_START) * Phaser.Math.Clamp(t / S
 export default class PartyScene extends Phaser.Scene {
   constructor() {
     super('PartyScene');
-    installStagePresentation(this, { world: 'party', drawMethods: ['drawRoom'], keepGraphics: ['beams'], bonus: false });
+    installStagePresentation(this, { world: 'party', drawMethods: ['drawRoom'], keepGraphics: ['beams', 'floor'],
+      extraPacks: ['dance'], heroHeight: 210, controlsX: 504 + DX, bonus: false });
   }
 
-  init() {
+  init(data = {}) {
+    this.preview = !!data.preview;
+    this.previewOutcome = this.preview ? Object.values(OUTCOMES).flat().find(o => o.id === data.previewOutcome) : null;
     this.phase = 'intro';
     this.songT = -3;
     this.stats = { perfect: 0, good: 0, miss: 0, stray: 0 };
@@ -119,6 +124,10 @@ export default class PartyScene extends Phaser.Scene {
   create() {
     setupStaticCamera(this);
     ensurePartyTextures(this);
+    if (this.hdStage) ensureDanceUi(this);
+    this.arrowScale = this.hdStage ? ARROW_SCALE * 32 / 128 : ARROW_SCALE;
+    this.arrowKey = this.hdStage ? 'hd-dance-arrow' : 'dance_arrow';
+    this.targetKey = this.hdStage ? 'hd-dance-target' : 'dance_target';
     audio.stopMusic();
     this.drawRoom();
     this.drawLanes();
@@ -129,7 +138,7 @@ export default class PartyScene extends Phaser.Scene {
       const lane = KEYS[ev.key];
       if (lane !== undefined) this.press(lane);
     });
-    if (this.sys.game.device.input.touch) this.touchLanes();
+    this.touchLanes();
     this.countText = this.add.text(GAME_WIDTH / 2, 200, '', tstyle(48, '#ffd800', { strokeThickness: 8 })).setOrigin(0.5).setDepth(40);
     const howto = this.sys.game.device.input.touch
       ? 'Tocca la freccia a destra quando quella che cade ci arriva sopra e si illumina!'
@@ -138,11 +147,13 @@ export default class PartyScene extends Phaser.Scene {
       .setOrigin(0.5).setDepth(40).setName('howto');
     this.phase = 'dance';
     this.cameras.main.fadeIn(300, 0, 0, 0);
+    if (this.previewOutcome) this.time.delayedCall(700, () => this.endSong());
   }
 
   // ---------------------------------------------------------------- drawing
 
   drawRoom() {
+    if (this.hdStage) { this.drawHdRoom(); return; }
     const g = this.add.graphics();
     g.fillStyle(0x1a0a2a).fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     for (let x = 0; x < GAME_WIDTH; x += 40) g.fillStyle(x % 80 ? 0x22103a : 0x1e0c32).fillRect(x, 0, 40, 330);
@@ -170,9 +181,38 @@ export default class PartyScene extends Phaser.Scene {
     this.add.text(PLAYER_X, PLAYER_Y - 112, 'TU', tstyle(10, '#ffd800')).setOrigin(0.5).setDepth(5);
   }
 
+  drawHdRoom() {
+    const stageWidth = 520 + DX;
+    this.add.rectangle(stageWidth / 2, 22, stageWidth, 44, 0x0b1926, .88);
+    this.add.text(stageWidth / 2, 20, 'NATALE  /  LA PISTA È TUA', tstyle(17, '#ffe4b4', { strokeThickness: 0 })).setOrigin(.5);
+    this.floor = this.add.graphics(); this.paintFloor(-1);
+    this.beams = this.add.graphics().setBlendMode(Phaser.BlendModes.ADD).setDepth(2);
+    this.ball = this.add.image(GAME_WIDTH / 2, 50, 'mirror_ball').setVisible(false);
+    this.crowd = COLLEAGUES.map(([a,b],i) => {
+      const x = 66 + DX / 2 + i * 88;
+      this.add.ellipse(x, 326, 80, 13, 0x050e17, .3);
+      const actor = this.add.image(x, 326, a).setOrigin(.5,1).setScale(2).setDepth(3);
+      actor.frames2 = [a,b]; actor.hdHeight = 125 + (i % 2) * 12;
+      actor.visualDance = { beat: 0, offset: i * .21, character: DANCE_COLLEAGUES[i] };
+      return actor;
+    });
+    this.char = GameState.character || 'man';
+    this.add.ellipse(PLAYER_X, PLAYER_Y - 3, 190, 25, 0xf8cd7e, .16).setDepth(4);
+    this.add.ellipse(PLAYER_X, PLAYER_Y - 1, 100, 13, 0x04121b, .35).setDepth(4);
+    this.player = this.add.image(PLAYER_X, PLAYER_Y, playerTex(this.char,'idle')).setOrigin(.5,1).setScale(3).setDepth(5);
+    this.player.visualDance = { beat: 0 };
+    this.add.text(24, 369, this.char === 'woman' ? 'WENDY' : 'JACK', tstyle(15,'#ffe6b8', {strokeThickness:1})).setDepth(5);
+    this.add.text(24, 392, 'Segui il ritmo.\nFai colpo sul capo.', tstyle(10,'#e2edf0',{lineSpacing:3})).setDepth(5);
+  }
+
   paintFloor(beat) {
     const g = this.floor.clear();
     const cols = [0xff5ab4, 0x5ab4ff, 0x3cf0a0, 0xffd23f, 0xb45aff];
+    if (this.hdStage) {
+      for (let i = 0; i < 5; i++) g.fillStyle(cols[(i + Math.max(0,beat)) % 5], .08)
+        .fillEllipse(60 + DX / 2 + i * 95, 373 + (i % 2) * 38, 150, 30);
+      return;
+    }
     for (let r = 0; r < 3; r++) for (let x = 0; x < 520 + DX; x += 52) {
       const i = x / 52 + r * 10;
       const lit = beat >= 0 && (i * 7 + beat * 3) % 4 === 0;
@@ -181,25 +221,26 @@ export default class PartyScene extends Phaser.Scene {
   }
 
   drawLanes() {
-    this.add.rectangle(PANEL_X, GAME_HEIGHT / 2 + 10, 250, GAME_HEIGHT - 20, 0x000000, 0.55).setStrokeStyle(2, 0xff5ab4);
+    this.add.rectangle(PANEL_X, GAME_HEIGHT / 2 + 10, 250, GAME_HEIGHT - 20, this.hdStage ? 0x081a28 : 0x000000, this.hdStage ? .91 : .55).setStrokeStyle(1, this.hdStage ? 0xd9b980 : 0xff5ab4);
+    if (this.hdStage) LANES.forEach(l => this.add.rectangle(l.x, 216, 52, 316, l.color, .045));
     this.add.rectangle(PANEL_X, HIT_Y, 244, 2, 0xffffff, 0.35);
-    this.targets = LANES.map((l) => this.add.image(l.x, HIT_Y, 'dance_target').setAngle(l.angle).setScale(ARROW_SCALE)
+    this.targets = LANES.map((l) => this.add.image(l.x, HIT_Y, this.targetKey).setAngle(l.angle).setScale(this.arrowScale)
       .setTint(IDLE_TINT).setAlpha(0.8));
     this.judgeText = this.add.text(PANEL_X, 300, '', tstyle(18, '#ffffff', { strokeThickness: 6 })).setOrigin(0.5).setDepth(30);
   }
 
   drawHud() {
-    this.add.rectangle(100, 98, 192, 118, 0x000000, 0.6).setStrokeStyle(2, 0xffd800);
-    this.add.text(100, 47, 'CLASSIFICA', tstyle(9, '#ffd800')).setOrigin(0.5);
-    this.boardText = this.add.text(10, 58, '', tstyle(8, '#ffffff', { strokeThickness: 2, lineSpacing: 3 }));
+    this.add.rectangle(108, 112, 192, 118, this.hdStage ? 0x0b1d2b : 0x000000, .82).setStrokeStyle(1, 0xcdb17a);
+    this.add.text(108, 63, 'CLASSIFICA', tstyle(9, '#eacb92')).setOrigin(0.5);
+    this.boardText = this.add.text(21, 78, '', tstyle(8, '#ffffff', { strokeThickness: 0, lineSpacing: 3 }));
     this.scoreText = this.add.text(PANEL_X, 18, '', tstyle(12, '#ffffff')).setOrigin(0.5).setDepth(30);
     this.comboText = this.add.text(PANEL_X, 36, '', tstyle(10, '#3cf0a0')).setOrigin(0.5).setDepth(30);
-    this.timeText = this.add.text(PLAYER_X - 60, 100, '', tstyle(10, '#9be7ff')).setOrigin(0.5);
+    this.timeText = this.add.text(PLAYER_X + 15, 69, '', tstyle(11, '#c3e6eb')).setOrigin(0.5);
   }
 
   // Each lane's lower part is a tap zone around its target arrow (several fingers at once are fine).
   touchLanes() {
-    this.input.addPointer(3);
+    if (this.input.manager.pointers.length < 4) this.input.addPointer(4 - this.input.manager.pointers.length);
     LANES.forEach((l, i) => {
       this.add.zone(l.x, HIT_Y - 70, 60, 200).setInteractive()
         .on('pointerdown', () => { if (this.phase === 'dance') this.press(i); });
@@ -213,8 +254,8 @@ export default class PartyScene extends Phaser.Scene {
   press(lane) {
     const t = this.songT;
     const l = LANES[lane];
-    this.targets[lane].setScale(ARROW_SCALE * 1.2);
-    this.tweens.add({ targets: this.targets[lane], scale: ARROW_SCALE, duration: 120 });
+    this.targets[lane].setScale(this.arrowScale * 1.2);
+    this.tweens.add({ targets: this.targets[lane], scale: this.arrowScale, duration: 120 });
     if (t < -0.2) return;
     let best = null;
     this.arrows.forEach((a) => {
@@ -252,8 +293,8 @@ export default class PartyScene extends Phaser.Scene {
     this.tweens.killTweensOf(p);
     p.setPosition(PLAYER_X, PLAYER_Y).setAngle(0);
     if (dir === 'left' || dir === 'right') {
-      p.setTexture(playerTex(this.char, 'walk1')).setFlipX(dir === 'left');
-      this.tweens.add({ targets: p, x: PLAYER_X + (dir === 'left' ? -14 : 14), duration: 90, yoyo: true });
+      p.setTexture(playerTex(this.char, 'walk1')).setFlipX(!this.hdStage && dir === 'left');
+      this.tweens.add({ targets: p, x: PLAYER_X + (dir === 'left' ? -18 : 18), duration: 130, yoyo: true, ease: 'Sine.InOut' });
     } else if (dir === 'up') {
       p.setTexture(playerTex(this.char, 'jump'));
       this.tweens.add({ targets: p, y: PLAYER_Y - 24, duration: 110, yoyo: true });
@@ -265,7 +306,9 @@ export default class PartyScene extends Phaser.Scene {
     const p = this.player;
     this.tweens.killTweensOf(p);
     p.setPosition(PLAYER_X, PLAYER_Y).setTexture(playerTex(this.char, 'hurt'));
-    this.tweens.add({ targets: p, angle: { from: -12, to: 12 }, duration: 70, yoyo: true, repeat: 1, onComplete: () => p.setAngle(0) });
+    const tilt = this.hdStage ? 5 : 12;
+    this.tweens.add({ targets: p, angle: { from: -tilt, to: tilt }, duration: this.hdStage ? 110 : 70,
+      ease: 'Sine.InOut', yoyo: true, repeat: 1, onComplete: () => p.setAngle(0) });
     this.poseUntil = this.time.now + 320;
   }
 
@@ -279,11 +322,12 @@ export default class PartyScene extends Phaser.Scene {
     audio.note(`${root}${i % 2 ? 3 : 2}`, beatLen * 0.8, 'triangle', 0.5);
     this.paintFloor(i);
     this.crowd.forEach((c, k) => {
+      if (this.hdStage) return;
       c.setTexture(c.frames2[(i + k) % 2]);
       this.tweens.add({ targets: c, y: 330, duration: beatLen * 400, yoyo: true });
     });
     this.tweens.add({ targets: this.ball, scale: 1.55, duration: 80, yoyo: true });
-    if (time > (this.poseUntil || 0)) this.player.setFlipX(i % 2 === 1);
+    if (!this.hdStage && time > (this.poseUntil || 0)) this.player.setFlipX(i % 2 === 1);
   }
 
   update(time, delta) {
@@ -301,6 +345,19 @@ export default class PartyScene extends Phaser.Scene {
 
     this.songT += delta / 1000;
     const t = this.songT;
+    if (this.hdStage) {
+      const beat = danceBeatAt(t);
+      this.player.visualDance.beat = beat;
+      this.crowd.forEach((actor,i) => {
+        actor.visualDance.beat = beat;
+        actor.y = 326 - (1 - Math.cos((beat + i * .21) * Math.PI * 2)) * 3;
+        actor.rotation = Math.sin((beat + i * .21) * Math.PI) * .035;
+      });
+      if (time > (this.poseUntil || 0)) {
+        this.player.y = PLAYER_Y - (1 - Math.cos(beat * Math.PI * 2)) * 2;
+        this.player.rotation = Math.sin(beat * Math.PI) * .018;
+      }
+    }
     if (t < 0) this.countText.setText(String(Math.ceil(-t)));
     else if (t < 0.6) this.countText.setText('BALLA!');
     else if (this.countText.text) { this.countText.setText(''); this.children.getByName('howto')?.destroy(); }
@@ -313,7 +370,7 @@ export default class PartyScene extends Phaser.Scene {
       const left = a.t - t;
       if (left > FALL_S) return;
       const l = LANES[a.lane];
-      if (!a.sprite) a.sprite = this.add.image(l.x, SPAWN_Y, 'dance_arrow').setAngle(l.angle).setScale(ARROW_SCALE).setTint(l.color).setDepth(20);
+      if (!a.sprite) a.sprite = this.add.image(l.x, SPAWN_Y, this.arrowKey).setAngle(l.angle).setScale(this.arrowScale).setTint(l.color).setDepth(20);
       a.sprite.y = HIT_Y - (left / FALL_S) * (HIT_Y - SPAWN_Y);
       if (left < -GOOD_S) {
         a.done = true;
@@ -359,10 +416,13 @@ export default class PartyScene extends Phaser.Scene {
 
   endSong() {
     this.phase = 'skit';
+    this.countText.setText('');
+    this.children.getByName('howto')?.destroy();
+    this.player.visualDance = null;
     this.arrows.forEach((a) => a.sprite?.destroy());
     const prec = this.precision();
     const good = prec >= GOOD_PRECISION;
-    this.result = Phaser.Utils.Array.GetRandom(OUTCOMES[good ? 'good' : 'bad']);
+    this.result = this.previewOutcome || Phaser.Utils.Array.GetRandom(OUTCOMES[good ? 'good' : 'bad']);
     this.prec = prec;
     audio.sfx(good ? 'cheer' : 'gameover');
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x000000, 0.45).setDepth(45);
@@ -381,18 +441,20 @@ export default class PartyScene extends Phaser.Scene {
     const p = this.player;
     const px = PLAYER_X;
     const fy = PLAYER_Y;
-    const head = fy - p.displayHeight;
+    const head = fy - (this.hdStage ? 210 : p.displayHeight);
+    const ceoHeight = this.hdStage ? 172 : 88 * 1.4;
     const add = (o) => { L.add(o); return o; };
     const hop = () => this.tweens.add({ targets: p, y: fy - 26, duration: 160, yoyo: true, repeat: 2, ease: 'Quad.Out' });
     // The Mega-Direttore walks onto the floor and stops next to the player.
     const ceoIn = (x, dur = 600) => {
       const ceo = add(this.add.image(560, fy, 'ceo_standing').setOrigin(0.5, 1).setScale(1.4));
+      if (this.hdStage) ceo.hdHeight = ceoHeight;
       this.tweens.add({ targets: ceo, x, duration: dur, ease: 'Quad.Out' });
       return ceo;
     };
     if (id === 'raise') {
       p.setTexture(playerTex(this.char, 'jump'));
-      const ceo = ceoIn(px + 90);
+      const ceo = ceoIn(px + (this.hdStage ? 155 : 90));
       const slip = add(this.add.container(px + 15, head - 45).setScale(0));
       slip.add(this.add.rectangle(0, 0, 110, 70, 0xfaf6e8).setStrokeStyle(3, 0x888888));
       slip.add(this.add.text(0, -24, 'BUSTA PAGA', tstyle(8, '#333333', { strokeThickness: 0 })).setOrigin(0.5));
@@ -400,8 +462,8 @@ export default class PartyScene extends Phaser.Scene {
       slip.add(this.add.text(0, 20, '+12 € LORDI', tstyle(12, '#2a9a3a', { strokeThickness: 3 })).setOrigin(0.5).setAngle(-6));
       this.tweens.add({ targets: slip, scale: 1, delay: 650, duration: 300, ease: 'Back.Out', onStart: () => audio.sfx('coin') });
       this.time.delayedCall(700, hop);
-      const bravo = add(this.add.text(ceo.x, fy - 88 * 1.4 - 14, 'BRAVO!', tstyle(10, '#ffd800')).setOrigin(0.5).setAlpha(0));
-      this.tweens.add({ targets: bravo, alpha: 1, x: px + 95, delay: 900, duration: 200 });
+      const bravo = add(this.add.text(ceo.x, fy - ceoHeight - 14, 'BRAVO!', tstyle(10, '#ffd800')).setOrigin(0.5).setAlpha(0));
+      this.tweens.add({ targets: bravo, alpha: 1, x: px + (this.hdStage ? 155 : 95), delay: 900, duration: 200 });
     } else if (id === 'trip') {
       const s = add(this.add.container(px + 85, -80));
       s.add(this.add.rectangle(0, 0, 90, 60, 0x8a5a2a).setStrokeStyle(4, 0x4a2a12));
@@ -419,13 +481,14 @@ export default class PartyScene extends Phaser.Scene {
         const row = Math.floor(i / 2);
         const side = i % 2 ? 1 : -1;
         const x = px + side * 105 + (row % 2 ? 6 : -6);
-        const c = add(this.add.image(x, -30, 'cotechino').setScale(2));
+        const c = add(this.add.image(x, -30, this.hdStage ? 'hd-dance-cotechino' : 'cotechino').setDisplaySize(80, 32));
         this.tweens.add({ targets: c, y: fy - 16 - row * 30, delay: i * 140, duration: 400, ease: 'Bounce.Out' });
       }
     } else if (id === 'donkey') {
       // The player faints right on the floor: rotate around the feet and lie down.
       p.setTexture(playerTex(this.char, 'hurt'));
       this.tweens.add({ targets: p, angle: 90, duration: 500, ease: 'Bounce.Out', onComplete: () => {
+        if (this.hdStage) p.setTexture(playerTex(this.char,'slide')).setAngle(0).setY(fy-12);
         audio.sfx('hurt');
         this.cameras.main.shake(120, 0.006);
       } });
@@ -441,9 +504,10 @@ export default class PartyScene extends Phaser.Scene {
       this.tweens.add({ targets: z, alpha: 1, y: fy - 90, delay: 900, duration: 600 });
     } else if (id === 'wine') {
       // The Mega-Direttore is on the floor with a glass; the player dances clumsily into him and spills the wine.
-      const ceoX = px + 95;
+      const ceoX = px + (this.hdStage ? 155 : 95);
       const ceo = ceoIn(ceoX, 500);
-      const glass = add(this.add.text(560 - 30, fy - 70, 'Y', tstyle(20, '#ff4060')).setOrigin(0.5));
+      const glass = add(this.hdStage ? this.add.image(530, fy - 95, 'hd-dance-glass').setDisplaySize(22,36)
+        : this.add.text(530, fy - 70, 'Y', tstyle(20, '#ff4060')).setOrigin(.5));
       this.tweens.add({ targets: glass, x: ceoX - 30, duration: 500, ease: 'Quad.Out' });
       p.setTexture(playerTex(this.char, 'walk1'));
       this.tweens.add({ targets: p, x: px + 40, angle: 15, delay: 650, duration: 220, ease: 'Quad.In', onComplete: () => {
@@ -455,11 +519,11 @@ export default class PartyScene extends Phaser.Scene {
         // Glass flips onto the suit: stains on the jacket.
         this.tweens.add({ targets: glass, x: ceoX, y: fy - 80, angle: 200, duration: 220, onComplete: () => {
           glass.destroy();
-          const suitY = fy - 88 * 1.4 + 52 * 1.4;
+          const suitY = fy - ceoHeight * .41;
           for (let i = 0; i < 7; i++) {
             add(this.add.circle(ceoX + Phaser.Math.Between(-18, 18), suitY + Phaser.Math.Between(-16, 16), Phaser.Math.Between(4, 10), 0x9a0a2a));
           }
-          add(this.add.text(ceoX, fy - 88 * 1.4 - 16, 'NOOO!', tstyle(14, '#ffffff'))).setOrigin(0.5);
+          add(this.add.text(ceoX, fy - ceoHeight - 16, 'NOOO!', tstyle(14, '#ffffff'))).setOrigin(0.5);
         } });
       } });
     } else {
@@ -471,7 +535,7 @@ export default class PartyScene extends Phaser.Scene {
       const notes = ['E5', 'D#5', 'F5', 'C#5', 'E5', 'A#4', 'G5', 'C5'];
       notes.forEach((n, i) => this.time.delayedCall(i * 260, () => {
         audio.note(n, 0.22, 'square', 0.4);
-        const m = add(this.add.image(mx, head + 30, 'music_note').setScale(2).setTint(0xff6060).setAngle(Phaser.Math.Between(-40, 40)));
+        const m = add(this.add.image(mx, head + 30, this.hdStage ? 'hd-dance-note' : 'music_note').setDisplaySize(20,28).setTint(0xff6060).setAngle(Phaser.Math.Between(-40, 40)));
         this.tweens.add({ targets: m, x: mx + 20 + i * 14, y: head - 20 + Phaser.Math.Between(-20, 20), angle: m.angle * 2, alpha: 0.3, duration: 900 });
       }));
       add(this.add.text(px - 130, fy - 50, 'IL CONSIGLIO\nNON APPLAUDE', tstyle(9, '#cccccc', { align: 'center' })).setOrigin(0.5));
@@ -491,6 +555,7 @@ export default class PartyScene extends Phaser.Scene {
   finish() {
     if (this.leaving) return;
     this.leaving = true;
+    if (this.preview) { this.scene.start('MenuScene'); return; }
     const o = this.result;
     if (o.hp) GameState.addHp(o.hp);
     if (o.stress) GameState.addStress(o.stress);

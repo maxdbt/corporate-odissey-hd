@@ -324,7 +324,7 @@ export default class OfficePresentation {
         remaining: s.timeLeft, boss: s.bossActive, bonusUsed: GameState.stageBonusAttempts || {},
         player: p ? { x: p.x, y: p.y, pose: p.currentPose, grounded: p.onGround } : null,
         frame: this.skins.get(p)?.image?.frame?.name, skins: this.skins.size, mount:p?.mount?.type||null,
-        motion:[...this.skins].filter(([source])=>source.visible&&source.active).map(([source,skin])=>({key:source.texture.key,texture:skin.image?.texture.key,frame:skin.image?.frame.name,x:source.x,y:source.y})),
+        motion:[...this.skins].filter(([source])=>source.visible&&source.active).map(([source,skin])=>({key:source.texture.key,texture:skin.image?.texture.key,frame:skin.image?.frame.name,x:source.x,y:source.y,height:skin.image?.displayHeight,sourceScaleY:source.scaleY})),
         anchors: s.enemies.getChildren().filter((e) => e.kind === 'copier' || e.kind === 'cabinet')
           .map((e) => ({ kind: e.kind, x: e.x, y: e.y })),
         viewport: this.viewport.metrics, fps: Math.round(s.game.loop.actualFps)

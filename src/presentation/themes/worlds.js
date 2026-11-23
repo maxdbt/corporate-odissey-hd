@@ -3,6 +3,7 @@ import { WORLD_KEYS, WORLD_FLOORS, OUTDOOR_WORLDS } from '../WorldCatalog.js';
 
 const props = { ...officeTheme.props };
 const enemies = { ...officeTheme.enemies };
+enemies.teams_meteor = ['teamsicon', 32];
 const prop = (keys, frame, height, atlas = 'objects', extra = {}) => keys.split(' ').forEach(k => {
   props[k] = [frame, height, `hd-world-${atlas}`, extra];
 });

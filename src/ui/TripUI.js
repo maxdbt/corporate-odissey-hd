@@ -53,8 +53,11 @@ export function choiceDialog(scene, opts) {
   const g = scene.add.graphics();
   g.fillStyle(0x000000, 0.5).fillRect(left + 6, top + 6, W, H);
   g.fillStyle(HD ? 0x122939 : 0xd4d0c8, 1).fillRoundedRect(left, top, W, H, HD ? 10 : 0);
-  g.lineStyle(2, 0xffffff).lineBetween(left, top, left + W, top).lineBetween(left, top, left, top + H);
-  g.lineStyle(2, 0x404040).lineBetween(left + W, top, left + W, top + H).lineBetween(left, top + H, left + W, top + H);
+  if (HD) g.lineStyle(1, 0xcdb17a, .75).strokeRoundedRect(left, top, W, H, 10);
+  else {
+    g.lineStyle(2, 0xffffff).lineBetween(left, top, left + W, top).lineBetween(left, top, left, top + H);
+    g.lineStyle(2, 0x404040).lineBetween(left + W, top, left + W, top + H).lineBetween(left, top + H, left + W, top + H);
+  }
   g.fillStyle(HD ? 0x285066 : 0x000080, 1).fillRect(left + 3, top + 3, W - 6, 20);
   c.add(g);
   c.add(scene.add.text(left + 10, top + 13, opts.title || 'Trasferta', plain(10, '#ffffff')).setOrigin(0, 0.5));
@@ -116,11 +119,17 @@ export function choiceDialog(scene, opts) {
 // Result panel: title + effect lines, closes with ENTER/SPACE/click and calls onClose.
 export function resultPanel(scene, { title, lines = [], color = '#ffffff', onClose, y = GAME_HEIGHT / 2, hint = 'INVIO / TOCCA per continuare' }) {
   const cx = GAME_WIDTH / 2;
-  const h = 70 + lines.length * 18;
   const c = scene.add.container(0, 0).setDepth(70);
-  c.add(scene.add.rectangle(cx, y, 500, h, 0x000000, 0.85).setStrokeStyle(3, 0xffd800));
-  c.add(scene.add.text(cx, y - h / 2 + 18, title, tstyle(14, color, { align: 'center' })).setOrigin(0.5));
-  c.add(scene.add.text(cx, y - h / 2 + 40, lines.join('\n'), tstyle(11, '#ffffff', { align: 'center', lineSpacing: 5 })).setOrigin(0.5, 0));
+  const titleText = scene.add.text(cx, 0, title, tstyle(14, color, { align: 'center', wordWrap: {width: 454} })).setOrigin(.5,0);
+  const body = scene.add.text(cx, 0, lines.join('\n'), tstyle(11, '#ffffff', { align: 'center', lineSpacing: 5, wordWrap: {width: 454} })).setOrigin(.5,0);
+  const h = HD ? 65 + titleText.height + body.height : 70 + lines.length * 18;
+  y = Phaser.Math.Clamp(y, 38 + h / 2, GAME_HEIGHT - 18 - h / 2);
+  if (HD) {
+    const panel = scene.add.graphics().fillStyle(0x0d2331,.97).fillRoundedRect(cx-250,y-h/2,500,h,14);
+    panel.lineStyle(1,0xcdb17a,.8).strokeRoundedRect(cx-250,y-h/2,500,h,14); c.add(panel);
+  } else c.add(scene.add.rectangle(cx, y, 500, h, 0x000000, 0.85).setStrokeStyle(3, 0xffd800));
+  titleText.y=y-h/2+17; body.y=y-h/2+(HD ? 29+titleText.height : 40);
+  c.add([titleText,body]);
   const ht = scene.add.text(cx, y + h / 2 - 12, hint, tstyle(8, '#9be7ff')).setOrigin(0.5);
   c.add(ht);
   scene.tweens.add({ targets: ht, alpha: 0.3, duration: 500, yoyo: true, repeat: -1 });

@@ -32,6 +32,7 @@ export default class BriefScene extends Phaser.Scene {
     this.readyAt = this.time.now + 300;
     const meta = LEVEL_META[this.levelIndex] || LEVEL_META[0];
     const brief = BRIEFS[meta.id] || { where: '', goal: '', tips: [] };
+    if (this.scene.get('GameScene')?.presentation) { this.createHd(meta, brief); return; }
     const cx = GAME_WIDTH / 2;
     const left = cx - W / 2;
     const top = GAME_HEIGHT / 2 - H / 2;
@@ -83,6 +84,44 @@ export default class BriefScene extends Phaser.Scene {
     if (kb) {
       ['ENTER', 'SPACE', 'I', 'ESC', 'Z'].forEach((k) => kb.on(`keydown-${k}`, () => this.close()));
     }
+  }
+
+  createHd(meta, brief) {
+    const cx = GAME_WIDTH / 2, width = 660, left = cx - width / 2, top = 31;
+    const text = (size, color = '#edf3f1', extra = {}) => ({
+      fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: size + 'px', color, ...extra
+    });
+    this.add.rectangle(cx, GAME_HEIGHT / 2, 2400, 1800, 0x041019, .72).setInteractive().on('pointerdown', () => this.close());
+    const panel = this.add.graphics().fillStyle(0x0d2331, .98).fillRoundedRect(left, top, width, 388, 18);
+    panel.lineStyle(1, 0xcdb17a, .7).strokeRoundedRect(left, top, width, 388, 18);
+    panel.fillStyle(0xd2b37b).fillRoundedRect(left + 24, top + 23, 4, 49, 2);
+    this.add.text(left + 42, top + 19, `DOSSIER DI MISSIONE  /  ${meta.id}`, text(10, '#d8ba83', { fontStyle: 'bold' }));
+    this.add.text(left + 42, top + 40, meta.name, text(25, '#fff2da', { fontStyle: 'bold' }));
+    this.add.text(left + 28, top + 93, brief.where, text(12, '#afc6cd', { wordWrap: { width: width - 56 } }));
+    this.add.text(left + 28, top + 137, 'IL TUO OBIETTIVO', text(10, '#e1c18a', { fontStyle: 'bold' }));
+    this.add.text(left + 28, top + 157, brief.goal, text(15, '#ffffff', { wordWrap: { width: width - 56 }, fontStyle: 'bold' }));
+    const columns = brief.tips.length >= 4 ? 2 : 1;
+    const rows = Math.ceil(brief.tips.length / columns), columnWidth = (width - 40) / columns;
+    const ys = [top + 207, top + 207];
+    brief.tips.forEach((tip, i) => {
+      const column = Math.floor(i / rows), x = left + 28 + column * columnWidth, y = ys[column];
+      this.add.text(x, y, String(i + 1).padStart(2, '0'), text(10, '#d8ba83', { fontStyle: 'bold' }));
+      const line = this.add.text(x + 28, y - 1, tip, text(columns === 2 ? 10.5 : 11, '#d5e0e4', {
+        wordWrap: { width: columnWidth - 50 }, lineSpacing: 2
+      }));
+      ys[column] += line.height + 9;
+    });
+    const button = this.add.text(left + width - 24, top + 354, 'INIZIA  →', text(13, '#fff0d0', {
+      backgroundColor: '#31515f', fontStyle: 'bold', padding: { x: 25, y: 12 }
+    })).setOrigin(1, .5).setInteractive({ useHandCursor: true }).on('pointerdown', () => this.close());
+    this.add.text(left + 28, top + 350, 'INVIO / SPAZIO · I per rileggere', text(10, '#91adb7'));
+    button.on('pointerover', () => button.setBackgroundColor('#416675'));
+    button.on('pointerout', () => button.setBackgroundColor('#31515f'));
+    const close = () => this.close();
+    for (const key of ['ENTER', 'SPACE', 'I', 'ESC', 'Z']) this.input.keyboard?.on('keydown-' + key, close);
+    this.events.once('shutdown', () => {
+      for (const key of ['ENTER', 'SPACE', 'I', 'ESC', 'Z']) this.input.keyboard?.off('keydown-' + key, close);
+    });
   }
 
   close() {

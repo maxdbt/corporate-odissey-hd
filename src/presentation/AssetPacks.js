@@ -1,5 +1,6 @@
 import { WORLD_KEYS } from './WorldCatalog.js';
 import { ENTITY_MOTIONS } from './MotionCatalog.js';
+import { DANCE_COLLEAGUES } from './DanceVisuals.js';
 // Data-only manifests can be validated without starting Phaser or a browser.
 export const ASSET_PACKS = {
   summer: {
@@ -10,6 +11,10 @@ export const ASSET_PACKS = {
   beach: { directory: 'hd-summer', assets: [['hd-beach', 'beach-background.png']] }
 };
 export const THEME_PACKS = { 'summer-hd': ['summer', 'summerProps'] };
+ASSET_PACKS.elevator = { directory: 'hd-interludes', transient: true,
+  assets: [['hd-elevator', 'elevator.webp']] };
+ASSET_PACKS.dance = { directory: 'hd-dance', transient: true,
+  assets: ['jack', 'wendy', ...DANCE_COLLEAGUES].map(name => ['hd-' + name + '-dance', name + '-dance.png', name + '-dance.json']) };
 ASSET_PACKS.worldShared = { directory: 'hd-worlds', assets: ['furniture', 'cast', 'nature', 'objects', 'equipment', 'clients', 'executive-props', 'food']
   .map(name => [`hd-world-${name}`, `${name}.png`, `${name}.json`]) };
 for (const world of WORLD_KEYS) {
@@ -26,7 +31,8 @@ for(const world of ['director','roof','party'])THEME_PACKS[world+'-hd'].push('ce
 ASSET_PACKS.swim = { directory:'hd-worlds', assets:[['hd-world-swim','swim.png','swim.json']] };
 ASSET_PACKS.officeMotion = { directory:'hd-worlds', assets:[
  ['hd-office-npc-motion','office-npc-motion.png','office-npc-motion.json'],
- ['hd-office-npc-between','office-npc-between.png','office-npc-between.json']
+ ['hd-office-npc-between','office-npc-between.png','office-npc-between.json'],
+ ['hd-office-talker-gestures','talker-gestures.png','talker-gestures.json']
 ] };
 ASSET_PACKS.execMotion = { directory:'hd-worlds', assets:[
  ['hd-exec-npc-motion','exec-npc-motion.png','exec-npc-motion.json'],

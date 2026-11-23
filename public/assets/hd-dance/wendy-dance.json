@@ -1,0 +1,252 @@
+{
+  "frames": {
+    "woman_dance1": {
+      "frame": {
+        "x": 117,
+        "y": 20,
+        "w": 138,
+        "h": 332
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 117,
+        "y": 30,
+        "w": 138,
+        "h": 332
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance2": {
+      "frame": {
+        "x": 464,
+        "y": 26,
+        "w": 158,
+        "h": 326
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 102,
+        "y": 36,
+        "w": 158,
+        "h": 326
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance3": {
+      "frame": {
+        "x": 818,
+        "y": 27,
+        "w": 194,
+        "h": 325
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 37,
+        "w": 194,
+        "h": 325
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance4": {
+      "frame": {
+        "x": 52,
+        "y": 381,
+        "w": 235,
+        "h": 332
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 30,
+        "w": 235,
+        "h": 332
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance5": {
+      "frame": {
+        "x": 462,
+        "y": 385,
+        "w": 177,
+        "h": 329
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 33,
+        "w": 177,
+        "h": 329
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance6": {
+      "frame": {
+        "x": 831,
+        "y": 387,
+        "w": 154,
+        "h": 328
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 34,
+        "w": 154,
+        "h": 328
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance7": {
+      "frame": {
+        "x": 116,
+        "y": 747,
+        "w": 143,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 32,
+        "w": 143,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance8": {
+      "frame": {
+        "x": 477,
+        "y": 747,
+        "w": 157,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 32,
+        "w": 157,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance9": {
+      "frame": {
+        "x": 824,
+        "y": 744,
+        "w": 204,
+        "h": 333
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 29,
+        "w": 204,
+        "h": 333
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance10": {
+      "frame": {
+        "x": 94,
+        "y": 1106,
+        "w": 230,
+        "h": 334
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 28,
+        "w": 230,
+        "h": 334
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance11": {
+      "frame": {
+        "x": 475,
+        "y": 1109,
+        "w": 160,
+        "h": 329
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 33,
+        "w": 160,
+        "h": 329
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "woman_dance12": {
+      "frame": {
+        "x": 838,
+        "y": 1108,
+        "w": 146,
+        "h": 331
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 31,
+        "w": 146,
+        "h": 331
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "image": "wendy-dance.png",
+    "size": {
+      "w": 1086,
+      "h": 1448
+    },
+    "scale": "1"
+  }
+}

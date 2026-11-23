@@ -15,12 +15,12 @@ export const ENTITY_MOTIONS = [
  ['bug','office-tech','bug1 bug2'],
  ['confcall','office-tech','confcall1 confcall2'],
  ['minute','office-alert','minute1 minute2 p_clock'],
- ['teams','office-alert','teams_icon p_teams'],
+ ['teams','office-alert','teams_icon p_teams teams_meteor'],
  ['cook','office-support','cook1 cook2 chef1 chef2','walk'],
  ['hostess','office-support','hostess','walk'],
  ['ceo','motion-ceo','ceo_standing','walk',false,'motion-ceo-action'],
  ['ceoSeated','motion-ceo','boss_ceo boss_ceo_hurt','loop',false,'motion-ceo-action'],
- ['clienthell','motion-angry','clienthell','walk',false,'motion-angry-action'],
+ ['clienthell','motion-angry','clienthell','loop',false,'motion-angry-action'],
  ['bossClient','motion-angry','boss_client boss_client_hurt','loop',false,'motion-angry-action'],
  ['mummy','motion-beasts','boss_mummy1 boss_mummy2','walk',false,'motion-beasts-action'],
  ['bear','motion-beasts','boss_bear1 boss_bear2','walk',false,'motion-beasts-action'],
@@ -67,6 +67,8 @@ export function entityMotionSpec(scene,source,skin,delta,height) {
  if(['bossClient','ceoSeated'].includes(d.name))faceLeft=!source.flipX;
  if(source.texture.key.startsWith('pax_'))faceLeft=!source.flipX;
  return {texture:'hd-'+(actionSheet?d.action:d.sheet),frame:d.name+(index+1),height,
+  // The desk ambusher starts squashed to 5%; that is not its reference body size.
+  ...(d.name==='clienthell'?{referenceScaleY:1}:{}),
   flipX:faceLeft!==d.left};
 }
 export const NPC_MOTIONS = [
@@ -99,7 +101,15 @@ export function advanceLocomotion(skin, source, delta, stride, count) {
 export function npcMotionSpec(scene, source, skin, delta, height) {
  const descriptor=NPC_MOTION_BY_KEY[source.texture?.key];
  if(!descriptor||!scene.textures.exists('hd-'+descriptor.group+'-npc-motion'))return null;
+ // A stationary chatterbox talks with his hands, instead of freezing a running pose.
+ const moved=skin?.motionX===undefined?Math.abs(source.body?.velocity?.x||0)>2:Math.abs(source.x-skin.motionX)>.01;
+ const reference=source.kind==='talker'?{referenceScaleX:1,referenceScaleY:1}:{};
+ if(descriptor.name==='talker'&&!moved&&scene.textures.exists('hd-office-talker-gestures')){
+  if(skin)skin.motionX=source.x;
+  return {texture:'hd-office-talker-gestures',frame:'talker'+(Math.floor(scene.time.now/100)%12+1),height,
+   flipX:source.flipX,...reference};
+ }
  const index=skin?advanceLocomotion(skin,source,delta,30,NPC_FRAME_COUNT):0;
- return {...interleavedFrame('hd-'+descriptor.group+'-npc',descriptor.name,index),height,
+ return {...interleavedFrame('hd-'+descriptor.group+'-npc',descriptor.name,index),height,...reference,
   flipX:source.body&&Math.abs(source.body.velocity.x)>2?source.body.velocity.x<0:source.flipX};
 }

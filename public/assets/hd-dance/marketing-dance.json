@@ -1,0 +1,252 @@
+{
+  "frames": {
+    "marketing_dance1": {
+      "frame": {
+        "x": 113,
+        "y": 7,
+        "w": 210,
+        "h": 346
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 16,
+        "w": 210,
+        "h": 346
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance2": {
+      "frame": {
+        "x": 434,
+        "y": 10,
+        "w": 245,
+        "h": 343
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 19,
+        "w": 245,
+        "h": 343
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance3": {
+      "frame": {
+        "x": 774,
+        "y": 11,
+        "w": 258,
+        "h": 342
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 20,
+        "w": 258,
+        "h": 342
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance4": {
+      "frame": {
+        "x": 78,
+        "y": 370,
+        "w": 253,
+        "h": 345
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 78,
+        "y": 17,
+        "w": 253,
+        "h": 345
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance5": {
+      "frame": {
+        "x": 444,
+        "y": 367,
+        "w": 222,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 82,
+        "y": 14,
+        "w": 222,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance6": {
+      "frame": {
+        "x": 807,
+        "y": 367,
+        "w": 228,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 83,
+        "y": 14,
+        "w": 228,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance7": {
+      "frame": {
+        "x": 84,
+        "y": 729,
+        "w": 256,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 84,
+        "y": 14,
+        "w": 256,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance8": {
+      "frame": {
+        "x": 435,
+        "y": 731,
+        "w": 244,
+        "h": 346
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 16,
+        "w": 244,
+        "h": 346
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance9": {
+      "frame": {
+        "x": 797,
+        "y": 730,
+        "w": 217,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 73,
+        "y": 15,
+        "w": 217,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance10": {
+      "frame": {
+        "x": 79,
+        "y": 1091,
+        "w": 243,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 79,
+        "y": 14,
+        "w": 243,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance11": {
+      "frame": {
+        "x": 442,
+        "y": 1094,
+        "w": 234,
+        "h": 345
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 80,
+        "y": 17,
+        "w": 234,
+        "h": 345
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "marketing_dance12": {
+      "frame": {
+        "x": 810,
+        "y": 1091,
+        "w": 217,
+        "h": 348
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 86,
+        "y": 14,
+        "w": 217,
+        "h": 348
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "image": "marketing-dance.png",
+    "size": {
+      "w": 1086,
+      "h": 1448
+    },
+    "scale": "1"
+  }
+}

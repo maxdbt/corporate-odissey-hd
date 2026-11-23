@@ -1,0 +1,252 @@
+{
+  "frames": {
+    "talker1": {
+      "frame": {
+        "x": 126,
+        "y": 4,
+        "w": 122,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 126,
+        "y": 8,
+        "w": 122,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker2": {
+      "frame": {
+        "x": 476,
+        "y": 3,
+        "w": 126,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 114,
+        "y": 7,
+        "w": 126,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker3": {
+      "frame": {
+        "x": 822,
+        "y": 4,
+        "w": 131,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 8,
+        "w": 131,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker4": {
+      "frame": {
+        "x": 125,
+        "y": 365,
+        "w": 153,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 8,
+        "w": 153,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker5": {
+      "frame": {
+        "x": 472,
+        "y": 364,
+        "w": 198,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 7,
+        "w": 198,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker6": {
+      "frame": {
+        "x": 793,
+        "y": 365,
+        "w": 223,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 69,
+        "y": 8,
+        "w": 223,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker7": {
+      "frame": {
+        "x": 122,
+        "y": 726,
+        "w": 181,
+        "h": 356
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 6,
+        "w": 181,
+        "h": 356
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker8": {
+      "frame": {
+        "x": 462,
+        "y": 727,
+        "w": 225,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 7,
+        "w": 225,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker9": {
+      "frame": {
+        "x": 818,
+        "y": 727,
+        "w": 216,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 94,
+        "y": 8,
+        "w": 216,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker10": {
+      "frame": {
+        "x": 111,
+        "y": 1091,
+        "w": 185,
+        "h": 353
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 9,
+        "w": 185,
+        "h": 353
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker11": {
+      "frame": {
+        "x": 473,
+        "y": 1089,
+        "w": 126,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 7,
+        "w": 126,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    },
+    "talker12": {
+      "frame": {
+        "x": 832,
+        "y": 1091,
+        "w": 125,
+        "h": 353
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 9,
+        "w": 125,
+        "h": 353
+      },
+      "sourceSize": {
+        "w": 362,
+        "h": 362
+      }
+    }
+  },
+  "meta": {
+    "image": "talker-gestures.png",
+    "size": {
+      "w": 1086,
+      "h": 1448
+    },
+    "scale": "1"
+  }
+}
