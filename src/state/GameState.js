@@ -5,6 +5,7 @@ const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 export const GameState = {
   character: 'man',
   levelIndex: 0,
+  seenWorldIntros: {}, // world + protagonist, scoped to this run
 
   hp: 100,            // Salute Mentale 0..100
   stress: 0,          // 0..100 (>= 100 => panic, inverted controls)
@@ -26,6 +27,7 @@ export const GameState = {
   levelMods: { enemySpeedMult: 1, colleaguesHostile: false },
 
   newGame(character) {
+    this.seenWorldIntros = {};
     this.stageBonusAttempts = {};
     this.stageBonusRewards = {};
     this.character = character;

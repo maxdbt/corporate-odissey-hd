@@ -28,8 +28,20 @@ Shared files (already written, do not rename keys — you may ADD keys if strict
 | ENEMIES | `src/entities/enemies/*.js`, `src/entities/bosses/*.js`, `src/entities/hazards/*.js`, `src/entities/EnemyFactory.js` |
 | GAME | `src/scenes/GameScene.js`, `src/levels/*.js`, `src/systems/*` other than InputController/Audio8bit (e.g. `LevelBuilder.js`, `WeaponSystem.js`, `Collectibles.js`, `Zones.js`), `src/entities/Collectible.js`, `src/entities/PlayerProjectile.js` |
 
-Scene keys: `BootScene`, `MenuScene`, `GameScene`, `UIScene`, `QuizScene`, `GameOverScene`, `VictoryScene`, `ElevatorScene` (plus the trip / party overlays listed below).
+Scene keys: `BootScene`, `MenuScene`, `WorldIntroScene`, `GameScene`, `UIScene`, `QuizScene`, `GameOverScene`, `VictoryScene`, `ElevatorScene` (plus the trip / party overlays listed below).
 Every scene file `export default class X extends Phaser.Scene { constructor(){ super('X'); } }`.
+
+## Introduzioni dei mondi — integrazione locale del 23 novembre 2026
+
+`src/cinematics/IntroCatalog.js` associa i cinque mondi a dieci clip da 15 secondi: una variante Jack (`man`) e una Wendy (`woman`) per mondo, ciascuna con protagonista e voce dedicati. Le tappe interne condividono l'introduzione del proprio mondo. I bonus non fanno parte di questo catalogo.
+
+`startLevel()` in `src/systems/Trip.js` usa `levelEntry()` per conservare scena e dati di destinazione e avviare prima `WorldIntroScene` quando necessario. La scena del livello non viene creata durante il filmato: timer, fisica e risorse iniziano soltanto al termine o al salto. Non cambiare le diramazioni della trasferta per aggiungere una clip.
+
+`GameState.seenWorldIntros` memorizza la coppia mondo/personaggio dopo la fine o il salto; `newGame()` la azzera. Checkpoint, ritorni e tappe successive dello stesso mondo non ripetono l'introduzione già vista. **Rivedi intro** sospende il menu, mostra la variante selezionata e torna al menu senza modificare questo stato.
+
+`IntroView` gestisce il video DOM sopra il canvas, i sottotitoli VTT e i controlli accessibili. Durante la riproduzione il contenitore Phaser è inerte e `GameAudioDirector` sospende l'audio del gioco. Alla chiusura vengono rimossi gli ascoltatori, liberato il video e ripristinati focus e audio. Gli errori dei media lasciano disponibile l'accesso al gioco.
+
+I file distribuiti sono in `public/assets/intro/world-N/man|woman/`: MP4 Full HD e 720p, poster e sottotitoli. La qualità viene scelta in base a dispositivo, viewport e connessione; viene caricato solo il filmato corrente. La cartella è esclusa dal precache PWA. Sorgenti di produzione e servizi AI non sono dipendenze runtime. Catalogo, dialoghi, voci, limiti e collaudi: [Introduzioni animate](INTRODUZIONI_ANIMATE.md).
 
 ## Textures & animations (GFX)
 BootScene generates EVERY key in `TEX` plus `playerTex(char, pose)` for char in `CHARACTERS` and pose in

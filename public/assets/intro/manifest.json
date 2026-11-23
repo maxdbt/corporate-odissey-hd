@@ -1,0 +1,277 @@
+{
+  "version": "2026-11-23",
+  "scope": "Five world introductions, Jack and Wendy, no bonus introductions",
+  "ready": true,
+  "entries": [
+    {
+      "world": 1,
+      "character": "man",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 6096713,
+          "sha256": "2f655a2106cc58e5351ee4139379c7b078a9129e5fa4e435a56400396b447bee"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2059988,
+          "sha256": "c7637de5b402e821ae4d128a0d37a7e9987a5f4f1850174b41414ec586427019"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 147868,
+          "sha256": "9425f8b4d7ca1ce3b67ceed90ecb36bc29a2d2965cd53506fde446e16bb701a8"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 234,
+          "sha256": "d25a4b164bde199f35a882153876a5966c6ace118d6aa1959daad8e1e4248003"
+        }
+      ]
+    },
+    {
+      "world": 1,
+      "character": "woman",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 6424102,
+          "sha256": "6a42c83116d1834e1b7b73cb785c13a3ed2048d2cda11bfac500c6c76747a026"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2126408,
+          "sha256": "e40448cf3e35c071ca0d6fb66742921e75b3ec3254ab2c669850a6afd42ee9b0"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 134741,
+          "sha256": "60bc56144fc06d2c9a445b4fcca7c93c1220824fa158c32ee7df7b998eb95aed"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 234,
+          "sha256": "afdfbb06d8e33e4b0c7ae20ec448889ca042b8c3fc5d9b216b88a29aa634507b"
+        }
+      ]
+    },
+    {
+      "world": 2,
+      "character": "man",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 6863027,
+          "sha256": "d20b9a7d29a3f2a54169fa380867fce25a1e577bd738f4fc145bb6b02a3d881c"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2394661,
+          "sha256": "64914fb89d1697e7d24fc9370746afc2c23f43a83c1d41ca022005876a8c8065"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 152578,
+          "sha256": "55e23b4358c4f0bf1298a177af4f6ce2954cfe595103ee1eaab0612b6fa12e0f"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 221,
+          "sha256": "9d458b648102b04b5cf15212c23fbb4539c5a42da87bee31e974f39d13758138"
+        }
+      ]
+    },
+    {
+      "world": 2,
+      "character": "woman",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7045308,
+          "sha256": "decf6c2389fd51d82d056a47204c32d3eca08350d931895facfba2cce1afefb0"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2366396,
+          "sha256": "405e546d3052af95e91a5ada2fca8a35a7a6c97a0118e8a8e71c68c75b454b17"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 139628,
+          "sha256": "51ac0c9408b159a096294f42e3d88e8dda85f90c77a8d5dc2d7d5f68cd8bbeb3"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 221,
+          "sha256": "f915330b36d83fd4525564eb4f173052cad539cddfa405977f7a5a02701b906e"
+        }
+      ]
+    },
+    {
+      "world": 3,
+      "character": "man",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7617419,
+          "sha256": "9f0748572a606122b1ff3958644fe29c6e4b312b3bc9906f4c511172429123c9"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2277752,
+          "sha256": "d8267d645f6190d47ea423db8032e685ae5b2a06d7c436a90646c3685ef8b678"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 143867,
+          "sha256": "e8b39b1cfe30cddec1bad6bc93fcaabe42defc7262325b11d48f6b420420fc99"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 234,
+          "sha256": "eb7d828ede28815d120679464022d69886e4b30673dcf717049f0feee40918f1"
+        }
+      ]
+    },
+    {
+      "world": 3,
+      "character": "woman",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7265269,
+          "sha256": "0cf2d3d46304953b55ce202155a05edda02f7711dac7157beed2db15c5096cff"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2192904,
+          "sha256": "cf7e3c583b2d4b0a755d22698aeaa60100c28233b6d3d27f6f100fae0a185df6"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 133789,
+          "sha256": "5f785ef03ae8b9a4740a310a13cb8d54ae77954b6f09291ea147473ef1f60cea"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 234,
+          "sha256": "2e1b58a49f41e4acfcf0eda77ad82fd83699a5cfd416c30d6b0d43c4ae2d03e1"
+        }
+      ]
+    },
+    {
+      "world": 4,
+      "character": "man",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7471253,
+          "sha256": "09626f3c66610b05c046880e895915fa02c82a1c8a3d26fafffc084866f8735c"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2585590,
+          "sha256": "42505090163993a78f1be14abeae24fc945d97cd70cd8931745d795f4aed733a"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 137126,
+          "sha256": "fc27ce9b8afd16e9b5d5e027fd04efbcd9f9b119a3ddc1920e1642ff85e28c46"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 214,
+          "sha256": "d0854a5dc4e443847c00b309b2c749279e8c4a1ba5ed2c78d2ddee138725c4ea"
+        }
+      ]
+    },
+    {
+      "world": 4,
+      "character": "woman",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 6928938,
+          "sha256": "afdd493c44754f0b355be8b3eed68dc74c9c6b220f26387268421a914879fd81"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2262692,
+          "sha256": "607ee9050aa8bd0842da5e45b30f35aa4be808697521d6c21e8d5211207b4c4c"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 154669,
+          "sha256": "c853cf3d06cd8bb163429ec31d1541ddb77f00beeca32cfa9c7e3db097e10aa6"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 214,
+          "sha256": "39aa918ced3fa2ae40ae5b39f903253085beaa2543f6a25399b3b9035b041fbd"
+        }
+      ]
+    },
+    {
+      "world": 5,
+      "character": "man",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7612365,
+          "sha256": "d3042405ae3bbda9cfb4d674d7c50608b3fd207ec8d139ecba8c27baf4badf1c"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2393474,
+          "sha256": "62a91e64ecbf587dbc6d3569b1e5693727f06f0c61c1dd2b1db1b9d0e8d1c6f1"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 126336,
+          "sha256": "109a30b2e4b8cab7c8da344b0db17261fcac8f14af91fcac82776b3a05946781"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 229,
+          "sha256": "78ef94c8a037f1f742529e16b7cf2cee1fbc7287b360baea9da9dbdb48e77f77"
+        }
+      ]
+    },
+    {
+      "world": 5,
+      "character": "woman",
+      "durationSeconds": 15,
+      "files": [
+        {
+          "name": "intro-1080p.mp4",
+          "bytes": 7862503,
+          "sha256": "c440c049364b7b961d035c9c13464961142c623f63ac77f5dbe528347f635a22"
+        },
+        {
+          "name": "intro-mobile-720p.mp4",
+          "bytes": 2579743,
+          "sha256": "47cfed82dea77c127fc4282c9a2707073a7694142a24ce030a45bbf65af9e302"
+        },
+        {
+          "name": "poster.jpg",
+          "bytes": 132733,
+          "sha256": "f9d807d30d658962de6a75a85b958f67fff878437b44d9e784e4965e7a835b66"
+        },
+        {
+          "name": "italiano.vtt",
+          "bytes": 229,
+          "sha256": "1c2efda3d722711a41193ddf55404d615d478fecb8ad7f58efde8c61bece9472"
+        }
+      ]
+    }
+  ]
+}

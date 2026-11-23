@@ -5,6 +5,7 @@ Aggiornato il **23 novembre 2026**: implementati i 19 stage HD, le scene della t
 - [Campagna e matrice livelli](PORTING_CAMPAGNA_HD.md).
 - [Animazioni, boss e mezzi](ANIMAZIONI_HD.md).
 - [Audio e jingle](AUDIO.md): integrati nell’avvio normale del gioco e nella build locale, con 19 temi distinti, varianti per boss e bonus, 45 effetti, pause condivise e limiti alle ripetizioni. Anche i bonus aperti direttamente sbloccano l’audio al primo comando. Anteprima WAV e pagina d’ascolto disponibili; questa revisione audio non è stata pubblicata con il rilascio delle animazioni.
+- [Introduzioni animate](INTRODUZIONI_ANIMATE.md): integrata localmente un’apertura per ciascuno dei cinque mondi, con versioni Jack e Wendy e voci dedicate (dieci clip da 15 secondi). Media in public/assets/intro, riproduzione all’ingresso del mondo e anteprima dal menu; bonus esclusi. Pubblicazione del sito separata.
 - [Regole dei bonus](BONUS_PER_LIVELLO.md).
 - [Pubblicazione e link](PUBBLICAZIONE_SITES.md).
 

@@ -98,6 +98,16 @@ export default class MenuScene extends Phaser.Scene {
       .on('pointerdown', () => { audio.unlock(); this._start(); });
     this.tweens.add({ targets: this.startBtn, scale: 1.08, duration: 500, yoyo: true, repeat: -1 });
 
+    this.add.text(GAME_WIDTH - 24, 380, 'RIVEDI INTRO', style(11, '#f8d99c', { padding: { x: 10, y: 12 } }))
+      .setOrigin(1, 0.5).setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        if (this.starting || this.notice) return;
+        audio.unlock();
+        this.scene.pause();
+        this.scene.launch('WorldIntroScene', { stageId: LEVEL_META[this.levelIndex].id,
+          character: CHARACTERS[this.selected], preview: true });
+      });
+
     // Free preview of the POV bonus; campaign rewards are earned at its desk terminal.
     this.add.text(14, 48, 'OTTO NUOVI\nMINIGIOCHI', style(10, '#9dffce', { align: 'left' }))
       .setOrigin(0, 0).setPadding(5).setInteractive({ useHandCursor: true })

@@ -47,7 +47,7 @@ I fondali derivano dalle PNG approvate e sono stati codificati in WebP mantenend
 
 ## Compatibilità con le lavorazioni parallele
 
-L'integrazione del menu non incorpora nel proprio commit i sorgenti dei nuovi minigiochi e delle introduzioni ancora in lavorazione. Usa il catalogo e le scene effettivamente disponibili: la build locale completa può mostrare gli otto nuovi bonus e le dieci introduzioni, mentre un checkout precedente conserva il catalogo classico. La risoluzione delle scene dedicate è verificata prima dell'avvio.
+Il menu usa il catalogo e le scene effettivamente disponibili. La consegna completa include gli otto nuovi minigiochi e le dieci introduzioni Jack/Wendy dei cinque mondi. I commit iniziali del menu mantengono la compatibilità con il catalogo precedente; la risoluzione delle scene dedicate viene verificata prima dell'avvio.
 
 ## Verifica
 

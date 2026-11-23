@@ -69,6 +69,22 @@ La grafica di base viene generata da `BootScene` e `src/gfx`; gli sfondi da `Bac
 
 `src/data/quizzes.js` contiene i quiz e la selezione per ambientazione. `QuizScene` invia gli effetti a `GameScene.applyEffects()`. Le modifiche alla salute o alle risorse devono passare attraverso gli helper di `GameState` quando previsti.
 
+### Introduzioni animate dei cinque mondi
+
+Le dieci clip Jack/Wendy sono già parte del progetto: non occorre eseguire strumenti di generazione per avviare o compilare il gioco. Dal menu scegliere personaggio e scenario, quindi **Rivedi intro** per l'anteprima oppure **Inizia** per introdurre la partita. Ogni mondo ha una sola introduzione per personaggio; i bonus restano esclusi.
+
+Il catalogo è in `src/cinematics/IntroCatalog.js`; i media sono in `public/assets/intro/world-N/man/` e `woman/`. Ogni variante contiene `intro-1080p.mp4`, `intro-mobile-720p.mp4`, `poster.jpg` e `italiano.vtt`. Per sostituire una clip aggiornare entrambe le qualità, poster, tempi dei sottotitoli e manifest dei file. Vedere [Introduzioni animate](INTRODUZIONI_ANIMATE.md) per produzione, voci e ricostruzione.
+
+Mantenere l'avvio dei livelli tramite `startLevel()` di `Trip.js`: conserva destinazione e dati, applica l'introduzione e rispetta checkpoint e filmati già visti. `GameState.newGame()` azzera la memoria delle intro; l'anteprima dal menu non la modifica.
+
+```powershell
+node --test tests/world-intros.test.js tests/audio.test.js
+```
+
+Per una verifica rapida in sviluppo, usare `?level=0`, `?level=2`, `?level=3`, `?level=4` e `?level=14`, aggiungendo `&character=man` oppure `&character=woman`. Gli indici corrispondono agli ingressi dei cinque mondi. Controllare fine naturale e salto, ritorno dall'anteprima, pausa, audio, sottotitoli e cambio qualità. Su mobile verificare 720p, riproduzione inline e rotazione; simulare un errore del video e usare **Continua** per accedere al livello.
+
+Le scorciatoie durante il filmato sono **Esc** per saltare, **P** per pausa/ripresa, **M** per l'audio, **C** per i sottotitoli e **F** per lo schermo intero. Sono controlli del filmato e non attivano le azioni del personaggio.
+
 ### Musica, jingle ed effetti
 
 La [guida audio](AUDIO.md) descrive catalogo, API e bilanciamento. Modificare le partiture e gli effetti in `src/audio/AudioCatalog.js`; usare `GameAudioDirector.js` per associare temi e segnali alle scene. Le scene esistenti continuano a importare `audio` da `src/systems/Audio8bit.js`. Evitare AudioContext separati e chiamate a effetti su ogni fotogramma.
@@ -98,6 +114,8 @@ La versione visualizzata o registrata è `package.json.version`, passata al codi
 ## PWA e aggiornamenti
 
 La PWA usa manifest fullscreen e orientamento landscape. Il service worker viene registrato dopo l'avvio del gioco e conserva gli asset previsti dalla configurazione. Una nuova versione propone il banner «NUOVA VERSIONE - AGGIORNA»; il ricaricamento avviene quando il giocatore lo attiva.
+
+Le introduzioni in `assets/intro/**` sono escluse dal precache: i circa 95,8 MB delle dieci varianti e delle due qualità non vengono scaricati in blocco. Il browser richiede il filmato selezionato al suo ingresso; non è garantita la riproduzione offline. Se il media non è disponibile, **Continua** permette comunque di accedere al livello.
 
 Il server di sviluppo non abilita il service worker. Per una prova locale:
 

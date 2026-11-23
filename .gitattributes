@@ -1,2 +1,4 @@
 # Preserve generated document bytes and avoid treating PDF streams as text.
 *.pdf binary
+# Preserve subtitle bytes so the intro delivery manifest matches every checkout.
+public/assets/intro/**/*.vtt -text whitespace=cr-at-eol

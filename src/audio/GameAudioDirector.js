@@ -2,7 +2,7 @@ import { stageTrack, bossTrack } from './AudioCatalog.js';
 
 const key=s=>s.sys.settings.key;
 const pauses=['PauseScene','StagePauseScene','QuitScene','BriefScene'];
-const priority=['GameOverScene','VictoryScene','LastMailScene','PartyScene','DirectorMinigolfScene','CityTaxiScene','PartyEscapeScene','StageBonusScene','ToiletScene','BeachScene','RevenueScene','ElevatorScene','NegotiationScene','JourneyScene','PackingScene','TransportScene','DestinationScene','GameScene','MenuScene'];
+const priority=['WorldIntroScene','GameOverScene','VictoryScene','LastMailScene','PartyScene','DirectorMinigolfScene','CityTaxiScene','PartyEscapeScene','StageBonusScene','ToiletScene','BeachScene','RevenueScene','ElevatorScene','NegotiationScene','JourneyScene','PackingScene','TransportScene','DestinationScene','GameScene','MenuScene'];
 
 // Read-only scene observation keeps graphics, collisions, rewards and progression independent.
 export function selectAudioState(scenes,state){
@@ -11,10 +11,10 @@ export function selectAudioState(scenes,state){
  const chosen=priority.find(name=>active.has(name))||priority.find(name=>available.has(name));
  const scene=available.get(chosen);if(!scene)return null;
  const stage=scene.config?.stage||stageTrack(scene.levelIndex??state.levelIndex);
- const paused=pauses.some(name=>active.has(name))||!!scene.roundPaused||!!scene.round?.paused;
+ const paused=chosen==='WorldIntroScene'||pauses.some(name=>active.has(name))||!!scene.roundPaused||!!scene.round?.paused;
  const dialogue=['FoodScene','RentalScene','QuizScene'].some(name=>active.has(name));
  let track=stage,external=false;
- if(['VictoryScene','PartyScene','LastMailScene','ElevatorScene'].includes(chosen))external=true;
+ if(['WorldIntroScene','VictoryScene','PartyScene','LastMailScene','ElevatorScene'].includes(chosen))external=true;
  else if(chosen==='GameOverScene'||(chosen==='GameScene'&&scene.ended))track=null;
  else if(chosen==='MenuScene')track='menu';
  else if(chosen==='ToiletScene')track='bathroom';

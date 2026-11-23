@@ -3,6 +3,7 @@
 import Phaser from 'phaser';
 import { GameState } from '../state/GameState.js';
 import { LEVELS } from '../levels/index.js';
+import { levelEntry } from '../cinematics/IntroCatalog.js';
 import { TRANSPORT, DEFAULT_SUITCASE, BUDGET_TO_EURO, EXTRA_SLOT_PRICE } from '../data/trip.js';
 
 const indexOf = (id) => LEVELS.findIndex((l) => l.id === id);
@@ -15,9 +16,8 @@ export const isGroundLeg = (id) => ['4-7', '4-8', '4-9'].includes(id);
 
 // Starts level/stage `index` from any scene: static stages have their own scene, the rest run in GameScene.
 export function startLevel(scene, index, data = {}) {
-  const lvl = LEVELS[index];
-  if (!lvl) { scene.scene.start('VictoryScene'); return; }
-  scene.scene.start(lvl.scene || 'GameScene', { levelIndex: index, ...data });
+  const entry = levelEntry(LEVELS[index], index, data, GameState);
+  scene.scene.start(entry.key, entry.data);
 }
 
 // Index of the level that follows `index` (trip stages branch on the chosen transport).
