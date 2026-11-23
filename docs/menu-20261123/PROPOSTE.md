@@ -2,6 +2,8 @@
 
 Data: 23 novembre 2026. Prototipo navigabile, separato dalla scena di gioco. Dopo la revisione l'utente ha autorizzato commit e push su `max-hd/main` (`maxdbt/corporate-odissey-hd`). La consegna Git non pubblica il sito.
 
+Aggiornamento: il menu Cinema è stato successivamente collegato al gioco. Stato, componenti e verifica della versione integrata: [Menu cinematografico](../MENU_CINEMATOGRAFICO.md). Questa cartella conserva il prototipo delle tre proposte.
+
 ## Aprire il prototipo
 
 Con il server locale attivo: <http://127.0.0.1:8084/corporate-odyssey/docs/menu-20261123/>.

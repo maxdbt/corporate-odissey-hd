@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { createGameMenu } from '../menu/GameMenu.js';
 import { installStagePresentation } from '../presentation/StaticStagePresentation.js';
 import { FONT, GAME_WIDTH, GAME_HEIGHT, CHARACTERS, LEVEL_META, TRIP_STAGES_IN_MENU, playerTex, playerAnim } from '../config/constants.js';
 import { startLevel } from '../systems/Trip.js';
@@ -22,10 +23,17 @@ let mobileNoticeShown = false;
 export default class MenuScene extends Phaser.Scene {
   constructor() {
     super('MenuScene');
-    installStagePresentation(this, { world: 'travel', drawMethods: ['_drawBackground'], bonus: false, chrome: false, pause: false });
+    if (new URLSearchParams(window.location.search).get('menu') === 'classic') {
+      installStagePresentation(this, { world: 'travel', drawMethods: ['_drawBackground'], bonus: false, chrome: false, pause: false });
+    }
   }
 
   create() {
+    if (new URLSearchParams(window.location.search).get('menu') === 'classic') return this.createClassicMenu();
+    this.menuView = createGameMenu(this);
+  }
+
+  createClassicMenu() {
     this.selected = CHARACTERS.indexOf(GameState.character);
     if (this.selected < 0) this.selected = 0;
     this.levelIndex = 0;
