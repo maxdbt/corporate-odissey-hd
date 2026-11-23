@@ -11,14 +11,16 @@ import ViewportController from '../presentation/ViewportController.js';
 import {preloadAssetPacks,useHdFiltering} from '../presentation/AssetRegistry.js';
 import {audio} from '../systems/Audio8bit.js';
 import {toggleFullscreen} from '../systems/Screen.js';
+import PedaloPresentation, {preloadPedalo} from '../bonus/PedaloPresentation.js';
 
 const GOLD=0xe6c58b,WHITE=0xf7efdf,INK=0x10232d;
 const font='Segoe UI, Arial, sans-serif';
 export default class StageBonusScene extends Phaser.Scene {
  constructor(key='StageBonusScene'){super(key);}
- init(data={}){this.launchData=data;this.config=BONUS_BY_ID[data.bonus];this.preview=!!data.preview;this.caller=data.caller||'GameScene';this.phase='intro';this.leaving=false;this.sprites=new Map();this.labels=new Map();this.buttons=[];this.modals=[];this.held=new Map();this.hits=[];this.drag=null;this.target=null;}
+ init(data={}){this.launchData=data;this.config=BONUS_BY_ID[data.bonus];this.preview=!!data.preview;this.caller=data.caller||'GameScene';this.phase='intro';this.leaving=false;this.sprites=new Map();this.labels=new Map();this.buttons=[];this.modals=[];this.held=new Map();this.hits=[];this.drag=null;this.target=null;this.pedalo=null;}
  preload(){
   if(!this.config||['taxi','party'].includes(this.config.id))return;
+  if(this.config.id==='pedalo'){preloadPedalo(this);return;}
   preloadAssetPacks(this,['worldShared','inventory','world-'+this.config.world,...(this.config.id==='party'?['officeMotion','execMotion','motion-ceo']:[]),...(this.config.id==='tray'?['office-support']:[])]);
   const base=import.meta.env.BASE_URL+'assets/hd-minigames/';
   if(['parking','pedalo','taxi'].includes(this.config.id)&&!this.textures.exists('hd-bonus-vehicles'))this.load.atlas('hd-bonus-vehicles',base+'vehicles.png',base+'vehicles.json');
@@ -46,11 +48,12 @@ export default class StageBonusScene extends Phaser.Scene {
   this.status=this.add.text(18,39,'',{fontFamily:font,fontSize:12,color:'#fff2dc'}).setDepth(600);
   this.message=this.add.text(18,59,'',{fontFamily:font,fontSize:10,color:'#bfe1df'}).setDepth(600);
   this.keys=this.input.keyboard?.addKeys('LEFT,RIGHT,UP,DOWN,W,A,S,D,SPACE,E');
-  this.onKey=e=>this.key(e);this.onDown=p=>this.pointerDown(p);this.onUp=p=>this.pointerUp(p);this.onCancel=()=>{this.held.clear();this.drag=null;};
+  this.onKey=e=>this.key(e);this.onDown=p=>this.pointerDown(p);this.onUp=p=>this.pointerUp(p);this.onCancel=()=>{this.held.clear();this.drag=null;if(this.pedalo)this.pedalo.pointer=null;};
   this.onBlur=()=>{if(this.phase==='play')this.pause();};this.onResize=()=>{this.onCancel();this.layout();};
   this.input.keyboard?.on('keydown',this.onKey);this.input.keyboard?.addCapture(['SPACE','UP','DOWN','LEFT','RIGHT']);
   this.input.on('pointerdown',this.onDown);this.input.on('pointerup',this.onUp);this.input.on('pointerupoutside',this.onCancel);this.input.on('gameout',this.onCancel);
   this.game.events.on(Phaser.Core.Events.BLUR,this.onBlur);this.viewport.scene.events.on('presentation-resize',this.onResize);this.events.once('shutdown',this.cleanup,this);
+  if(this.config.id==='pedalo')this.pedalo=new PedaloPresentation(this);
   this.layout();
  }
  button(label,x,y,w,fn,hold=null,modal=false){
@@ -63,6 +66,7 @@ export default class StageBonusScene extends Phaser.Scene {
  layout(){
   this.w=this.viewport.metrics.width;this.viewport.setupUiCamera(this);this.background.setDisplaySize(this.w,450);this.shade.width=this.w;
   this.hudShade.width=this.w;
+  if(this.pedalo){this.pedalo.layout();this.draw();this.drawModal();return;}
   this.s=Math.min((this.w-30)/900,300/480);this.ox=(this.w-900*this.s)/2;this.oy=82;
   this.board.setPosition(this.ox,this.oy).setScale(this.s);this.overlay.setPosition(this.ox,this.oy).setScale(this.s);
   this.title.setFontSize(this.w<750?15:18);this.status.setWordWrapWidth(this.w-36);this.message.setWordWrapWidth(this.w-36);
@@ -143,17 +147,7 @@ export default class StageBonusScene extends Phaser.Scene {
   this.status.setText(`Valigia ${r.level+1}/2  ·  ${Object.keys(r.placed).length}/7 oggetti  ·  ${selected.name} · rotazione ${r.rotation*90}°`);
  }
  draw_pedalo(){
-  const r=this.round,g=this.board;
-  this.rect(0,0,900,480,0x147e95,.06);
-  for(let i=0;i<42;i++){const x=(i*137)%900,y=(i*71+r.progress*.6)%480;g.lineStyle(2,0xc7f2e7,.14).lineBetween(x,y,x+24+Math.sin(r.elapsed+i)*8,y-3);}
-  for(const [i,rock]of r.rocks.entries()){const y=380-(rock.z-r.progress)*.8;if(y>-70&&y<530)this.image('rock'+i,'hd-bonus-details','rock',rock.x,y,rock.r*2.2,rock.r*1.6);}
-  if(r.progress>2700){const y=380-(3300-r.progress)*.8;g.fillStyle(0xe9cf8a).fillEllipse(450,y,750,125);this.label('bay','CALETTA · NESSUN SEGNALE',450,y,24);}
-  this.image('boss','hd-bonus-vehicles','jetski',r.bossX,465,52,88,Math.sin(r.elapsed)*8,15);
-  this.image('boat','hd-bonus-vehicles','pedalo',r.x,370+Math.sin(r.elapsed*7)*2,74,108,r.vx*.075,25,r.elapsed-r.hitAt<.4?.5:1);
-  g.lineStyle(4,0xe1fcf1,.5).lineBetween(r.x-20,420,r.x-25-r.vx*.1,460).lineBetween(r.x+20,420,r.x+25-r.vx*.1,460);
-  if(r.shield)this.image('umbrella','hd-world-equipment','parasol',r.x,350,120,100,Math.sin(r.elapsed*3)*3,30);
-  if(r.drone){g.lineStyle(3,0xffb374,.7).strokeCircle(r.drone.x,350,55);this.image('drone','hd-bonus-details','drone',r.drone.x,90+Math.sin(r.elapsed*5)*8,90,78,Math.sin(r.elapsed*8)*3);this.label('dronet','CONSEGNA IN ARRIVO',r.drone.x,145,17,'#ffdbb8');}
-  this.status.setText(`Caletta ${Math.min(100,Math.floor(r.progress/33))}%  ·  Energia ${Math.ceil(r.energy)}%  ·  Scafo ${'♥'.repeat(Math.max(0,r.lives))}`);
+  return this.pedalo.draw();
  }
  draw_tray(){
   const r=this.round,g=this.board;
@@ -189,6 +183,7 @@ export default class StageBonusScene extends Phaser.Scene {
  worldPoint(pointer){return {x:(pointer.worldX-this.ox)/this.s,y:(pointer.worldY-this.oy)/this.s};}
  pointerDown(p){
   if(this.phase!=='play'||this.round.paused)return;const q=this.worldPoint(p);this.downWorld=q;
+  if(this.pedalo){this.pedalo.pointerDown(p);return;}
   const hit=this.hits.find(h=>q.x>=h.x&&q.x<h.x+h.w&&q.y>=h.y&&q.y<h.y+h.h);if(hit){hit.fn();return;}
   if(this.config.id==='party'&&q.x>=0&&q.x<=900&&q.y>=0&&q.y<=480)this.target=q;
  }
@@ -212,7 +207,8 @@ export default class StageBonusScene extends Phaser.Scene {
   let y=Number(k?.DOWN.isDown||k?.S.isDown||h.includes('down'))-Number(k?.UP.isDown||k?.W.isDown||h.includes('up'));
   if(x||y)this.target=null;
   if(this.config.id==='party'&&this.target){const p=this.round.hero,d=distance(p,this.target);if(d>8){x=(this.target.x-p.x)/d;y=(this.target.y-p.y)/d;}else this.target=null;}
-  return {x,y,boost:!!k?.SPACE.isDown||h.includes('boost'),shield:!!k?.E.isDown||h.includes('shield')};
+  const input={x,y,boost:!!k?.SPACE.isDown||h.includes('boost'),shield:!!k?.E.isDown||h.includes('shield')};
+  return this.pedalo?this.pedalo.controls(input):input;
  }
  pause(){
   if(this.phase==='intro'||this.phase==='result')return;
@@ -220,6 +216,7 @@ export default class StageBonusScene extends Phaser.Scene {
   this.phase=this.phase==='paused'?'play':'paused';this.round.paused=this.phase==='paused';this.drawModal();
  }
  drawModal(){
+  if(this.pedalo){this.pedalo.modal();return;}
   this.modals.splice(0).forEach(o=>o.destroy());if(this.phase==='play')return;
   const dim=this.add.rectangle(0,0,this.w,450,0x03111a,.84).setOrigin(0).setDepth(1000).setInteractive();this.modals.push(dim);
   const r=this.round,title=this.phase==='intro'?this.config.title:this.phase==='paused'?'PAUSA':r.won?'OBIETTIVO COMPLETATO':'RIPROVIAMO?';
@@ -228,9 +225,10 @@ export default class StageBonusScene extends Phaser.Scene {
   const b=this.add.text(this.w/2,218,body,{fontFamily:font,fontSize:16,color:'#f5ecda',align:'center',lineSpacing:7,wordWrap:{width:Math.min(650,this.w-90)}}).setOrigin(.5).setDepth(1001);this.modals.push(t,b);
   this.modalAction=this.phase==='intro'?()=>{this.phase='play';this.input.keyboard?.resetKeys();this.drawModal();}:this.phase==='paused'?()=>this.pause():()=>this.leave(r.won);
   this.button(this.phase==='intro'?'INIZIA':this.phase==='paused'?'RIPRENDI':this.preview?'TUTTI I GIOCHI':'TORNA ALLO STAGE',this.w/2,320,220,this.modalAction,null,true);
-  if(this.phase==='result')this.button('RIPROVA',this.w/2,370,150,()=>{this.round=createBonusRound(this.config.id);this.phase='play';this.onCancel();this.target=null;this.drawModal();},null,true);
+  if(this.phase==='result')this.button('RIPROVA',this.w/2,370,150,()=>this.restartRound(),null,true);
   else this.button(this.preview?'TUTTI I GIOCHI':'TORNA ALLO STAGE',this.w/2,374,220,()=>this.leave(false),null,true);
  }
+ restartRound(){this.round=createBonusRound(this.config.id);this.phase='play';this.onCancel();this.target=null;this.drawModal();}
  update(_,delta){
   if(!this.round)return;
   if(this.phase==='play'){this.round.update(delta/1000,this.controls());if(this.round.finished){this.phase='result';this.onCancel();audio.sfx(this.round.won?'perfect':'miss');this.drawModal();}}
@@ -245,6 +243,7 @@ export default class StageBonusScene extends Phaser.Scene {
   this.scene.stop();
  }
  cleanup(){
+  this.pedalo?.destroy();
   this.input.keyboard?.off('keydown',this.onKey);this.input.off('pointerdown',this.onDown);this.input.off('pointerup',this.onUp);this.input.off('pointerupoutside',this.onCancel);this.input.off('gameout',this.onCancel);
   this.game.events.off(Phaser.Core.Events.BLUR,this.onBlur);this.viewport?.scene?.events.off('presentation-resize',this.onResize);
   if(!this.sharedViewport)this.viewport?.destroy();

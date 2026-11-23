@@ -10,6 +10,7 @@ Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e 
 - [Introduzioni animate](INTRODUZIONI_ANIMATE.md): cinque mondi, dieci clip da 15 secondi con Jack/Wendy e voci italiane, integrate localmente nel gioco.
 - [Minigiochi aggiornati](REVISIONE_MINIGIOCHI.md): otto nuove attività, accessi nella campagna, controlli e verifiche.
 - [Fuga dalla festa aziendale](FUGA_FESTA_HD.md): salone HD, 24 colleghi distinti e animati, obiettivi distanti e cappotto indossabile.
+- [Ferie, ma non troppo](FERIE_PEDALO_ARCADE.md): fuga in pedalò a schermo pieno, onde, combo e inseguimento del capo.
 - [L'indirizzo giusto](TAXI_CITTA_HD.md): città HD esplorabile, traffico e passanti.
 - [Bonus per livello](BONUS_PER_LIVELLO.md): catalogo attuale e ritiro dei vecchi giochi.
 - [Stato sintetico](CAMPAGNA_HD_STATO.md).

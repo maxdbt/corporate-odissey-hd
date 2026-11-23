@@ -4,6 +4,8 @@ Sono giocabili **otto nuove attività**, distribuite nella campagna. La raccolta
 
 **Revisione successiva del taxi:** L'indirizzo giusto ora usa una [città HD esplorabile](TAXI_CITTA_HD.md), camera che segue l'auto, traffico, passanti, mappa e modalità senza timer. La nuova scena sostituisce il precedente tabellone.
 
+**Revisione locale del pedalò:** [Ferie, ma non troppo](FERIE_PEDALO_ARCADE.md) ora occupa tutto lo schermo, con tre fasi della fuga, onde per saltare gli scogli, raccolte, combo e attacchi annunciati. La relativa consegna è un commit locale; non comprende un nuovo push o una pubblicazione.
+
 Commit e push Git richiesti dall’utente sul repository HD. La pubblicazione del sito Sites resta separata da questa revisione.
 
 ## Attività e collocazione narrativa
@@ -12,7 +14,7 @@ Commit e push Git richiesti dall’utente sul repository HD. La pubblicazione de
 | --- | --- | --- | --- |
 | Fuga dalla festa aziendale | Salone HD a schermo pieno, 24 colleghi con collisioni, sei inseguitori, cappotto e chiavi, piante per nascondersi e quattro distrazioni. [Dettagli](FUGA_FESTA_HD.md). | 1-1, x=1985: dopo il primo tratto platform. | `?bonus=party` |
 | Parcheggio del 24 dicembre | Tre parcheggi: veicoli vincolati al proprio asse, collisioni, uscita dell'auto rossa e annullamento delle mosse. | 1-1, x=5200: verso l'uscita, separato dalla prima pausa. | `?bonus=parking` |
-| Ferie, ma non troppo — Fuga in pedalò | Guida con inerzia, correnti, scogli, scatto a energia, ombrellone difensivo, consegne del drone e capo in moto d'acqua. | 1-2, tramite il biglietto ferie volante. | `?bonus=pedalo` |
+| Ferie, ma non troppo — Fuga in pedalò | Mare HD a schermo pieno, tre fasi, scatto sulle onde per saltare gli scogli, bibite, combo, ombrellone e attacchi annunciati di drone e capo. [Dettagli e verifiche](FERIE_PEDALO_ARCADE.md). | 1-2, tramite il biglietto ferie volante. | `?bonus=pedalo` |
 | Il vassoio impossibile | Percorso in prima persona con stoviglie indipendenti, inerzia, caffè che si versa e ostacoli da aggirare. Accelerare aumenta il rischio. | 2-1, x=4800; richiede il pasto completo e non sostituisce il pagamento. | `?bonus=tray` |
 | Questa call poteva essere una mail | Sei carte tattiche, intenzioni avversarie visibili, energia e pressione. Chiudere tre punti dell'agenda e assegnare i responsabili. | 3-1, x=1800: prima della conclusione dello stage. | `?bonus=call` |
 | L'indirizzo giusto | Taxi guidabile: sterzo, acceleratore, retromarcia, freno, traffico, edifici e lavori. Il cliente cambia ingresso dopo la prima fermata. | 4-1, pulsante nella scena della destinazione. | `?bonus=taxi` |
@@ -24,6 +26,7 @@ Gli ingressi sono opzionali e non saltano gli obiettivi della storia. Gli stage 
 ## Controlli, pausa e premi
 
 - Movimento: frecce o WASD; pulsanti touch. Ogni introduzione spiega azione, difesa e freno.
+- Pedalò: frecce/A-D, Spazio per scatto e salti, E per ombrellone, giù/S per frenare; su touch frecce o trascinamento sul mare, SCATTO e OMBRELLO. I comandi di movimento a schermo sono nascosti su desktop.
 - Parcheggio: trascinare un veicolo lungo il suo asse; selezione e frecce disponibili; Z annulla.
 - Valigia: scegliere un oggetto, ruotare con R o pulsante, toccare la griglia per posarlo; toccare un oggetto posato per rimuoverlo.
 - Call: scegliere punto dell'agenda e carta; tasti 1–6 come alternativa al tocco.
@@ -39,6 +42,7 @@ Fondali e oggetti HD, personaggi animati, texture caricate all'apertura dell'att
 - `src/bonus/new/`: sette modelli indipendenti da Phaser, simulazione a passo fisso, regole e vittoria.
 - `src/bonus/minigolf/`: fisica, geometria e proiezione del golf.
 - `StageBonusScene`: presentazione condivisa, input e risultato; `PartyEscapeScene`: salone affollato; `CityTaxiScene`: città esplorabile; `DirectorMinigolfScene`: golf.
+- `PedaloPresentation`: visuale, HUD ed effetti dedicati al pedalò, integrati nel ciclo di vita di `StageBonusScene`.
 - `BonusHubScene`: raccolta; catalogo, accessi e premi condivisi.
 - I moduli storici non registrati restano solo come sorgenti; non sono offerti al giocatore.
 - [Prompt e asset nuovi](concepts/PROMPTS-NUOVI-MINIGIOCHI.md); [prompt del golf](concepts/PROMPTS-MINIGOLF.md).
