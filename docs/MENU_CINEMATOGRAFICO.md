@@ -57,5 +57,6 @@ L'integrazione del menu non incorpora nel proprio commit i sorgenti dei nuovi mi
 - Galleria delle cinque introduzioni di Wendy, apertura della Mensa, Salta e ritorno alla stessa galleria; una sola istanza del menu.
 - Avvio del golf dalla scheda, uscita verso il catalogo bonus e ritorno al menu.
 - Layout verificato a 1280×800, 844×390 e 390×844; nessuna eccedenza orizzontale nel menu verticale. Simulazione browser, non prova su telefono fisico.
+- Verifica da checkout isolato del commit: 16 test menu/audio superati, build Vite/PWA completata, avvio di Natale in Ufficio con Jack. Preferenza Riduci movimento mantenuta dopo reload, slider audio funzionanti e tab PC/Touch navigabili con le frecce.
 
 Screenshot del gioco: [apertura](menu-20261123/game-home.jpg), [comandi](menu-20261123/game-controls.jpg), [mobile](menu-20261123/game-mobile.jpg).
