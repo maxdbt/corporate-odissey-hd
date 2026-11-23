@@ -1,0 +1,22 @@
+Rome EUR taxi map, including the lake: OpenStreetMap-derived database
+
+Copyright OpenStreetMap contributors.
+https://www.openstreetmap.org/copyright
+
+rome-map.json is made available under the Open Data Commons Open Database
+License (ODbL) 1.0:
+https://opendatacommons.org/licenses/odbl/1-0/
+Individual database contents are covered by the Database Contents License:
+https://opendatacommons.org/licenses/dbcl/1-0/
+
+The downloadable derived database contains projected coordinates, source way
+and node identifiers, the bounding box, query, source snapshot timestamp,
+selected tags and the widths adapted for the game. Rebuild with
+scripts/import_rome_taxi.py. No OpenStreetMap tile images are downloaded.
+
+Road widths, signal phase timings and stop-line setbacks, destinations,
+buildings' illustrated materials and driving rules are game adaptations.
+Traffic-signal source nodes and building footprints are retained from OSM;
+mapped building heights/levels are used where present, with illustrated
+defaults otherwise. This is not a navigation application.
+The building, vehicle and character artwork is separate from this database.

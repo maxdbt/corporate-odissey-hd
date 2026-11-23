@@ -7,6 +7,7 @@ import {PARKING_LAYOUTS,parkingCells} from '../src/bonus/new/ParkingPuzzle.js';
 import {PACKING_ITEMS,rotatedCells} from '../src/bonus/new/PackingPuzzle.js';
 import {distance,clamp,overlap} from '../src/bonus/new/physics.js';
 import {PARTY_ITEMS} from '../src/bonus/new/PartyEscape.js';
+import {drivingRoute} from '../src/bonus/new/TaxiCity.js';
 
 test('eight campaign games retain their entrances and retired routes stay closed except the redesigned mail bonus',()=>{
  assert.deepEqual(STAGE_BONUSES.map(b=>b.id),['party','parking','pedalo','tray','call','taxi','packing','golf']);
@@ -127,20 +128,24 @@ test('meeting supports a full tactical win and applies energy, assignment, coold
  const q=createBonusRound('call');q.play('focus');const before=q.turn;assert.equal(q.play('focus'),false);assert.equal(q.turn,before);
 });
 
-function drive(r,point){
- for(let i=0;i<60*25&&!r.finished;i++){
-  const d=distance(r.car,point);if(d<14&&Math.abs(r.car.speed)<25)return true;
-  const target=Math.atan2(point.y-r.car.y,point.x-r.car.x),err=Math.atan2(Math.sin(target-r.car.angle),Math.cos(target-r.car.angle));
-  const desired=d<45?Math.max(12,d*.7):80;
-  r.update(1/60,{x:clamp(err*2,-1,1),y:Math.abs(err)<1.4&&r.car.speed<desired?-1:0,shield:r.car.speed>desired+5});
+function drive(r,fps){
+ const path=drivingRoute(r.car,r.destination);assert.ok(path.length>2);let at=1;
+ for(let i=0;i<fps*230&&!r.finished;i++){
+  let d=distance(r.car,path[at]);while(at<path.length-1&&d<14){at++;d=distance(r.car,path[at]);}
+  const point=path[at],last=at===path.length-1;if(last&&d<35&&Math.abs(r.car.speed)<21)return true;
+  const target=Math.atan2(point.y-r.car.y,point.x-r.car.x),err=Math.atan2(Math.sin(target-r.car.angle),Math.cos(target-r.car.angle)),gear=Math.abs(err)>1.8?-1:1;
+  const steering=gear<0?Math.atan2(Math.sin(err+Math.PI),Math.cos(err+Math.PI)):err;
+  const desired=last&&d<65?Math.max(9,d*.45):Math.abs(steering)>.5?30:Math.min(85,35+d*.5);
+  r.update(1/fps,{x:clamp(steering*2.5*gear,-1,1),y:r.car.speed*gear<desired?-gear:0,shield:r.car.speed*gear>desired+3});
  }return false;
 }
-test('taxi follows roads, stops at the first address and reaches the changed entrance',()=>{
- const r=createBonusRound('taxi');assert.equal(r.action(),false);
- for(const point of [{x:210,y:1650},{x:210,y:930},{x:690,y:930}])assert.ok(drive(r,point),JSON.stringify({car:r.car,health:r.health,message:r.message}));
- assert.ok(r.action());assert.equal(r.stop,1);
- for(const point of [{x:870,y:930},{x:870,y:1650},{x:1990,y:1650}])assert.ok(drive(r,point),JSON.stringify({car:r.car,health:r.health,message:r.message}));
- assert.ok(r.action());assert.ok(r.won,JSON.stringify(r));
+
+test('taxi completes both Rome stops with normal steering, braking and real traffic at 30 and 120 Hz',()=>{
+ for(const fps of [30,120]){
+  const r=createBonusRound('taxi');assert.equal(r.action(),false);
+  for(let stop=0;stop<2;stop++){assert.ok(drive(r,fps),JSON.stringify({fps,stop,car:r.car,health:r.health,message:r.message}));assert.ok(r.action());}
+  assert.ok(r.won);assert.ok(r.health>0);assert.deepEqual(r.reward(),{hp:10,stress:10,euro:15});
+ }
 });
 
 test('new HD backgrounds and atlases fit their images and texture budgets',()=>{

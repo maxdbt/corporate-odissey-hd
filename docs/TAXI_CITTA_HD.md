@@ -1,22 +1,37 @@
-# L'indirizzo giusto — città HD
+# L'indirizzo giusto — Roma EUR da OpenStreetMap
 
-23 novembre 2026. Prima versione giocabile della città inventata, sviluppata dopo l'approvazione del [concept](concepts/TAXI-CITTA-APPROVATO.png). Non usa OpenStreetMap.
+23 novembre 2026. La revisione sostituisce la città inventata con l'EUR e il laghetto, mantenendo la guida dall'alto e gli asset HD. Il [concept originale](concepts/TAXI-CITTA-APPROVATO.png) rimane il riferimento di stile; non rappresenta la nuova geometria.
 
-La città misura 2520 × 2520 unità, con nove isolati, parco, caffè, palazzi residenziali e due sedi. La camera segue il taxi; diciotto auto reagiscono ai semafori e trentasei passanti camminano con dodici fotogrammi. Collisioni con limiti stradali, cantiere e traffico. Gli arredi sui marciapiedi sono decorativi, fuori dalla carreggiata percorribile.
+L'estratto copre circa 3,73 × 3,45 km, EUR e collegamenti circostanti: 14.931 × 13.804 unità di gioco, 5.518 tratti stradali/pedonali e 2.546 sagome di edifici. Il perimetro del laghetto è il poligono OSM reale (131 punti). Il rettangolo comprende un margine esterno e non coincide esattamente con il confine amministrativo del quartiere. La camera segue il taxi; **24 veicoli** percorrono itinerari connessi e **48 pedoni** usano un ciclo di camminata di 12 fotogrammi.
 
-Missione: raggiungere Piazza Milano 12, fermarsi e confermare l'arrivo; il cliente indica quindi Via Verdi 8. Quattro minuti a disposizione. In anteprima è disponibile anche **Esplora senza timer**. La modalità libera toglie il timer, non i danni al taxi.
+Missione: partenza in Viale America, vicino al laghetto; prima fermata al Palazzo dei Congressi, in Piazza John Kennedy; il cliente sposta poi l'appuntamento al Palazzo della Civiltà Italiana. **Sette minuti** a disposizione. In anteprima è disponibile **Esplora senza timer**, che conserva i danni al taxi.
 
 Controlli PC: frecce/WASD, SPAZIO freno, E arrivo, M mappa, P/ESC pausa, F fullscreen. Pedali e sterzo compaiono con input touch; PC utilizza lo schermo senza pulsantiera di guida. Anteprima diretta: `?bonus=taxi`. L'accesso nella campagna rimane nel 4-1 e conserva il premio una sola volta.
 
-Implementazione: `CityTaxiScene.js`, `TaxiDrive.js`, `TaxiCity.js`. Asset caricati all'ingresso, esclusi dal precaricamento iniziale PWA. I PNG originali restano invariati; gli atlas JSON indicano i ritagli.
+Asfalto scuro, cordoli chiari, marciapiedi continui e attraversamenti a strisce distinguono le superfici. Parchi, passeggiate e sponde sono separati dalle carreggiate. Gli edifici conservano sagome e cortili OSM; tetti, lucernari, facciate, finestre e ombre seguono l'orientamento di ciascuna sagoma. Per 385 edifici sono disponibili piani o altezza: questi dati guidano la rappresentazione, con profondità compressa per non coprire la strada. Dove mancano, si usano valori illustrativi. Materiali, finestre e vegetazione non sono rilievi fotografici.
 
-Verifica della revisione minigiochi: 65 test passati, inclusa una missione completa con guida, traffico e due indirizzi. Controllati collisioni, pausa, segnali, modalità senza timer e limiti delle texture. È una prima versione da provare: geometria delle strade regolare, traffico semplificato, nessuna simulazione completa di città.
+**Semafori:** 99 punti OSM nell'estratto, di cui quelli collegati alle strade percorribili generano 127 approcci controllati. I pali sono disegnati sul bordo della carreggiata e le linee d'arresto sono orientate sulla strada. Il taxi e gli NPC si fermano prima della linea anche mantenendo premuto l'acceleratore. Verde, giallo e intervallo di rosso su entrambe le direttrici evitano verdi incrociati; le auto già oltre la linea possono liberare l'incrocio. Direzioni OSM `forward/backward` e sensi unici sono rispettati per gli approcci mappati. Raggruppamento, arretramento delle linee e tempi sono adattamenti arcade, non i tempi dei semafori reali.
+
+Implementazione: `CityTaxiScene.js`, `TaxiDrive.js`, `TaxiCity.js`, `TaxiSignals.js`, `RomeCityRenderer.js`, `CityBuildings.js`. Il fondale è generato per settori di 512 unità, con texture 1026 × 1026 (un'unità di sovrapposizione elimina le fessure allo zoom frazionario) e cache di 12 settori o del numero minimo necessario a coprire il viewport. Gli atlas sono caricati all'ingresso; la mappa vettoriale è attualmente inclusa nel bundle JavaScript. La build segnala quindi un bundle principale di circa 3,42 MB (0,92 MB gzip): resta un possibile intervento futuro il caricamento differito della mappa.
+
+## Dati e riproducibilità
+
+Il database derivato pubblico è [rome-map.json](../public/assets/hd-city-taxi/rome-map.json), con [licenza e attribuzione](../public/assets/hd-city-taxi/ROME-MAP-LICENSE.txt). Dati © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL 1.0; nessuna immagine delle tile è scaricata. L'attribuzione è sempre visibile nel gioco.
+
+- Bbox: sud 41.8145, ovest 12.4465, nord 41.8455, est 12.4915.
+- Geometria principale: snapshot 2026-11-23T12:28:05Z. Semafori: API OSM map, recuperati il 23 novembre 2026.
+- Script: `python scripts/import_rome_taxi.py --download`, oppure passare un estratto Overpass già salvato. Il Palazzo della Civiltà Italiana viene integrato come multipoligono se assente dalla prima risposta.
+- Copia grezza locale usata: `E:\Repos\max\corporate-odyssey-eur-source-20261123.json`, esterna al repository. Il database derivato necessario al gioco è invece nel repository.
+
+Verifica della revisione: **20 test dedicati al taxi e agli altri nuovi minigiochi**, ripetuti sulla copia isolata dei file destinati al commit. Verificati arresto/ripartenza al semaforo a 30 e 120 Hz, coda degli NPC, direzioni OSM, pausa, guida libera e completamento delle due fermate. La precedente verifica complessiva del workspace aveva superato 87 test; comprendeva anche lavorazioni parallele. Build di produzione completata. Le prove in browser sono verifiche locali, non misurazioni su telefono fisico.
 
 ## Asset e prompt
 
-Build locale verificata: [prova diretta del taxi](http://127.0.0.1:8098/?bonus=taxi). In Chrome controllati guida con tastiera, scorrimento della camera, acceleratore e freno con pulsanti a 844 × 390; nessun errore nella console durante queste prove. Non è una prova su telefono fisico. Commit e push Git richiesti dall’utente; pubblicazione Sites separata.
+Anteprima locale della revisione EUR: [prova diretta del taxi](http://127.0.0.1:8106/?bonus=taxi). Per forzare la pulsantiera mobile: aggiungere `&controls=touch`. Revisione salvata con un commit locale dedicato al taxi, alla mappa e alla relativa documentazione. Nessun push o pubblicazione Sites.
 
-[Schermata PC](screenshots/taxi-city-pc.jpg) · [Schermata mobile](screenshots/taxi-city-mobile.jpg)
+In Chrome verificati avvio, movimento del taxi, rendering dei segnali e degli edifici, apertura/chiusura della mappa, layout PC 1920 × 945 e mobile 844 × 390 con comandi touch forzati. Nessun errore o warning nella console del browser durante queste prove. Gli arresti esatti al rosso e la ripartenza sono coperti anche dai test automatici. [Vista PC EUR](screenshots/taxi-eur-pc.jpg) · [Vista mobile EUR](screenshots/taxi-eur-mobile.jpg) · [Mappa con laghetto](screenshots/taxi-eur-map.jpg).
+
+[Asset EUR e prompt](concepts/PROMPT-TAXI-EUR-OSM.md). Le precedenti [schermate PC](screenshots/taxi-city-pc.jpg) e [mobile](screenshots/taxi-city-mobile.jpg) documentano la città inventata e non la revisione EUR.
 
 Generazione tramite imagegen integrato. File in `public/assets/hd-city-taxi/`.
 

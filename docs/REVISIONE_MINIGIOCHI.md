@@ -2,7 +2,7 @@
 
 Sono giocabili **otto attività della campagna**. La raccolta si apre dal menu principale o con `?bonus=all`. Il successivo rifacimento di [L’ultima mail](BONUS_ULTIMA_MAIL.md) aggiunge una nona voce alla raccolta, disponibile in prova libera anche con `?bonus=last-mail`: tre destinazioni per le richieste e due azioni finali per andare in ferie. Gli altri vecchi bonus restano esclusi dalla raccolta e dagli ingressi della campagna; i rispettivi indirizzi rimandano alla raccolta.
 
-**Revisione successiva del taxi:** L'indirizzo giusto ora usa una [città HD esplorabile](TAXI_CITTA_HD.md), camera che segue l'auto, traffico, passanti, mappa e modalità senza timer. La nuova scena sostituisce il precedente tabellone.
+**Revisione successiva del taxi:** L'indirizzo giusto usa [Roma EUR da OpenStreetMap](TAXI_CITTA_HD.md), laghetto compreso, con 24 veicoli, 48 passanti, sagome reali degli edifici e semafori che fermano il taxi e gli NPC. Camera al seguito, mappa e modalità senza timer sostituiscono il precedente tabellone.
 
 **Revisione locale del pedalò:** [Ferie, ma non troppo](FERIE_PEDALO_ARCADE.md) ora occupa tutto lo schermo, con tre fasi della fuga, onde per saltare gli scogli, raccolte, combo e attacchi annunciati. La relativa consegna è un commit locale; non comprende un nuovo push o una pubblicazione.
 
@@ -17,7 +17,7 @@ Commit e push Git richiesti dall’utente sul repository HD. La pubblicazione de
 | Ferie, ma non troppo — Fuga in pedalò | Mare HD a schermo pieno, tre fasi, scatto sulle onde per saltare gli scogli, bibite, combo, ombrellone e attacchi annunciati di drone e capo. [Dettagli e verifiche](FERIE_PEDALO_ARCADE.md). | 1-2, tramite il biglietto ferie volante. | `?bonus=pedalo` |
 | Il vassoio impossibile | Percorso in prima persona con stoviglie indipendenti, inerzia, caffè che si versa e ostacoli da aggirare. Accelerare aumenta il rischio. | 2-1, x=4800; richiede il pasto completo e non sostituisce il pagamento. | `?bonus=tray` |
 | Questa call poteva essere una mail | Sei carte tattiche, intenzioni avversarie visibili, energia e pressione. Chiudere tre punti dell'agenda e assegnare i responsabili. | 3-1, x=1800: prima della conclusione dello stage. | `?bonus=call` |
-| L'indirizzo giusto | Taxi guidabile: sterzo, acceleratore, retromarcia, freno, traffico, edifici e lavori. Il cliente cambia ingresso dopo la prima fermata. | 4-1, pulsante nella scena della destinazione. | `?bonus=taxi` |
+| L'indirizzo giusto | Taxi nell'EUR: laghetto, Palazzo dei Congressi e Palazzo della Civiltà Italiana. Strade/edifici OSM, semafori, 24 veicoli e 48 pedoni. Sette minuti o esplorazione libera. | 4-1, pulsante nella scena della destinazione. | `?bonus=taxi` |
 | Valigia impossibile | Sette oggetti, rotazioni, rimozione e due valigie. Fragili e pesanti in comparti distinti; la maniglia occupa spazio. | 4-2, scelta del trasporto, dopo gli acquisti obbligatori della preparazione 4-1. | `?bonus=packing` |
 | Il golf del direttore | Tre stanze a tre quarti, mira e potenza libere, urti su mobili e sponde, attrito, tappeti, rampe e penalità del caffè. 8/10/10 colpi per buca. | 5-4, x=1460: prima del checkpoint e del direttore a x=1720. | `?bonus=golf` |
 

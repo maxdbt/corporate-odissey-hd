@@ -12,7 +12,7 @@ Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e 
 - [Fuga dalla festa aziendale](FUGA_FESTA_HD.md): salone HD, 24 colleghi distinti e animati, obiettivi distanti e cappotto indossabile.
 - [Ferie, ma non troppo](FERIE_PEDALO_ARCADE.md): fuga in pedalò a schermo pieno, onde, combo e inseguimento del capo.
 - [L’ultima mail](BONUS_ULTIMA_MAIL.md): bonus del timbro reintegrato nel menu, con scelte fra urgenze, rinvii e cestino e un finale interattivo.
-- [L'indirizzo giusto](TAXI_CITTA_HD.md): città HD esplorabile, traffico e passanti.
+- [L'indirizzo giusto](TAXI_CITTA_HD.md): Roma EUR e laghetto da OpenStreetMap, edifici, semafori, 24 veicoli e 48 passanti.
 - [Bonus per livello](BONUS_PER_LIVELLO.md): catalogo attuale e ritiro dei vecchi giochi.
 - [Stato sintetico](CAMPAGNA_HD_STATO.md).
 - [Pubblicazione Sites](PUBBLICAZIONE_SITES.md): sito pubblico, destinazioni Git e procedura di rilascio.
