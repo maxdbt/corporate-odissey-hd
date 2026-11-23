@@ -34,3 +34,13 @@ La campagna precedente ha già richiesto due invii tecnici. Il repository del si
 Il banner «NUOVA VERSIONE - AGGIORNA» consente di passare alla build nuova senza interrompere automaticamente una partita in corso. Il caricamento dei mondi è progressivo. Dettagli e limiti delle verifiche sono in [ANIMAZIONI_HD.md](ANIMAZIONI_HD.md) e [PORTING_CAMPAGNA_HD.md](PORTING_CAMPAGNA_HD.md).
 
 Il risultato del deployment Sites è la fonte per attestare quale versione è effettivamente online; un commit o un archivio locale, da soli, non attestano la pubblicazione.
+## Versione pubblicata il 23 novembre 2026
+
+- Versione Sites: **2**, deployment concluso con stato `succeeded`.
+- Sorgenti del gioco: `f8251357f6695a8c266ca9e02fcfff2e9a44358f`, pubblicati su `max-hd/main`.
+- Commit tecnico Sites: `306ecf67c4df06b0c4a78cbfb9bcddcc3f0ff1f6`.
+- Contenuto: campagna HD completa, animazioni 16/12/24 frame, mostro del bagno e composizioni integrate di mezzi e personaggi.
+- Verifiche: 25 test superati, build di produzione riuscita, 171 file della copia di pubblicazione confrontati tramite hash con la build verificata; prove browser desktop e viewport mobile descritte in [ANIMAZIONI_HD.md](ANIMAZIONI_HD.md).
+- URL: [prova Corporate Odyssey HD](https://corporate-odyssey-hd.gianlucarollback.chatgpt.site).
+
+Il rilascio è stato isolato dalle modifiche ad audio e minigolf ancora in lavorazione nella cartella principale. I PNG sono stati inviati in tre commit tecnici sotto il limite per push; è stata salvata e pubblicata solo la versione completa.
