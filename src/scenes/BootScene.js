@@ -51,9 +51,8 @@ export default class BootScene extends Phaser.Scene {
       generateClients(this);
       generateAnims(this);
       const bonus = new URLSearchParams(window.location.search).get('bonus');
-      if (bonus === 'toilet') { this.scene.start('ToiletScene', { preview: true }); return; }
       if (BONUS_BY_ID[bonus]) { this.scene.start('StageBonusScene', { bonus, preview: true }); return; }
-      if (bonus === 'revenue') { this.scene.start('RevenueScene', { preview: true }); return; }
+      if (bonus !== null) { this.scene.start('BonusHubScene'); return; }
       if (import.meta.env.DEV) {
         if (new URLSearchParams(window.location.search).has('ending')) { this.scene.start('VictoryScene'); return; }
         const requested = new URLSearchParams(window.location.search).get('level');
@@ -63,8 +62,7 @@ export default class BootScene extends Phaser.Scene {
           startLevel(this, index); return;
         }
       }
-      const target = bonus === 'last-mail' ? 'LastMailScene' : bonus === 'beach' ? 'BeachScene' : 'MenuScene';
-      this.scene.start(target, { preview: target !== 'MenuScene' });
+      this.scene.start('MenuScene');
     });
   }
 }

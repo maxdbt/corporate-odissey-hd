@@ -1,13 +1,16 @@
 # Corporate Odyssey — documentazione
 
-Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e mobile, con **19 stage HD e un bonus per stage**. Lo stile di riferimento resta il concept illustrato approvato. Il repository di consegna è `maxdbt/corporate-odissey-hd` sul remoto `max-hd`; il sito ha un repository tecnico separato.
+Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e mobile, con **19 stage HD e otto nuovi minigiochi**. Lo stile di riferimento resta il concept illustrato approvato. Il repository di consegna è `maxdbt/corporate-odissey-hd` sul remoto `max-hd`; il sito ha un repository tecnico separato.
 
 ## Stato e gioco
 
 - [Campagna completa](PORTING_CAMPAGNA_HD.md): matrice dei 19 stage, scene e prove della campagna.
 - [Animazioni HD e mezzi](ANIMAZIONI_HD.md): cicli attuali, boss, costumi da sub, personaggi a bordo e manutenzione.
 - [Musica, jingle ed effetti](AUDIO.md): integrati nel gioco locale, con 19 temi di livello, varianti per boss e bonus, sblocco al primo comando, mix e anteprima d’ascolto.
-- [Bonus per livello](BONUS_PER_LIVELLO.md): accessi, regole e ricompense dei 19 bonus.
+- [Minigiochi aggiornati](REVISIONE_MINIGIOCHI.md): otto nuove attività, accessi nella campagna, controlli e verifiche.
+- [Fuga dalla festa aziendale](FUGA_FESTA_HD.md): salone HD, 24 colleghi distinti e animati, obiettivi distanti e cappotto indossabile.
+- [L'indirizzo giusto](TAXI_CITTA_HD.md): città HD esplorabile, traffico e passanti.
+- [Bonus per livello](BONUS_PER_LIVELLO.md): catalogo attuale e ritiro dei vecchi giochi.
 - [Stato sintetico](CAMPAGNA_HD_STATO.md).
 - [Pubblicazione Sites](PUBBLICAZIONE_SITES.md): sito pubblico, destinazioni Git e procedura di rilascio.
 
@@ -34,7 +37,7 @@ Il server Vite usa la porta 8080; leggere l'indirizzo effettivo nel terminale. N
 - [Prompt del primo livello](PROMPT_PORTING_LIVELLO_1.md) e [prompt dei livelli successivi](PROMPT_PORTING_LIVELLI_SUCCESSIVI.md).
 - [Prompt dei concept](concepts/PROMPTS.md), [campagna](concepts/PROMPTS-CAMPAGNA-HD.md), [animazioni e mezzi](concepts/PROMPTS-ANIMAZIONI-HD.md).
 - [Concept Estate e Ferie](concepts/ESTATE-INFERNO.md).
-- [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md).
+- [Bonus L'ultima mail](BONUS_ULTIMA_MAIL.md): documento storico; questo minigioco non è più accessibile.
 
 I documenti sono organizzati tramite questo indice, mantenendo i percorsi esistenti per conservare validi i collegamenti. Concept illustrativi, screenshot del gioco e resoconti di collaudo sono distinti.
 

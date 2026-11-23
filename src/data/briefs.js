@@ -8,8 +8,8 @@ export const BRIEFS = {
       'Il collega logorroico ti blocca: liberati e scappa.',
       'Salta sulle icone di Teams per eliminarle: se ti toccano, stress!',
       'Trova un laptop per sparare e-mail ai nemici.',
-      "Il PC verde sulla prima scrivania apre il bonus POV L'ULTIMA MAIL: SU o tocca il computer.",
-      'C\'è la SALA FESTE: passa davanti alla porta e il buttafuori ti fa entrare a sfidare i colleghi a ballo!'
+      'FUGA DALLA FESTA: recupera cappotto e chiavi senza farti fermare dai colleghi. SU o tocca il bonus.',
+      'Verso l\'uscita trovi il PARCHEGGIO DEL 24 DICEMBRE: libera la tua auto dagli altri veicoli.'
     ]
   },
   '1-2': {
@@ -19,7 +19,7 @@ export const BRIEFS = {
       'Le zone di CALDO rallentano e alzano lo stress.',
       'L\'aria condizionata al massimo ti congela per un attimo.',
       'Attento alle icone di Teams che saltellano.',
-      'Prendi al volo il BIGLIETTO AEREO: una vacanza ti aspetta!'
+      'Prendi al volo il BIGLIETTO AEREO per FUGA IN PEDALÒ: correnti, scogli e un capo che non va in ferie!'
     ]
   },
   '2-1': {
@@ -30,7 +30,7 @@ export const BRIEFS = {
       'Il DOLCE toglie stress, i buoni pasto valgono come i bonus.',
       'Le icone di Teams ti chiamano "solo un minuto": 5 secondi bloccato!',
       'Il capo ti vede se cammini per terra davanti a lui: passa sopra i tavoli.',
-      'Lo SPEZZATINO MISTERIOSO che fluttua... mangialo a tuo rischio!'
+      'Dopo aver raccolto il pasto completo, prova IL VASSOIO IMPOSSIBILE nel tratto finale della mensa.'
     ]
   },
   '3-1': {
@@ -38,7 +38,8 @@ export const BRIEFS = {
     goal: 'Salta sui post-it fino all\'arena e sconfiggi Il Cliente dall\'Inferno.',
     tips: [
       'I post-it scompaiono poco dopo che ci sali sopra.',
-      'Schiaccia le icone di Teams prima che ti notifichino.'
+      'Schiaccia le icone di Teams prima che ti notifichino.',
+      'Il bonus della call è una sfida a carte: chiudi tre punti dell\'agenda e assegna i responsabili.'
     ]
   },
   '4-3': {
@@ -102,7 +103,6 @@ export const BRIEFS = {
     tips: [
       'I Consulenti Strategici lanciano slide di PowerPoint: schivale!',
       'CROLLO IN BORSA: cadono azioni e tutto diventa grigio per qualche secondo.',
-      'Una porta di servizio, in alto, nasconde la CACCIA AI RICAVI...',
       'Raccogli il laptop: e-mail, Teams, caffè, orologio, WWW.'
     ]
   },
@@ -130,7 +130,8 @@ export const BRIEFS = {
     tips: [
       'Prima ti attacca dal trono, poi si alza e combatte a piedi.',
       'A piedi carica e salta: saltagli sopra e schiva le onde d\'urto.',
-      'Se le cose si mettono male... potrebbe scappare.'
+      'Se le cose si mettono male... potrebbe scappare.',
+      'Prima del direttore trovi il MINIGOLF: tre stanze, mobili e rimbalzi. SU o tocca il trofeo.'
     ]
   },
   '5-5': {

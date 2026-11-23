@@ -8,8 +8,6 @@ import QuizScene from './scenes/QuizScene.js';
 import BriefScene from './scenes/BriefScene.js';
 import PauseScene from './scenes/PauseScene.js';
 import QuitScene from './scenes/QuitScene.js';
-import ToiletScene from './scenes/ToiletScene.js';
-import BeachScene from './scenes/BeachScene.js';
 import PackingScene from './scenes/PackingScene.js';
 import DestinationScene from './scenes/DestinationScene.js';
 import TransportScene from './scenes/TransportScene.js';
@@ -21,9 +19,11 @@ import GameOverScene from './scenes/GameOverScene.js';
 import VictoryScene from './scenes/VictoryScene.js';
 import PartyScene from './scenes/PartyScene.js';
 import ElevatorScene from './scenes/ElevatorScene.js';
-import RevenueScene from './scenes/RevenueScene.js';
-import LastMailScene from './scenes/LastMailScene.js';
 import StageBonusScene from './scenes/StageBonusScene.js';
+import BonusHubScene from './scenes/BonusHubScene.js';
+import DirectorMinigolfScene from './scenes/DirectorMinigolfScene.js';
+import CityTaxiScene from './scenes/CityTaxiScene.js';
+import PartyEscapeScene from './scenes/PartyEscapeScene.js';
 import StagePauseScene from './scenes/StagePauseScene.js';
 import './systems/Screen.js';
 import { startPwa } from './systems/Pwa.js';
@@ -54,7 +54,7 @@ const config = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   input: { activePointers: 4 },
-  scene: [BootScene, MenuScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, BeachScene, ToiletScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, RevenueScene, LastMailScene, StageBonusScene, StagePauseScene, ElevatorScene, GameOverScene, VictoryScene]
+  scene: [BootScene, MenuScene, BonusHubScene, CityTaxiScene, PartyEscapeScene, GameScene, UIScene, QuizScene, BriefScene, PauseScene, QuitScene, RentalScene, FoodScene, DestinationScene, PackingScene, TransportScene, JourneyScene, NegotiationScene, PartyScene, StageBonusScene, DirectorMinigolfScene, StagePauseScene, ElevatorScene, GameOverScene, VictoryScene]
 };
 
 window.__game = new Phaser.Game(config);

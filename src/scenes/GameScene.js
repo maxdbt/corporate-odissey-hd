@@ -16,14 +16,11 @@ import Canteen from '../systems/Canteen.js';
 import TripLevel from '../systems/TripLevel.js';
 import { beginStage, goNext, underwearPenalty, isGroundLeg } from '../systems/Trip.js';
 import { TRANSPORT } from '../data/trip.js';
-import PartyDoor from '../systems/PartyDoor.js';
-import RevenueDoor from '../systems/RevenueDoor.js';
-import LastMailTerminal from '../systems/LastMailTerminal.js';
 import { ensureExecTextures } from '../gfx/exec.js';
 import { createPresentation } from '../presentation/OfficePresentation.js';
 import { preloadAssetPacks } from '../presentation/AssetRegistry.js';
 import { THEME_PACKS } from '../presentation/AssetPacks.js';
-import StageBonusPortal from '../bonus/StageBonusAccess.js';
+import StageBonusPortal, {openStageBonus} from '../bonus/StageBonusAccess.js';
 
 const PIT_DAMAGE = 20;
 const BURNOUT_DELAY = 1400;
@@ -122,10 +119,9 @@ export default class GameScene extends Phaser.Scene {
     });
 
     if (level.planeTicket) this.createPlaneTicket(...level.planeTicket);
-    if (level.mysteryDish) this.createMysteryDish(...level.mysteryDish);
-    this.partyDoor = level.partyDoor ? new PartyDoor(this, ...level.partyDoor) : null;
-    this.revenueDoor = level.revenueDoor ? new RevenueDoor(this, ...level.revenueDoor) : null;
-    this.lastMailTerminal = level.lastMailTerminal ? new LastMailTerminal(this, ...level.lastMailTerminal) : null;
+    this.partyDoor = null;
+    this.revenueDoor = null;
+    this.lastMailTerminal = null;
     this.stageBonusPortal = new StageBonusPortal(this);
     this.forcedRunUntil = 0;
     this.inputLockUntil = 0;
@@ -207,7 +203,7 @@ export default class GameScene extends Phaser.Scene {
       t.destroy(); label.destroy(); sparkle.destroy();
       audio.sfx('powerup');
       this.ui?.message?.('SI PARTE! DESTINAZIONE MARE!', '#7fd4ff', 1200);
-      this.time.delayedCall(500, () => this.openOverlay('BeachScene'));
+      this.time.delayedCall(500, () => openStageBonus(this, 'pedalo'));
     });
   }
 
@@ -776,6 +772,9 @@ export default class GameScene extends Phaser.Scene {
     this.scene.stop('RevenueScene');
     this.scene.stop('LastMailScene');
     this.scene.stop('StageBonusScene');
+    this.scene.stop('DirectorMinigolfScene');
+    this.scene.stop('CityTaxiScene');
+    this.scene.stop('PartyEscapeScene');
     this.presentation?.destroy();
     this.presentation = null;
   }

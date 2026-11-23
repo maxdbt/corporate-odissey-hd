@@ -39,11 +39,11 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,webp,mp3,json}'],
         // World art is downloaded when visited, avoiding a full-campaign download on first mobile launch.
-        globIgnores: ['assets/hd-worlds/**'],
+        globIgnores: ['assets/hd-worlds/**', 'assets/hd-minigolf/**', 'assets/hd-minigames/**', 'assets/hd-city-taxi/**', 'assets/hd-party-escape/**'],
         runtimeCaching: [{
-          urlPattern: /\/assets\/hd-worlds\//,
+          urlPattern: /\/assets\/(?:hd-worlds|hd-minigolf|hd-minigames|hd-city-taxi|hd-party-escape)\//,
           handler: 'CacheFirst',
-          options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 32, maxAgeSeconds: 2592000 },
+          options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 96, maxAgeSeconds: 2592000 },
             cacheableResponse: { statuses: [0, 200] } }
         }],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024

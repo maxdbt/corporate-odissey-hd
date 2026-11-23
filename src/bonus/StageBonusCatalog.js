@@ -1,24 +1,16 @@
-// Optional activities: no stage exit, quest item or story branch is replaced.
-const entries = [
- ['2-1','tray','Il vassoio impossibile','balance','canteen','tray','furniture',35,25,'Bilancia con ← → o tieni premuti i due pulsanti. Mantieni il vassoio al centro mentre arrivano i piatti.'],
- ['3-1','call','Questa call poteva essere una mail','rhythm','meeting','microphone','furniture',35,8,'Premi PARLA solo quando il cursore entra nella fascia verde. Durante gli altri interventi resta in silenzio.'],
- ['4-1','address',"L’indirizzo giusto",'choices','travel','passport','objects',40,5,'Leggi il dossier e abbina la targa alla sede e al civico corretti. Tocca una scheda oppure usa 1, 2, 3.'],
- ['4-2','expenses','Nota spese express','choices','travel','folder','objects',40,8,'Smista le ricevute: viaggio, pasti o duplicato. Le copie non vanno rimborsate due volte.'],
- ['4-3','luggage','Quel bagaglio è mio!','choices','airport','bag','objects',35,7,'Il nastro porta tre bagagli. Confronta nome e numero con la tua etichetta, poi scegli la valigia giusta.'],
- ['4-4','rails','Binario fantasma','route','station','train','equipment',40,3,'Ruota gli scambi per allineare il percorso al binario indicato. Premi PARTENZA quando la linea è continua.'],
- ['4-5','coffee','Turbolenza creativa','balance','plane','coffee','objects',30,22,'Compensa le turbolenze con ← →. Il segnale anticipa la direzione della scossa: evita di rovesciare la tazzina.'],
- ['4-6','phones','Carrozza del silenzio','signals','train','phone','objects',35,9,'Trova il telefono che sta squillando, poi toccalo o premi il numero corrispondente prima che disturbi la carrozza.'],
- ['4-7','mirage','Fata Morgana S.r.l.','memory','desert','office','nature',40,3,'Osserva le caselle illuminate; quando scompaiono ripercorri la strada nell’ordine giusto. Le altre oasi sono miraggi.'],
- ['4-8','heater','Riunione sottozero','circuit','glacier','heater','equipment',40,3,'Ruota le sezioni del circuito finché tutti i collegamenti sono orizzontali, poi accendi il riscaldamento.'],
- ['4-9','valves','Connessione profonda','valves','sea','valve','equipment',40,3,'Regola le tre valvole sui valori indicati per portare ossigeno alla sala. Hai 18 mosse per ogni impianto.'],
- ['4-10','scope','Lo scope invisibile','choices','client','folder','objects',40,6,'Confronta accordo e nuova richiesta. Seleziona la voce aggiunta dal cliente, prima di firmare.'],
- ['5-2','gestures','Team building obbligatorio','memory','hr','trophy','objects',40,3,'Osserva la sequenza di gesti dei colleghi e ripetila nello stesso ordine. Ogni giro aggiunge un gesto.'],
- ['5-3','calendar','Agenda blindata','choices','secretary','calendar','equipment',40,6,'Leggi gli impegni già fissati e la durata richiesta. Prenota uno spazio libero senza sovrapposizioni.'],
- ['5-4','golf','Il golf del direttore','golf','director','golf','equipment',40,3,'Regola la forza: premi TIRA quando l’indicatore attraversa la fascia verde. Hai cinque palline per centrare tre cestini.'],
- ['5-5','flight','Fuori ufficio, finalmente','flight','roof','paperPlane','objects',35,7,'Guida l’aeroplanino con ↑ ↓ o i pulsanti verticali e attraversa gli anelli evitando i bordi.']
+// Only the eight approved redesigns are reachable. Legacy files are retained as source history.
+const entries=[
+ ['party','1-1','Fuga dalla festa aziendale','party','phone','objects',1985,'Fuga tra la folla','Recupera cappotto e chiavi e raggiungi l’uscita, fra 24 colleghi che occupano i passaggi. Frecce/WASD o tocco muovono; E nasconde vicino alle piante; SPAZIO distrae quattro volte. Aggira i chiacchieroni!'],
+ ['parking','1-1','Parcheggio del 24 dicembre','travel','taxi','equipment',5200,'Incastri','Libera l’auto rossa in tre parcheggi. Trascina i veicoli lungo il loro asse, oppure selezionali e usa le frecce. Spingi l’auto oltre l’uscita a destra. Z annulla.'],
+ ['pedalo','1-2','Ferie, ma non troppo','sea','parasol','equipment',null,'Fuga in pedalò','Raggiungi la caletta senza campo. ← → sterza, ↓ rallenta; SPAZIO accelera consumando energia, E apre l’ombrellone contro drone e capo. Evita gli scogli.'],
+ ['tray','2-1','Il vassoio impossibile','canteen','tray','furniture',4800,'Fisica in prima persona','Porta almeno due piatti e il 30% del caffè al tavolo. ← → scegli il percorso; SPAZIO cammina veloce, E rallenta. Le sterzate brusche fanno scivolare le stoviglie.'],
+ ['call','3-1','Questa call poteva essere una mail','meeting','microphone','furniture',1800,'Duello di carte','Chiudi tre punti dell’agenda e assegna un responsabile a ciascuno. Leggi l’intenzione avversaria, scegli il punto e gioca una carta. Le carte consumano energia e non puoi ripetere quella appena usata.'],
+ ['taxi','4-1','L’indirizzo giusto','travel','taxi','equipment',null,'Città esplorabile','Guida nella città HD: frecce/WASD, SPAZIO frena, E conferma l’arrivo. M apre la mappa. Trova Piazza Milano 12, poi la nuova sede in Via Verdi 8. In anteprima puoi esplorare senza timer.'],
+ ['packing','4-2','Valigia impossibile','travel','bag','objects',null,'Incastri e rotazioni','Scegli un oggetto sul tavolo, ruotalo con R e tocca una casella per riporlo. Fragili a sinistra, pesanti a destra. Tocca un oggetto riposto per recuperarlo. Chiudi entrambe le valigie.'],
+ ['golf','5-4','Il golf del direttore','director','trophy','objects',1460,'Minigolf','Tre buche nell’attico: scegli mira e potenza, sfrutta sponde e rampe, evita il caffè. Trascina dalla pallina o usa frecce e SPAZIO.']
 ];
-export const STAGE_BONUSES = entries.map(([stage,id,title,mode,world,frame,atlas,duration,goal,instructions]) =>
- Object.freeze({stage,id,title,mode,world,frame,atlas,duration,goal,instructions,reward:{hp:10,stress:10,euro:15}}));
-export const BONUS_BY_STAGE = Object.fromEntries(STAGE_BONUSES.map(b=>[b.stage,b]));
-export const BONUS_BY_ID = Object.fromEntries(STAGE_BONUSES.map(b=>[b.id,b]));
-export const EXISTING_BONUSES = {'1-1':'last-mail','1-2':'beach','5-1':'revenue'};
+export const STAGE_BONUSES=entries.map(([id,stage,title,world,frame,atlas,x,genre,instructions])=>Object.freeze({id,stage,title,world,frame,atlas,x,genre,instructions,mode:id==='golf'?'minigolf':id,duration:0,goal:id==='golf'?3:1,reward:{hp:10,stress:10,euro:15}}));
+export const BONUS_BY_ID=Object.fromEntries(STAGE_BONUSES.map(b=>[b.id,b]));
+export const BONUSES_BY_STAGE=Object.fromEntries([...new Set(STAGE_BONUSES.map(b=>b.stage))].map(stage=>[stage,STAGE_BONUSES.filter(b=>b.stage===stage)]));
+export const BONUS_BY_STAGE=Object.fromEntries(Object.entries(BONUSES_BY_STAGE).map(([stage,bonuses])=>[stage,bonuses[0]]));
+export const EXISTING_BONUSES={};

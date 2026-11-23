@@ -99,16 +99,16 @@ export default class MenuScene extends Phaser.Scene {
     this.tweens.add({ targets: this.startBtn, scale: 1.08, duration: 500, yoyo: true, repeat: -1 });
 
     // Free preview of the POV bonus; campaign rewards are earned at its desk terminal.
-    this.add.text(14, 48, 'BONUS FERIE\nMA NON TROPPO', style(10, '#9dffce', { align: 'left' }))
+    this.add.text(14, 48, 'OTTO NUOVI\nMINIGIOCHI', style(10, '#9dffce', { align: 'left' }))
       .setOrigin(0, 0).setPadding(5).setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         audio.unlock();
         GameState.character = CHARACTERS[this.selected];
-        this.scene.start('BeachScene', { preview: true });
+        this.scene.start('BonusHubScene');
       });
-    this.add.text(GAME_WIDTH - 14, 48, "BONUS POV\nL'ULTIMA MAIL", style(10, '#9dffce', { align: 'right' }))
+    this.add.text(GAME_WIDTH - 14, 48, 'IL GOLF\nDEL DIRETTORE', style(10, '#9dffce', { align: 'right' }))
       .setOrigin(1, 0).setPadding(5).setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => { audio.unlock(); this.scene.start('LastMailScene', { preview: true }); });
+      .on('pointerdown', () => { audio.unlock(); this.scene.start('DirectorMinigolfScene', { preview: true }); });
 
     // Controls help
     const touch = window.matchMedia('(pointer: coarse) and (hover: none)').matches;

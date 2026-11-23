@@ -1,0 +1,56 @@
+# Revisione dei minigiochi — 23 novembre 2026
+
+Sono giocabili **otto nuove attività**, distribuite nella campagna. La raccolta si apre dal menu principale o con `?bonus=all`. I vecchi bonus sono esclusi dal menu, dal registro delle scene e dagli ingressi della campagna. I vecchi indirizzi di anteprima rimandano alla raccolta.
+
+**Revisione successiva del taxi:** L'indirizzo giusto ora usa una [città HD esplorabile](TAXI_CITTA_HD.md), camera che segue l'auto, traffico, passanti, mappa e modalità senza timer. La nuova scena sostituisce il precedente tabellone.
+
+Commit e push Git richiesti dall’utente sul repository HD. La pubblicazione del sito Sites resta separata da questa revisione.
+
+## Attività e collocazione narrativa
+
+| Minigioco | Regole implementate | Accesso nella campagna | Anteprima |
+| --- | --- | --- | --- |
+| Fuga dalla festa aziendale | Salone HD a schermo pieno, 24 colleghi con collisioni, sei inseguitori, cappotto e chiavi, piante per nascondersi e quattro distrazioni. [Dettagli](FUGA_FESTA_HD.md). | 1-1, x=1985: dopo il primo tratto platform. | `?bonus=party` |
+| Parcheggio del 24 dicembre | Tre parcheggi: veicoli vincolati al proprio asse, collisioni, uscita dell'auto rossa e annullamento delle mosse. | 1-1, x=5200: verso l'uscita, separato dalla prima pausa. | `?bonus=parking` |
+| Ferie, ma non troppo — Fuga in pedalò | Guida con inerzia, correnti, scogli, scatto a energia, ombrellone difensivo, consegne del drone e capo in moto d'acqua. | 1-2, tramite il biglietto ferie volante. | `?bonus=pedalo` |
+| Il vassoio impossibile | Percorso in prima persona con stoviglie indipendenti, inerzia, caffè che si versa e ostacoli da aggirare. Accelerare aumenta il rischio. | 2-1, x=4800; richiede il pasto completo e non sostituisce il pagamento. | `?bonus=tray` |
+| Questa call poteva essere una mail | Sei carte tattiche, intenzioni avversarie visibili, energia e pressione. Chiudere tre punti dell'agenda e assegnare i responsabili. | 3-1, x=1800: prima della conclusione dello stage. | `?bonus=call` |
+| L'indirizzo giusto | Taxi guidabile: sterzo, acceleratore, retromarcia, freno, traffico, edifici e lavori. Il cliente cambia ingresso dopo la prima fermata. | 4-1, pulsante nella scena della destinazione. | `?bonus=taxi` |
+| Valigia impossibile | Sette oggetti, rotazioni, rimozione e due valigie. Fragili e pesanti in comparti distinti; la maniglia occupa spazio. | 4-2, scelta del trasporto, dopo gli acquisti obbligatori della preparazione 4-1. | `?bonus=packing` |
+| Il golf del direttore | Tre stanze a tre quarti, mira e potenza libere, urti su mobili e sponde, attrito, tappeti, rampe e penalità del caffè. 8/10/10 colpi per buca. | 5-4, x=1460: prima del checkpoint e del direttore a x=1720. | `?bonus=golf` |
+
+Gli ingressi sono opzionali e non saltano gli obiettivi della storia. Gli stage senza una nuova attività non espongono i vecchi bonus. La scena della festa usata nel finale della storia resta per quel finale; il vecchio ingresso al bonus ballo è rimosso.
+
+## Controlli, pausa e premi
+
+- Movimento: frecce o WASD; pulsanti touch. Ogni introduzione spiega azione, difesa e freno.
+- Parcheggio: trascinare un veicolo lungo il suo asse; selezione e frecce disponibili; Z annulla.
+- Valigia: scegliere un oggetto, ruotare con R o pulsante, toccare la griglia per posarlo; toccare un oggetto posato per rimuoverlo.
+- Call: scegliere punto dell'agenda e carta; tasti 1–6 come alternativa al tocco.
+- Golf: trascinare indietro dalla pallina e rilasciare; alternativa con mira, forza e TIRA.
+- P/ESC o pulsante pausa; perdita del focus mette in pausa; F/pulsante fullscreen. TORNA rientra nello stage o nella raccolta.
+- La campagna è sospesa durante il bonus. Timer, nemici e controlli riprendono al rientro. Un tentativo per attività in ogni partita.
+- Vittoria: +10 salute, −10 stress, +15 euro una sola volta. Abbandono e sconfitta non premiano. Le anteprime non modificano la campagna.
+
+## Grafica e architettura
+
+Fondali e oggetti HD, personaggi animati, texture caricate all'apertura dell'attività. Nuovi asset: veicoli, scogli, drone, chiavi, vassoio vuoto, parcheggio natalizio e caletta mediterranea. Immagini escluse dal precaricamento iniziale PWA.
+
+- `src/bonus/new/`: sette modelli indipendenti da Phaser, simulazione a passo fisso, regole e vittoria.
+- `src/bonus/minigolf/`: fisica, geometria e proiezione del golf.
+- `StageBonusScene`: presentazione condivisa, input e risultato; `PartyEscapeScene`: salone affollato; `CityTaxiScene`: città esplorabile; `DirectorMinigolfScene`: golf.
+- `BonusHubScene`: raccolta; catalogo, accessi e premi condivisi.
+- I moduli storici non registrati restano solo come sorgenti; non sono offerti al giocatore.
+- [Prompt e asset nuovi](concepts/PROMPTS-NUOVI-MINIGIOCHI.md); [prompt del golf](concepts/PROMPTS-MINIGOLF.md).
+
+## Verifica
+
+Suite della revisione isolata: **65 test superati**. Soluzioni reali per i tre parcheggi e le due valigie; vittorie tramite comandi per festa, pedalò, vassoio, call e taxi; tre buche del golf completate con tiri normali. Verificati pausa, limiti temporali, premio singolo, collisioni, distanza degli obiettivi e limiti degli atlas.
+
+Chrome: aperte e controllate le otto attività; movimento, trascinamento, carte, rotazioni; rientro dal bonus festa alla campagna. Layout mobile controllato a 844 × 390: non equivale a una prova su telefono fisico.
+
+Build Vite/PWA completata in una cartella temporanea esterna al repository. Anteprima attiva durante la consegna: [raccolta locale](http://127.0.0.1:8098/?bonus=all). Il server precedente sulla porta 8092 è stato arrestato. Nella build verificati anche i nuovi asset e il reindirizzamento del vecchio link L'ultima mail alla raccolta; nessun errore nella console delle schermate controllate.
+
+Schermate reali: [raccolta](screenshots/new-bonus-hub.jpg), [parcheggio](screenshots/new-parking.jpg), [pedalò](screenshots/new-pedalo.jpg), [vassoio](screenshots/new-tray.jpg).
+
+La verifica non certifica il bilanciamento finale né una partita completa su tutti gli stage. È la versione giocabile da provare insieme prima di ulteriori rifiniture.
