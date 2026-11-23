@@ -6,6 +6,7 @@ Aggiornamento: **23 novembre 2026**. Platform satirico 2D per browser desktop e 
 
 - [Campagna completa](PORTING_CAMPAGNA_HD.md): matrice dei 19 stage, scene e prove della campagna.
 - [Animazioni HD e mezzi](ANIMAZIONI_HD.md): cicli attuali, boss, costumi da sub, personaggi a bordo e manutenzione.
+- [Musica, jingle ed effetti](AUDIO.md): integrati nel gioco locale, con 19 temi di livello, varianti per boss e bonus, sblocco al primo comando, mix e anteprima d’ascolto.
 - [Bonus per livello](BONUS_PER_LIVELLO.md): accessi, regole e ricompense dei 19 bonus.
 - [Stato sintetico](CAMPAGNA_HD_STATO.md).
 - [Pubblicazione Sites](PUBBLICAZIONE_SITES.md): sito pubblico, destinazioni Git e procedura di rilascio.
@@ -39,4 +40,4 @@ I documenti sono organizzati tramite questo indice, mantenendo i percorsi esiste
 
 ## Verifica
 
-La copertura automatica include atlanti, cicli, boss, mezzi, bonus, pause e premi. Le prove browser e i loro limiti sono riportati nei documenti di campagna e animazioni. Il viewport mobile simulato verifica disposizione e input: prestazioni, memoria, temperatura e multitouch su telefono fisico richiedono un collaudo hardware.
+La copertura automatica include atlanti, cicli, boss, mezzi, bonus, pause, premi e gestione audio. Le prove browser e i loro limiti sono riportati nei documenti di campagna, animazioni e [audio](AUDIO.md#verifiche). Il viewport mobile simulato verifica disposizione e input: prestazioni, memoria, temperatura, multitouch e resa sonora su telefono fisico richiedono un collaudo hardware.

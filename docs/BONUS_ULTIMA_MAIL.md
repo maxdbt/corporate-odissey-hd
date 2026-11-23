@@ -52,6 +52,8 @@ Voce sintetica **Chad**, giovane maschile, modello **Eleven v3**, lingua italian
 
 Un intervallo minimo limita la ripetizione delle battute; caffè ed esito hanno priorità. L’audio viene sbloccato dal pulsante di avvio e le clip automatiche usano lo stesso AudioContext anche su mobile. È possibile disattivare tutto l’audio o solo le voci. Se una clip non è disponibile, il gioco continua con i sottotitoli.
 
+Nella [revisione audio locale del 23 novembre 2026](AUDIO.md), il contesto è condiviso con il resto del gioco: carta e timbro passano dal bus effetti, le battute dal bus voci, entrambi soggetti al volume generale e al muto. La pausa del bonus sospende anche l’audio. Uscire interrompe le battute e scollega l’uscita del bonus, mantenendo disponibile il contesto per la campagna. Le quattro registrazioni e i sottotitoli restano quelli esistenti.
+
 ## Struttura
 
 - `src/scenes/LastMailScene.js`: ciclo di vita Phaser, pausa/ripresa della campagna e premi.

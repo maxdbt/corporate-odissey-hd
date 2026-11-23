@@ -41,12 +41,18 @@ Characters must look clearly different (man: short hair, shirt+tie; woman: long 
 Other modules: use only TEX keys. If you truly need an extra texture, generate it yourself lazily with a
 unique key (`if (!scene.textures.exists(k)) { ...generateTexture(k) }`).
 
-## Audio (PLAYER/UI) — `src/systems/Audio8bit.js`
-`export const audio` with: `sfx(name)` names: `jump, doublejump, coin, hurt, stomp, shoot, powerup, explosion,
-quiz, select, gameover, victory, freeze, sneeze, splash, alarm, bossHit, checkpoint, kick, hat, perfect, miss, cheer`;
-`music(track)` tracks: `menu, level, promotion, boss, elevator, island, space`; `stopMusic()`; `note(n, dur, type, vol)` (one note on the
-music bus, for scenes that sequence their own music, e.g. PartyScene with its accelerating tempo); `unlock()` (call on first user input). Pure WebAudio square/
-triangle oscillators, never throws if AudioContext is unavailable.
+## Audio (PLAYER/UI) — revisione locale del 23 novembre 2026
+
+`src/systems/Audio8bit.js` conserva l’export `audio` e le chiamate delle scene originali, ma delega la sintesi a `src/audio/SoundEngine.js`. Il catalogo in `src/audio/AudioCatalog.js` contiene 19 temi di livello, 19 arrangiamenti bonus, 6 boss, 6 situazioni speciali e 45 effetti. La sintesi Web Audio combina oscillatori sinusoidali e triangolari, armoniche e rumore filtrato; le battute registrate di Last Mail sono asset separati.
+
+- `music(track)` accetta gli identificatori del catalogo. Gli alias `level` e `boss` vengono risolti usando `GameState.levelIndex` e il percorso della trasferta. Richiedere di nuovo il tema corrente non lo riavvia.
+- `sfx(name)`, `stopMusic()`, `note(n, dur, type, vol)` e `unlock()` conservano l’uso esistente. `note` serve alle scene con sequenze proprie, come PartyScene; `unlock` va chiamato da un gesto dell’utente.
+- `toggleMute()`, `setVolume(bus, value)` e `subscribe(callback)` gestiscono le preferenze condivise; i bus sono `master`, `music`, `effects` e `voices`, con guadagni tra 0 e 1.
+- `setPaused(value, reason)` mantiene motivi di pausa indipendenti: eliminare quello del gioco non riprende l’audio mentre la scheda è ancora nascosta.
+
+`GameAudioDirector`, creato in `src/main.js`, osserva le scene a ogni `poststep` per aggiornare tema e pausa. Campiona le situazioni per gli effetti al massimo ogni 70 ms, senza modificare fisica o progressione. Registra anche gli input globali di puntatore, tocco e tastiera per sbloccare l’audio nei bonus aperti direttamente; durante un briefing il contesto viene preparato con l’uscita silenziosa. Rimuove questi ascoltatori alla distruzione e azzera le osservazioni quando una scena si chiude, così un riavvio ripropone il jingle. Party, ascensore, finale e Last Mail conservano la regia delle proprie sequenze. `LastMailAudio` usa il contesto e i bus condivisi; la sua distruzione non chiude l’AudioContext del gioco.
+
+Il motore limita ripetizioni e polifonia, scollega i nodi terminati e programma la musica con un anticipo di 180 ms. Gli errori di disponibilità audio non devono bloccare la partita. Specifiche, API, mix e collaudi sono in [AUDIO.md](AUDIO.md); questa sezione sostituisce il contratto audio della baseline.
 
 ## Input (PLAYER/UI) — `src/systems/InputController.js`
 `new InputController(scene)`; `update()` returns a fresh state each frame:

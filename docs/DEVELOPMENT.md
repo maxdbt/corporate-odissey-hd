@@ -69,6 +69,22 @@ La grafica di base viene generata da `BootScene` e `src/gfx`; gli sfondi da `Bac
 
 `src/data/quizzes.js` contiene i quiz e la selezione per ambientazione. `QuizScene` invia gli effetti a `GameScene.applyEffects()`. Le modifiche alla salute o alle risorse devono passare attraverso gli helper di `GameState` quando previsti.
 
+### Musica, jingle ed effetti
+
+La [guida audio](AUDIO.md) descrive catalogo, API e bilanciamento. Modificare le partiture e gli effetti in `src/audio/AudioCatalog.js`; usare `GameAudioDirector.js` per associare temi e segnali alle scene. Le scene esistenti continuano a importare `audio` da `src/systems/Audio8bit.js`. Evitare AudioContext separati e chiamate a effetti su ogni fotogramma.
+
+Con Vite attivo, aprire `/audio-preview.html` sull’indirizzo del server: **Ascolta** riproduce il tema selezionato, **Solo jingle** il motivo d’ingresso. I cursori agiscono soltanto sull’anteprima; **Crea anteprima WAV e verifica** esegue il rendering offline e abilita il download. La pagina non viene copiata in `dist` e non è disponibile tramite `npm run preview`.
+
+```powershell
+node --test tests/audio.test.js
+```
+
+Per il collaudo nel gioco, avviare con un clic o un tasto, provare un cambio livello e boss, entrare e uscire da un bonus, usare P per pausa/ripresa e M per il muto, quindi nascondere e riaprire la scheda. Controllare che i jingle non si ripetano al ritorno dal bonus, ma ripartano riavviando il livello, e che monete, passi e spari ravvicinati restino contenuti. Aprire anche `/?bonus=phones` direttamente: INIZIA o Invio deve sbloccare il tema e il primo squillo. In Last Mail verificare le battute e il ritorno alla campagna. In sviluppo `data-audio-state` sul canvas espone tema, scena, stato del contesto, pausa, muto e contatori del sintetizzatore, compresi `effects` e `lastEffect` per confermare gli effetti accettati.
+
+Il test automatico e il rendering misurano comportamento e segnale; l’ascolto su altoparlante e cuffie di un telefono reale resta una prova distinta. La revisione audio è locale: i risultati di una build non attestano la presenza dei nuovi suoni sul sito pubblicato.
+
+Gli [esiti dell’ultimo collaudo audio](AUDIO.md#esito-del-collaudo-del-23-novembre-2026) riportano separatamente suite generale, test audio, build e prove browser. Per verificare l’integrazione giocare dalla pagina principale `/`; usare `/audio-preview.html` per confrontare e regolare i suoni dell’anteprima.
+
 ## Build e pubblicazione
 
 La consegna corrente usa GitHub sul remoto `max-hd` e il sito ChatGPT Sites esistente. Seguire [PUBBLICAZIONE_SITES.md](PUBBLICAZIONE_SITES.md); la pipeline GitHub Pages descritta qui sotto è un percorso separato.

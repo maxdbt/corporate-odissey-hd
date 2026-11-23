@@ -27,6 +27,9 @@ import StageBonusScene from './scenes/StageBonusScene.js';
 import StagePauseScene from './scenes/StagePauseScene.js';
 import './systems/Screen.js';
 import { startPwa } from './systems/Pwa.js';
+import { GameAudioDirector } from './audio/GameAudioDirector.js';
+import { audio } from './systems/Audio8bit.js';
+import { GameState } from './state/GameState.js';
 
 // Render every Text at the canvas scale so it stays crisp under the camera zoom.
 const addText = Phaser.GameObjects.GameObjectFactory.prototype.text;
@@ -55,4 +58,5 @@ const config = {
 };
 
 window.__game = new Phaser.Game(config);
+new GameAudioDirector(window.__game, audio, GameState);
 window.__game.events.once(Phaser.Core.Events.READY, () => setTimeout(startPwa, 2000));

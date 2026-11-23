@@ -15,6 +15,7 @@ export default class LastMailAudio {
     this.nextVoice = 0;
     this.voiceEpoch = 0;
     this.buffers = new Map();
+    this.unsubscribe = audio.subscribe(() => { if (audio.muted) this.stopVoices(); });
     // All speech uses the context unlocked by START, including automatic win/miss lines on mobile.
     this.clips = Object.fromEntries(Object.entries(LAST_MAIL_LINES).map(([key, line]) =>
       [key, fetch(base + line.file).then((response) => response.ok ? response.arrayBuffer() : null).catch(() => null)]));
@@ -23,21 +24,19 @@ export default class LastMailAudio {
   unlock() {
     audio.unlock();
     if (!this.context) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) {
+      if (audio.ctx) {
         try {
-          this.context = new AudioCtx();
+          this.context = audio.ctx;
           this.output = this.context.createGain();
-          this.output.gain.value = audio.muted ? 0 : 0.2;
-          this.output.connect(this.context.destination);
+          this.output.gain.value = 0.3;
+          this.output.connect(audio.sfxGain);
         } catch { /* The game remains playable with subtitles if audio is unavailable. */ }
       }
     }
-    this.context?.resume().catch(() => {});
   }
 
   tone(freq, duration, type = 'sine', gain = 0.35, delay = 0) {
-    if (!this.context || audio.muted) return;
+    if (!this.context || audio.muted || audio.paused) return;
     const c = this.context;
     const t = c.currentTime + delay;
     const osc = c.createOscillator();
@@ -53,7 +52,7 @@ export default class LastMailAudio {
   }
 
   paper() {
-    if (!this.context || audio.muted) return;
+    if (!this.context || audio.muted || audio.paused) return;
     const c = this.context;
     const buffer = c.createBuffer(1, Math.floor(c.sampleRate * 0.12), c.sampleRate);
     const data = buffer.getChannelData(0);
@@ -97,7 +96,8 @@ export default class LastMailAudio {
       const gain = context.createGain();
       gain.gain.value = 0.8;
       source.buffer = this.buffers.get(key);
-      source.connect(gain); gain.connect(context.destination);
+      source.connect(gain); gain.connect(audio.voiceGain);
+      audio.duck(0.25, source.buffer.duration);
       this.voiceSource = source;
       source.onended = () => { source.disconnect(); gain.disconnect(); if (this.voiceSource === source) this.voiceSource = null; };
       source.start();
@@ -111,11 +111,12 @@ export default class LastMailAudio {
   }
   setMuted() {
     this.stopVoices();
-    if (this.output) this.output.gain.value = audio.muted ? 0 : 0.2;
   }
   destroy() {
     this.stopVoices();
     this.buffers.clear();
-    this.context?.close().catch(() => {});
+    this.unsubscribe?.();
+    this.output?.disconnect();
+    this.context = null;
   }
 }
