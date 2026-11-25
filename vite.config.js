@@ -40,11 +40,13 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,png,webp,mp3,json}'],
         // World art is downloaded when visited, avoiding a full-campaign download on first mobile launch.
         // Intros stream on demand; posters and subtitles also stay out of the bulk precache.
-        globIgnores: ['assets/hd-worlds/**', 'assets/hd-minigolf/**', 'assets/hd-minigames/**', 'assets/hd-city-taxi/**', 'assets/hd-party-escape/**', 'assets/hd-dance/**', 'assets/hd-interludes/**', 'assets/intro/**'],
+        // hd-office and hd-summer are fetched by the game itself at boot; precaching them would download the same
+        // megabytes a second time while the player waits. Runtime caching fills the offline copy from that fetch.
+        globIgnores: ['assets/hd-worlds/**', 'assets/hd-minigolf/**', 'assets/hd-minigames/**', 'assets/hd-city-taxi/**', 'assets/hd-party-escape/**', 'assets/hd-dance/**', 'assets/hd-interludes/**', 'assets/intro/**', 'assets/hd-office/**', 'assets/hd-summer/**'],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:hd-worlds|hd-minigolf|hd-minigames|hd-city-taxi|hd-party-escape|hd-dance|hd-interludes)\//,
+          urlPattern: /\/assets\/(?:hd-worlds|hd-minigolf|hd-minigames|hd-city-taxi|hd-party-escape|hd-dance|hd-interludes|hd-office|hd-summer)\//,
           handler: 'CacheFirst',
-          options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 96, maxAgeSeconds: 2592000 },
+          options: { cacheName: 'corporate-worlds-v1', expiration: { maxEntries: 320, maxAgeSeconds: 2592000 },
             cacheableResponse: { statuses: [0, 200] } }
         }],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024

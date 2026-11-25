@@ -61,4 +61,10 @@ const config = {
 
 window.__game = new Phaser.Game(config);
 new GameAudioDirector(window.__game, audio, GameState);
-window.__game.events.once(Phaser.Core.Events.READY, () => setTimeout(startPwa, 2000));
+// The service worker fills the offline cache, which must not compete with the first boot for bandwidth:
+// wait for BootScene to hand over to the menu (its HD assets are downloaded by then), then give the menu a moment.
+window.__game.events.once(Phaser.Core.Events.READY, () => {
+  const boot = window.__game.scene.getScene('BootScene');
+  if (!boot) { setTimeout(startPwa, 8000); return; }
+  boot.events.once(Phaser.Scenes.Events.SHUTDOWN, () => setTimeout(startPwa, 2000));
+});

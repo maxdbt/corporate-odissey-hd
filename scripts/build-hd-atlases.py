@@ -13,6 +13,10 @@ ENEMIES = ['talker1', 'talker2', 'party1', 'party2', 'clienthell', 'bug', 'confc
 
 
 def atlas(image_name, names, cols, rows, preserve_cells=False, output=None):
+    # Sheets shipped as WebP (hd-office) keep their .png name in the call sites below; prefer whichever exists.
+    webp = Path(image_name).with_suffix('.webp').name
+    if (ROOT / webp).exists():
+        image_name = webp
     image = Image.open(ROOT / image_name).convert('RGBA')
     width, height = image.size
     alpha = image.getchannel('A')

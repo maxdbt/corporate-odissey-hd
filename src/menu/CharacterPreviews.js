@@ -4,8 +4,9 @@ export function createCharacterPreviews(host, reduced=false) {
  let elapsed=0,last=performance.now(),raf=0,disposed=false,dirty=true;
  const atlases=new Map();
 function atlas(file,world=false){
- const path=`${import.meta.env.BASE_URL}assets/${world?'hd-worlds':'hd-office'}/${file}`;
- if(!atlases.has(path)){const record={ready:false};atlases.set(path,record);Promise.all([fetch(path+'.json').then(r=>{if(!r.ok)throw Error(path);return r.json();}),new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=path+'.png';})]).then(([data,img])=>Object.assign(record,{ready:true,data,img})).catch(()=>record.failed=true);}
+ // The office sheets ship as WebP; hd-worlds is still PNG. Keep this in step with HD_ASSETS in AssetRegistry.js.
+ const path=`${import.meta.env.BASE_URL}assets/${world?'hd-worlds':'hd-office'}/${file}`,ext=world?'.png':'.webp';
+ if(!atlases.has(path)){const record={ready:false};atlases.set(path,record);Promise.all([fetch(path+'.json').then(r=>{if(!r.ok)throw Error(path);return r.json();}),new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=path+ext;})]).then(([data,img])=>Object.assign(record,{ready:true,data,img})).catch(()=>record.failed=true);}
  return atlases.get(path);
 }
 function drawSprite(ctx,sheet,key,x,bottom,height,flip=false,angle=0){
